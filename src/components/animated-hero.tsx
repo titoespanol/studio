@@ -55,7 +55,7 @@ export function AnimatedHero() {
                     <div
                     key={index}
                     className={cn(
-                        "overflow-hidden transition-all duration-700",
+                        "overflow-hidden transition-all duration-700 ease-out",
                         step === 3 ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
                     )}
                     style={{ transitionDelay: `${index * 200}ms` }}
@@ -71,7 +71,7 @@ export function AnimatedHero() {
                     </div>
                 ))}
                 </div>
-                <p className={cn("text-sm md:text-base max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-700",
+                <p className={cn("text-sm md:text-base max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-700 ease-out",
                 step === 3 ? "opacity-100" : "opacity-0"
                 )} style={{ transitionDelay: `${words.length * 200 + 100}ms` }}>
                 The Child Lens is a platform for systemic change in children’s health. We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.

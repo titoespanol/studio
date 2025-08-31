@@ -25,29 +25,36 @@ const features = [
 
 export function ScrollingFeatures() {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [textProgress, setTextProgress] = useState(0);
+  const [featureProgress, setFeatureProgress] = useState(new Array(features.length).fill(0));
 
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
       
       const { top, height } = containerRef.current.getBoundingClientRect();
-      const featureHeight = height / features.length;
-      
-      const index = Math.floor(-top / featureHeight);
-      const newIndex = Math.max(0, Math.min(features.length - 1, index));
-      setActiveFeatureIndex(newIndex);
-      
-      const featureTop = top + newIndex * featureHeight;
-      const featureProgress = Math.max(0, Math.min(1, 1 - (featureTop / window.innerHeight) * 1.5));
-      setProgress(featureProgress);
+      const scrollableHeight = height - window.innerHeight;
+      const rawProgress = -top / scrollableHeight;
 
+      // Text progress for "What we do" section
       const textAnimationStart = window.innerHeight * 0.5;
       const textAnimationEnd = window.innerHeight * 0.2;
-      const textProgress = Math.max(0, Math.min(1, (textAnimationStart - top) / (textAnimationStart - textAnimationEnd)));
-      setTextProgress(textProgress);
+      const newTextProgress = Math.max(0, Math.min(1, (textAnimationStart - top) / (textAnimationStart - textAnimationEnd)));
+      setTextProgress(newTextProgress);
+
+      // Feature progress calculation
+      const featureScrollLength = scrollableHeight / features.length;
+      const currentFeatureIndex = Math.min(features.length - 1, Math.floor(-top / featureScrollLength));
+      setActiveFeatureIndex(currentFeatureIndex);
+
+      const newFeatureProgress = features.map((_, index) => {
+        const featureStart = featureScrollLength * index;
+        const featureEnd = featureScrollLength * (index + 1);
+        const progressInFeature = (-top - featureStart) / (featureEnd - featureStart);
+        return Math.max(0, Math.min(1, progressInFeature));
+      });
+      setFeatureProgress(newFeatureProgress);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -59,7 +66,7 @@ export function ScrollingFeatures() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${(features.length + 1) * 100}vh` }}>
+    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${(features.length * 1.5) * 100}vh` }}>
       <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center">
         <div className="flex flex-col md:flex-row gap-12 w-full">
           <div className="md:w-1/3">
@@ -85,10 +92,10 @@ export function ScrollingFeatures() {
                 >
                   <span className="text-sm font-light block mb-2">0{index + 1}</span>
                   <h3 className="text-2xl font-bold font-headline mb-2">
-                    <AnimatedText text={feature.title} progress={activeFeatureIndex === index ? progress : 0} />
+                    <AnimatedText text={feature.title} progress={featureProgress[index]} />
                   </h3>
                   <p className="font-body font-light text-lg">
-                    <AnimatedText text={feature.description} progress={activeFeatureIndex === index ? progress : 0} />
+                    <AnimatedText text={feature.description} progress={featureProgress[index]} />
                   </p>
                 </div>
               ))}

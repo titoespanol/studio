@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 type AnimatedTextProps = {
   text: string;
@@ -19,7 +19,7 @@ export const AnimatedText = ({ text, progress }: AnimatedTextProps) => {
       const animate = (timestamp: number) => {
         if (!start) start = timestamp;
         const elapsed = timestamp - start;
-        const newProgress = Math.min(elapsed / (text.length * 50), 1);
+        const newProgress = Math.min(elapsed / (text.length * 30), 1);
         setInternalProgress(newProgress);
         if (newProgress < 1) {
           requestAnimationFrame(animate);
@@ -30,22 +30,24 @@ export const AnimatedText = ({ text, progress }: AnimatedTextProps) => {
     }
   }, [progress, text.length]);
 
+  const characters = useMemo(() => text.split(''), [text]);
+  
   return (
-    <>
-      {text.split('').map((char, i) => {
-        const charDelay = i * 0.02; // Stagger the animation of each character
-        const charProgress = Math.max(0, Math.min(1, (internalProgress - charDelay) / 0.5));
+    <span className="inline">
+      {characters.map((char, i) => {
+        const charsToShow = Math.floor(internalProgress * characters.length);
+        const isVisible = i < charsToShow;
         
         return (
           <span
             key={i}
-            className="transition-opacity duration-200"
-            style={{ opacity: charProgress, transitionDelay: `${i * 10}ms` }}
+            className="transition-opacity duration-150"
+            style={{ opacity: isVisible ? 1 : 0.2 }}
           >
             {char === ' ' ? '\u00A0' : char}
           </span>
         );
       })}
-    </>
+    </span>
   );
 };

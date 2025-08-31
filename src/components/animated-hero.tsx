@@ -54,12 +54,14 @@ export function AnimatedHero() {
               <AnimatedWords phrases={phrases} />
               <p 
                 className={cn(
-                  "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in",
+                  "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in md:mr-16",
                   step === 3 ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: '2500ms' }}
               >
-                The Child Lens is a platform for systemic change in children’s health. We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.
+                The Child Lens is a platform for systemic change in children’s health.
+                <br/>
+                We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.
               </p>
             </div>
         )}

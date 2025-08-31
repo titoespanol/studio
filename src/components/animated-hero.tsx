@@ -54,7 +54,7 @@ export function AnimatedHero() {
               <AnimatedWords phrases={phrases} />
               <p 
                 className={cn(
-                  "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in md:mr-16",
+                  "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in md:mr-32",
                   step === 3 ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: '2500ms' }}

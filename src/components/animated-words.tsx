@@ -34,9 +34,9 @@ export function AnimatedWords({ phrases }: AnimatedWordsProps) {
   }, [currentPhraseIndex, phrases]);
 
   return (
-    <div className="flex flex-col items-start space-y-0 font-headline tracking-tight">
+    <div className="flex flex-col items-start font-headline tracking-tight">
       {phrases.map((phrase, index) => (
-        <div key={index} className={cn("h-[60px]", phrase.className)}>
+        <div key={index} className={cn("h-[50px]", phrase.className)}>
             <span className={cn(phrase.weight)}>
             {currentPhraseIndex > index ? phrase.text : (currentPhraseIndex === index ? displayedText : "")}
             </span>

@@ -74,14 +74,15 @@ export function ScrollingFeatures() {
     };
   }, []);
 
-  const maxBlur = 8; // Max blur in pixels
+  const maxBlur = 16; // Increased blur for more evident effect
   const blurAmount = maxBlur * (1 - scrollProgress);
+  const darknessAmount = 0.5 * (1 - scrollProgress); // From 50% opacity to 0%
 
   return (
     <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
       <div className="sticky top-0 h-screen w-full">
         <div 
-          className="absolute inset-0 z-0 transition-all duration-300" 
+          className="absolute inset-0 z-0" 
           style={{ filter: `blur(${blurAmount}px)` }}
         >
           <Image
@@ -92,7 +93,10 @@ export function ScrollingFeatures() {
             data-ai-hint="child face"
           />
         </div>
-        <div className="absolute inset-0 z-0 bg-black opacity-50"></div>
+        <div 
+            className="absolute inset-0 z-0 bg-black"
+            style={{ opacity: darknessAmount }}
+        ></div>
       </div>
       <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${features.length * 100}vh` }}>
         <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-white">

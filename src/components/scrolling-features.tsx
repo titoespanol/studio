@@ -35,7 +35,6 @@ export function ScrollingFeatures() {
       
       const { top, height } = containerRef.current.getBoundingClientRect();
       const scrollableHeight = height - window.innerHeight;
-      const rawProgress = -top / scrollableHeight;
 
       // Text progress for "What we do" section
       const textAnimationStart = window.innerHeight * 0.5;

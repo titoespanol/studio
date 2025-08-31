@@ -71,7 +71,7 @@ export function ScrollingFeatures() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
+    <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
       <div className="sticky top-0 h-screen w-full">
         <div className="absolute inset-0 z-0">
             <Image

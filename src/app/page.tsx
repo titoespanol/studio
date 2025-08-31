@@ -1,6 +1,26 @@
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
+import Image from 'next/image';
+
+const features = [
+  {
+    title: 'We build ventures.',
+    description: 'From scratch, with scientists, clinicians, and entrepreneurs.',
+  },
+  {
+    title: 'We scale startups.',
+    description: 'Working shoulder to shoulder with startups so their ideas reach farther.',
+  },
+  {
+    title: 'We influence.',
+    description: 'Bringing clarity and courage to those shaping policy and systems.',
+  },
+  {
+    title: 'We connect.',
+    description: 'Hospitals, innovators, families, and regulators — a chorus strong enough to bend the system.',
+  },
+];
 
 export default function Home() {
   return (

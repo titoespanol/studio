@@ -68,9 +68,9 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive }: AnimatedHer
               <p 
                 className={cn(
                   "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in md:mr-32",
-                  wordsAnimationFinished && !isFlashActive ? "opacity-100" : "opacity-0"
+                  wordsAnimationFinished ? "opacity-100" : "opacity-0"
                 )}
-                style={{ transitionDelay: isFlashActive ? '0ms' : '500ms' }}
+                style={{ transitionDelay: '500ms' }}
               >
                 The Child Lens is a platform for systemic change in children’s health.
                 <br/>

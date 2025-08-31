@@ -13,11 +13,22 @@ export default function Home() {
 
   const handleAnimationComplete = () => {
     setTimeout(() => {
+      // First flash
       setIsFlashing(true);
       setIsFlashActive(true);
       setTimeout(() => {
         setIsFlashing(false);
-      }, 500); // Flash duration
+        
+        // Pause between flashes
+        setTimeout(() => {
+            // Second flash
+            setIsFlashing(true);
+            setTimeout(() => {
+                setIsFlashing(false);
+            }, 200); // Second flash duration
+        }, 300);
+
+      }, 500); // First flash duration
     }, 2000); // 2-second delay after animation
   };
 

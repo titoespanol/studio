@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const LOGO_URL = "/logo.png";
 const BRAND_NAME = "Child Lens";
 
 export function Header() {
@@ -24,20 +22,11 @@ export function Header() {
         <div className="flex h-24 items-center justify-center transition-all duration-300 ease-in-out">
           <div
             className={cn(
-              "transform transition-transform duration-300 ease-in-out",
+              "transform transition-transform duration-300 ease-in-out text-2xl font-bold",
               scrolled ? "scale-75" : "scale-100"
             )}
           >
-            <Image
-              src={LOGO_URL}
-              alt={BRAND_NAME}
-              width={260}
-              height={65}
-              priority
-              className="h-auto"
-              style={{ filter: "invert(1)" }}
-              data-ai-hint="monochrome minimalist logo"
-            />
+            {BRAND_NAME}
           </div>
         </div>
       </div>

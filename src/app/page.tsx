@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
@@ -33,12 +34,22 @@ export default function Home() {
             }, 200); // Second flash duration
         }, 300);
 
-      }, 500); // First flash duration
+      }, 800); // First flash duration (0.8s)
     }, 2000); // 2-second delay after animation
   };
 
   return (
-    <div className={cn("bg-background text-foreground", isFlashing && "bg-black text-white")}>
+    <div className={cn("bg-background text-foreground", isFlashing && "text-white")}>
+      {isFlashing && (
+        <div className="fixed inset-0 z-[-1]">
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/06%20Ocean.jpg?alt=media&token=dee9f107-acea-4825-890f-16fba6d41dc0"
+            alt="Ocean background"
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
       <Header isFlashing={isFlashing} />
       <main>
         <section className="flex flex-col items-center justify-center h-screen px-4">

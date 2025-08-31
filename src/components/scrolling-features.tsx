@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { AnimatedText } from "./animated-text";
 
 const features = [
   {
@@ -22,29 +23,11 @@ const features = [
   },
 ];
 
-const AnimatedText = ({ text, progress }: { text: string; progress: number }) => {
-  return (
-    <>
-      {text.split('').map((char, i) => {
-        const charProgress = Math.max(0, Math.min(1, (progress - (i * 0.01)) / 0.5));
-        return (
-          <span
-            key={i}
-            className="transition-opacity duration-200"
-            style={{ opacity: charProgress }}
-          >
-            {char}
-          </span>
-        );
-      })}
-    </>
-  );
-};
-
 export function ScrollingFeatures() {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [textProgress, setTextProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +43,11 @@ export function ScrollingFeatures() {
       const featureTop = top + newIndex * featureHeight;
       const featureProgress = Math.max(0, Math.min(1, 1 - (featureTop / window.innerHeight) * 1.5));
       setProgress(featureProgress);
+
+      const textAnimationStart = window.innerHeight * 0.5;
+      const textAnimationEnd = window.innerHeight * 0.2;
+      const textProgress = Math.max(0, Math.min(1, (textAnimationStart - top) / (textAnimationStart - textAnimationEnd)));
+      setTextProgress(textProgress);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -71,14 +59,16 @@ export function ScrollingFeatures() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
+    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${(features.length + 1) * 100}vh` }}>
       <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center">
         <div className="flex flex-col md:flex-row gap-12 w-full">
           <div className="md:w-1/3">
             <div className="flex flex-col justify-center h-full">
-                <h2 className="text-3xl font-bold font-headline mb-4">What we do</h2>
+                <h2 className="text-3xl font-bold font-headline mb-4">
+                  <AnimatedText text="What we do" progress={textProgress} />
+                </h2>
                 <p className="font-body font-light text-lg">
-                  We believe that change should be more than a concept; it should effectively improve the health and well-being of every child.
+                  <AnimatedText text="We believe that change should be more than a concept; it should effectively improve the health and well-being of every child." progress={textProgress} />
                 </p>
             </div>
           </div>

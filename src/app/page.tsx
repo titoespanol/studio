@@ -2,6 +2,7 @@ import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
 import Image from 'next/image';
+import { AnimatedText } from '@/components/animated-text';
 
 const features = [
   {
@@ -52,9 +53,11 @@ export default function Home() {
           <div className="relative z-10 max-w-6xl w-full px-4 text-white mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="md:col-span-1">
-                <h2 className="text-3xl font-bold font-headline mb-4">What's important to us</h2>
+                <h2 className="text-3xl font-bold font-headline mb-4">
+                  <AnimatedText text="What's important to us" />
+                </h2>
                 <p className="font-body font-light text-lg">
-                  We believe that change should be more than a concept; it should effectively improve the health and well-being of every child. Our goal is to create solutions that resonate and leave a lasting impact.
+                  <AnimatedText text="We believe that change should be more than a concept; it should effectively improve the health and well-being of every child. Our goal is to create solutions that resonate and leave a lasting impact." />
                 </p>
               </div>
               <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">

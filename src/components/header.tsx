@@ -1,10 +1,15 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
 import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
 
-export function Header() {
+type HeaderProps = {
+  isFlashing?: boolean;
+};
+
+export function Header({ isFlashing }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [invertLogo, setInvertLogo] = useState(false);
 
@@ -45,8 +50,8 @@ export function Header() {
         className={cn(
           "transition-all duration-300 ease-in-out",
           isScrolled ? "scale-75" : "scale-100",
-          invertLogo ? "invert" : ""
         )}
+        style={{ filter: (invertLogo || isFlashing) ? 'invert(1)' : 'invert(0)' }}
       >
         <Logo />
       </div>

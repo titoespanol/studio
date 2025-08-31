@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -10,8 +11,14 @@ const phrases = [
   { text: "Forward.", weight: "font-bold", className: "text-4xl md:text-5xl" },
 ];
 
-export function AnimatedHero() {
+type AnimatedHeroProps = {
+  onAnimationComplete: () => void;
+  isFlashActive: boolean;
+};
+
+export function AnimatedHero({ onAnimationComplete, isFlashActive }: AnimatedHeroProps) {
   const [step, setStep] = useState(0); // 0: initial, 1: h1 visible, 2: h1 faded, 3: words visible
+  const [wordsAnimationFinished, setWordsAnimationFinished] = useState(false);
 
   useEffect(() => {
     const sequence = [
@@ -33,6 +40,12 @@ export function AnimatedHero() {
     }
   }, [step]);
 
+  useEffect(() => {
+    if(wordsAnimationFinished) {
+        onAnimationComplete();
+    }
+  }, [wordsAnimationFinished, onAnimationComplete]);
+
   return (
     <div className="flex items-center justify-center w-full h-full">
         {step < 3 ? (
@@ -51,13 +64,13 @@ export function AnimatedHero() {
                 step === 3 ? "opacity-100" : "opacity-0"
                 )}
             >
-              <AnimatedWords phrases={phrases} />
+              <AnimatedWords phrases={phrases} onComplete={() => setWordsAnimationFinished(true)} />
               <p 
                 className={cn(
                   "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in md:mr-32",
-                  step === 3 ? "opacity-100" : "opacity-0"
+                  wordsAnimationFinished && !isFlashActive ? "opacity-100" : "opacity-0"
                 )}
-                style={{ transitionDelay: '2500ms' }}
+                style={{ transitionDelay: isFlashActive ? '0ms' : '500ms' }}
               >
                 The Child Lens is a platform for systemic change in children’s health.
                 <br/>

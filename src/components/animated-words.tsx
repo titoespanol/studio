@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,9 +6,10 @@ import { cn } from "@/lib/utils";
 
 type AnimatedWordsProps = {
   phrases: { text: string; weight: string; className: string }[];
+  onComplete: () => void;
 };
 
-export function AnimatedWords({ phrases }: AnimatedWordsProps) {
+export function AnimatedWords({ phrases, onComplete }: AnimatedWordsProps) {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isAnimating, setIsAnimating] = useState(true);
@@ -29,14 +31,17 @@ export function AnimatedWords({ phrases }: AnimatedWordsProps) {
 
       return () => clearInterval(intervalId);
     } else {
-        setIsAnimating(false);
+        if(isAnimating) {
+            setIsAnimating(false);
+            onComplete();
+        }
     }
-  }, [currentPhraseIndex, phrases]);
+  }, [currentPhraseIndex, phrases, onComplete, isAnimating]);
 
   return (
     <div className="flex flex-col items-start font-headline tracking-tight">
       {phrases.map((phrase, index) => (
-        <div key={index} className={cn("h-[50px]", phrase.className)}>
+        <div key={index} className={cn("h-[48px]", phrase.className)}>
             <span className={cn(phrase.weight)}>
             {currentPhraseIndex > index ? phrase.text : (currentPhraseIndex === index ? displayedText : "")}
             </span>

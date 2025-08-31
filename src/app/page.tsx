@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   return (
-    <div className={cn("bg-background text-foreground transition-colors duration-500", isFlashing && "bg-black text-white")}>
+    <div className={cn("bg-background text-foreground", isFlashing && "bg-black text-white")}>
       <Header isFlashing={isFlashing} />
       <main>
         <section className="flex flex-col items-center justify-center h-screen px-4">

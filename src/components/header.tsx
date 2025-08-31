@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const BRAND_NAME = "Child Lens";
-
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -27,7 +25,7 @@ export function Header() {
               scrolled ? "scale-75" : "scale-100"
             )}
           >
-            <Image src="/logo.png" alt="Child Lens Logo" width={150} height={40} />
+            <Image src="/logo.png" alt="Child Lens Logo" width={150} height={40} className="dark:invert-0 invert" />
           </div>
         </div>
       </div>

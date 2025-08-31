@@ -6,8 +6,8 @@ export default function Home() {
     <div className="bg-background text-foreground">
       <Header />
       <main>
-        <section className="flex flex-col items-center justify-center min-h-screen px-4 pt-24">
-          <div className="max-w-4xl w-full">
+        <section className="flex flex-col items-center justify-center h-screen px-4">
+          <div className="max-w-4xl w-full h-full flex">
             <AnimatedHero />
           </div>
         </section>

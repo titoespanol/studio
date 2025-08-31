@@ -78,7 +78,7 @@ export function ScrollingFeatures() {
             <div className="flex flex-col justify-center h-full">
                 <h2 className="text-3xl font-bold font-headline mb-4">What we do</h2>
                 <p className="font-body font-light text-lg">
-                  We believe that change should be more than a concept; it should effectively improve the health and well-being of every child. Our goal is to create solutions that resonate and leave a lasting impact.
+                  We believe that change should be more than a concept; it should effectively improve the health and well-being of every child.
                 </p>
             </div>
           </div>

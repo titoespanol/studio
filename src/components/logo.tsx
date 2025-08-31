@@ -1,9 +1,10 @@
 import Image from 'next/image';
 
 export function Logo() {
+  const logoSrc = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
   return (
     <Image
-      src="/logo.gif"
+      src={logoSrc}
       alt="Child Lens Logo"
       width={200}
       height={45}

@@ -1,31 +1,32 @@
+
 "use client";
 
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedText } from "./animated-text";
 import Image from "next/image";
-import { Feather, TrendingUp, Scale, Share2 } from "lucide-react";
+import { DraftingCompass, Rocket, Megaphone, Network } from "lucide-react";
 
 const features = [
   {
     title: 'We build ventures.',
     description: 'From scratch, with scientists, clinicians, and entrepreneurs.',
-    icon: <Feather className="h-8 w-8" />,
+    icon: <DraftingCompass className="h-8 w-8" />,
   },
   {
     title: 'We scale startups.',
     description: 'Working shoulder to shoulder with startups so their ideas reach farther.',
-    icon: <TrendingUp className="h-8 w-8" />,
+    icon: <Rocket className="h-8 w-8" />,
   },
   {
     title: 'We influence.',
     description: 'Bringing clarity and courage to those shaping policy and systems.',
-    icon: <Scale className="h-8 w-8" />,
+    icon: <Megaphone className="h-8 w-8" />,
   },
   {
     title: 'We connect.',
     description: 'Hospitals, innovators, families, and regulators — a chorus strong enough to bend the system.',
-    icon: <Share2 className="h-8 w-8" />,
+    icon: <Network className="h-8 w-8" />,
   },
 ];
 

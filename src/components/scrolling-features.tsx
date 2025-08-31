@@ -92,7 +92,7 @@ export function ScrollingFeatures() {
                   <h2 className="text-3xl font-bold font-headline mb-4">
                     <AnimatedText text="What we do" progress={textProgress} />
                   </h2>
-                  <p className="font-body font-light text-lg">
+                  <p className="font-body font-light text-xl">
                     <AnimatedText text="We believe that change should be more than a concept; it should effectively improve the health and well-being of every child." progress={textProgress} />
                   </p>
               </div>
@@ -112,7 +112,7 @@ export function ScrollingFeatures() {
                     <h3 className="text-2xl font-bold font-headline mb-2">
                       <AnimatedText text={feature.title} progress={featureProgress[index]} />
                     </h3>
-                    <p className="font-body font-light text-lg">
+                    <p className="font-body font-light text-xl">
                       <AnimatedText text={feature.description} progress={featureProgress[index]} />
                     </p>
                   </div>

@@ -10,8 +10,12 @@ import { cn } from '@/lib/utils';
 export default function Home() {
   const [isFlashing, setIsFlashing] = useState(false);
   const [isFlashActive, setIsFlashActive] = useState(false);
+  const [hasFlashed, setHasFlashed] = useState(false);
 
   const handleAnimationComplete = () => {
+    if (hasFlashed) return;
+    setHasFlashed(true);
+
     setTimeout(() => {
       // First flash
       setIsFlashing(true);
@@ -25,6 +29,7 @@ export default function Home() {
             setIsFlashing(true);
             setTimeout(() => {
                 setIsFlashing(false);
+                setIsFlashActive(false); // Deactivate after the final flash
             }, 200); // Second flash duration
         }, 300);
 

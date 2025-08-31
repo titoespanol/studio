@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { Logo } from "./logo";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +25,7 @@ export function Header() {
               scrolled ? "scale-75" : "scale-100"
             )}
           >
-            <Image src="/logo.png" alt="Child Lens Logo" width={150} height={40} className="invert" />
+            <Logo className="h-10 w-auto" />
           </div>
         </div>
       </div>

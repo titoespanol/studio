@@ -2,7 +2,43 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Eye, EyeOff } from 'lucide-react';
+
+const OpenEyeIcon = ({ size = 24 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" />
+    <circle cx="12" cy="12" r="3" fill="currentColor" />
+  </svg>
+);
+
+const ClosedEyeIcon = ({ size = 24 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M4 14.5S7 18 12 18S20 14.5 20 14.5" />
+    <path d="M6 11L8 13" />
+    <path d="M12 11V13.5" />
+    <path d="M18 11L16 13" />
+  </svg>
+);
+
 
 export function CustomCursor() {
   const followerRef = useRef<HTMLDivElement>(null);
@@ -65,7 +101,7 @@ export function CustomCursor() {
         isPointer ? "scale-150" : "scale-100",
       )}
     >
-      {isMoving ? <Eye size={24} /> : <EyeOff size={24} />}
+      {isMoving ? <OpenEyeIcon size={24} /> : <ClosedEyeIcon size={24} />}
     </div>
   );
 }

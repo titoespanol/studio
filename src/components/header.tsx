@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 
 type HeaderProps = {
   isFlashing?: boolean;
+  flashColor?: string;
 };
 
-export function Header({ isFlashing }: HeaderProps) {
+export function Header({ isFlashing, flashColor }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [invertLogo, setInvertLogo] = useState(false);
 
@@ -50,8 +51,9 @@ export function Header({ isFlashing }: HeaderProps) {
         className={cn(
           "transition-all duration-300 ease-in-out",
           isScrolled ? "scale-75" : "scale-100",
+           isFlashing && flashColor
         )}
-        style={{ filter: (invertLogo || isFlashing) ? 'invert(1)' : 'invert(0)' }}
+        style={{ filter: (invertLogo && !isFlashing) ? 'invert(1)' : 'invert(0)' }}
       >
         <Logo />
       </div>

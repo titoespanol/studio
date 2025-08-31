@@ -9,9 +9,22 @@ import { ScrollingFeatures } from '@/components/scrolling-features';
 import { ExpandingBoxes } from '@/components/expanding-boxes';
 import { cn } from '@/lib/utils';
 
+const flashColors = [
+  "text-[#d45324]",
+  "text-[#ffb53a]",
+  "text-[#f291bc]",
+  "text-[#419ebf]",
+  "text-[#f27236]",
+];
+
 export default function Home() {
   const [isFlashActive, setIsFlashActive] = useState(false);
   const [hasFlashed, setHasFlashed] = useState(false);
+  const [activeFlashColor, setActiveFlashColor] = useState("text-white");
+
+  const getRandomColor = () => {
+    return flashColors[Math.floor(Math.random() * flashColors.length)];
+  }
 
   const handleAnimationComplete = () => {
     if (hasFlashed) return;
@@ -19,6 +32,7 @@ export default function Home() {
 
     setTimeout(() => {
       // First flash
+      setActiveFlashColor(getRandomColor());
       setIsFlashActive(true);
       setTimeout(() => {
         setIsFlashActive(false);
@@ -26,6 +40,7 @@ export default function Home() {
         // Pause between flashes
         setTimeout(() => {
             // Second flash
+            setActiveFlashColor(getRandomColor());
             setIsFlashActive(true);
             setTimeout(() => {
                 setIsFlashActive(false);
@@ -33,6 +48,7 @@ export default function Home() {
                 // Pause between flashes
                 setTimeout(() => {
                     // Third flash
+                    setActiveFlashColor(getRandomColor());
                     setIsFlashActive(true);
                     setTimeout(() => {
                         setIsFlashActive(false);
@@ -47,7 +63,7 @@ export default function Home() {
   };
 
   return (
-    <div className={cn("bg-background text-foreground", isFlashActive && "text-white bg-transparent")}>
+    <div className={cn("bg-background text-foreground", isFlashActive && "bg-transparent", isFlashActive && activeFlashColor)}>
       <div className={cn("fixed inset-0 z-[-1] transition-opacity duration-200", isFlashActive ? "opacity-100" : "opacity-0")}>
         <Image
           src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Boho%20Pattern%207.jpg?alt=media&token=319b2028-afc4-4dd2-8282-5dfcabdafdb4"
@@ -58,7 +74,7 @@ export default function Home() {
         />
       </div>
       
-      <Header isFlashing={isFlashActive} />
+      <Header isFlashing={isFlashActive} flashColor={activeFlashColor} />
       <main>
         <section className="flex flex-col items-center justify-center h-screen px-4">
           <div className="max-w-4xl w-full h-full flex">

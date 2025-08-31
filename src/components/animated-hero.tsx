@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 const words = [
-  { text: "Farther.", weight: "font-normal" },
-  { text: "Faster.", weight: "font-medium" },
+  { text: "Farther.", weight: "font-light" },
+  { text: "Faster.", weight: "font-normal" },
   { text: "Forward.", weight: "font-bold" },
 ];
 
@@ -64,7 +64,7 @@ export function AnimatedHero() {
             </span>
           ))}
         </div>
-        <p className="text-base md:text-lg max-w-3xl mt-8 leading-relaxed">
+        <p className="text-base md:text-lg max-w-3xl mt-8 leading-relaxed font-light">
           The Child Lens is a platform for systemic change in children’s health. We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.
         </p>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const BRAND_NAME = "Child Lens";
 
@@ -22,11 +23,11 @@ export function Header() {
         <div className="flex h-24 items-center justify-center transition-all duration-300 ease-in-out">
           <div
             className={cn(
-              "transform transition-transform duration-300 ease-in-out text-2xl font-bold",
+              "transform transition-transform duration-300 ease-in-out",
               scrolled ? "scale-75" : "scale-100"
             )}
           >
-            {BRAND_NAME}
+            <Image src="/logo.png" alt="Child Lens Logo" width={150} height={40} />
           </div>
         </div>
       </div>

@@ -36,6 +36,7 @@ export function ScrollingFeatures() {
   const textContainerRef = useRef<HTMLDivElement>(null);
   const [textProgress, setTextProgress] = useState(0);
   const [featureProgress, setFeatureProgress] = useState(new Array(features.length).fill(0));
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,13 +51,15 @@ export function ScrollingFeatures() {
       const newTextProgress = Math.max(0, Math.min(1, (textAnimationStart - top) / (textAnimationStart - textAnimationEnd)));
       setTextProgress(newTextProgress);
 
-      // Feature progress calculation
-      const featureScrollLength = scrollableHeight / features.length;
       let currentScroll = -top;
-      
       if (currentScroll < 0) currentScroll = 0;
       if (currentScroll > scrollableHeight) currentScroll = scrollableHeight;
+      
+      const overallProgress = scrollableHeight > 0 ? currentScroll / scrollableHeight : 0;
+      setScrollProgress(overallProgress);
 
+      // Feature progress calculation
+      const featureScrollLength = scrollableHeight / features.length;
       const currentFeatureIndex = Math.min(features.length - 1, Math.floor(currentScroll / featureScrollLength));
       setActiveFeatureIndex(currentFeatureIndex);
 
@@ -76,18 +79,24 @@ export function ScrollingFeatures() {
     };
   }, []);
 
+  const maxBlur = 8; // Max blur in pixels
+  const blurAmount = maxBlur * (1 - scrollProgress);
+
   return (
     <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
       <div className="sticky top-0 h-screen w-full">
-        <div className="absolute inset-0 z-0">
-            <Image
-              src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"
-              alt="A child's face with dotted light patterns"
-              fill
-              className="object-cover"
-              data-ai-hint="child face"
-            />
-          </div>
+        <div 
+          className="absolute inset-0 z-0 transition-all duration-300" 
+          style={{ filter: `blur(${blurAmount}px)` }}
+        >
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"
+            alt="A child's face with dotted light patterns"
+            fill
+            className="object-cover"
+            data-ai-hint="child face"
+          />
+        </div>
         <div className="absolute inset-0 z-0 bg-black opacity-50"></div>
       </div>
       <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${features.length * 100}vh` }}>

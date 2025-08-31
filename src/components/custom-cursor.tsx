@@ -9,29 +9,18 @@ export function CustomCursor() {
   const mousePos = useRef({ x: 0, y: 0 });
   const followerPos = useRef({ x: 0, y: 0 });
   const [isPointer, setIsPointer] = useState(false);
-  const [isMoving, setIsMoving] = useState(false);
-  const movementTimeoutRef = useRef<NodeJS.Timeout>();
 
   const onMouseMove = (event: MouseEvent) => {
     const { clientX, clientY } = event;
     mousePos.current = { x: clientX, y: clientY };
     const target = event.target as HTMLElement;
     setIsPointer(window.getComputedStyle(target).getPropertyValue('cursor') === 'pointer');
-
-    setIsMoving(true);
-    if (movementTimeoutRef.current) {
-      clearTimeout(movementTimeoutRef.current);
-    }
-    movementTimeoutRef.current = setTimeout(() => setIsMoving(false), 300);
   };
 
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
-      if (movementTimeoutRef.current) {
-        clearTimeout(movementTimeoutRef.current);
-      }
     };
   }, []);
 
@@ -60,11 +49,11 @@ export function CustomCursor() {
     <div
       ref={followerRef}
       className={cn(
-        "hidden md:flex items-center justify-center fixed w-8 h-8 rounded-full pointer-events-none z-[9999] transition-transform duration-200 bg-foreground -translate-x-1/2 -translate-y-1/2",
+        "hidden md:flex items-center justify-center fixed w-8 h-8 rounded-full pointer-events-none z-[9999] transition-transform duration-200 bg-transparent border border-foreground -translate-x-1/2 -translate-y-1/2",
         isPointer ? "scale-125" : "scale-100",
       )}
     >
-        <div className="w-2 h-2 rounded-full bg-background transition-transform duration-200"></div>
+        <div className="w-1 h-1 rounded-full bg-foreground transition-transform duration-200"></div>
     </div>
   );
 }

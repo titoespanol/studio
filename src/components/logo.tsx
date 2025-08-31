@@ -1,68 +1,14 @@
+import Image from 'next/image';
+
 export function Logo() {
   return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 200 45"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <path
-        d="M23.3682 44.053L23.3333 43.8344L34.3333 22.0833L23.3333 0.332031L23.3682 0.113309L25.3333 0.332031L25.3082 0.51466L36.3082 22.2659L36.3333 22.0833L47.3333 43.8344L36.3333 22.0833L47.3333 0.332031L49.2982 0.51466L49.3333 0.332031L38.3333 22.0833L49.3333 43.8344L49.2982 44.017L47.3333 43.8344L36.3333 22.0833L25.3333 43.8344L25.3082 44.017L23.3333 43.8344L23.3682 44.053Z"
-        stroke="currentColor"
-        strokeWidth="0.666667"
-      />
-      <path
-        d="M0.666748 22.0833L11.6667 43.8333L22.6667 22.0833L11.6667 0.333252L0.666748 22.0833ZM2.66675 22.0833L11.6667 4.33325L20.6667 22.0833L11.6667 39.8333L2.66675 22.0833Z"
-        stroke="currentColor"
-        strokeWidth="0.666667"
-      />
-      <path
-        d="M56.8854 44.1667V0H58.8854V44.1667H56.8854Z"
-        fill="currentColor"
-      />
-      <path
-        d="M66.2188 44.1667V0H68.2188V44.1667H66.2188Z"
-        fill="currentColor"
-      />
-      <path
-        d="M74.8333 30.1562V28.1562H83.2396V16.7188H74.8333V14.7188H85.2396V28.1562H93.6458V30.1562H85.2396V44.1667H83.2396V30.1562H74.8333Z"
-        fill="currentColor"
-      />
-      <path
-        d="M99.6354 44.1667V0H101.635V44.1667H99.6354Z"
-        fill="currentColor"
-      />
-      <path
-        d="M108.333 44.1667V14.7188H110.333V44.1667H108.333Z"
-        fill="currentColor"
-      />
-      <path d="M108.333 2.05208V0H110.333V2.05208H108.333Z" fill="currentColor" />
-      <path
-        d="M118.062 44.1667V0H119.849L126.865 24.1979L133.88 0H135.667V44.1667H133.88L133.922 2.05208L127.359 25.1042H126.375L119.797 2.05208L119.849 44.1667H118.062Z"
-        fill="currentColor"
-      />
-      <path
-        d="M148.906 44.1667L142.188 0H144.255L149.469 36.3229L154.682 0H156.75L150.031 44.1667H148.906Z"
-        fill="currentColor"
-      />
-      <path
-        d="M162.719 44.1667V0H171.125V2.01042H164.719V21.0729H170.281V23.0833H164.719V42.1562H171.125V44.1667H162.719Z"
-        fill="currentColor"
-      />
-      <path
-        d="M176.927 44.1667V0H178.927V44.1667H176.927Z"
-        fill="currentColor"
-      />
-      <path
-        d="M198.333 16.7188H190.156V30.1562H198.333V32.1667H188.156V0H190.156V14.7188H198.333V16.7188Z"
-        fill="currentColor"
-      />
-      <path
-        d="M188.156 44.1667V40.1354H198.333V42.1458H190.156V44.1667H188.156Z"
-        fill="currentColor"
-      />
-    </svg>
+    <Image
+      src="/logo.png"
+      alt="Child Lens Logo"
+      width={200}
+      height={45}
+      className="w-full h-auto dark:filter dark:invert"
+      priority
+    />
   );
 }

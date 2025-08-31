@@ -42,7 +42,7 @@ export default function Home() {
         >
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://picsum.photos/1920/1080"
+              src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"
               alt="A child's face with dotted light patterns"
               fill
               className="object-cover"

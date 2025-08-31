@@ -19,13 +19,11 @@ export function AnimatedHero() {
       () => setStep(3), // Show words
     ];
     
-    let delay = 1000;
-    if (step === 0) { // initial
-        delay = 500;
-    } else if (step === 1) { // h1 visible
-        delay = 2000;
+    let delay = 500;
+    if (step === 1) { // h1 visible
+        delay = 1500;
     } else if (step === 2) { // h1 faded
-        delay = 500;
+        delay = 700;
     }
 
     if (step < sequence.length) {
@@ -48,23 +46,33 @@ export function AnimatedHero() {
       <div
         className={cn(
           "transition-opacity duration-500",
-          step === 3 ? "opacity-100" : "opacity-0"
+           step === 3 ? "opacity-100" : "opacity-0"
         )}
       >
         <div className="flex flex-col items-start space-y-2">
           {words.map((word, index) => (
-            <span
+            <div
               key={index}
               className={cn(
-                "text-5xl md:text-7xl font-headline tracking-tight",
-                word.weight
+                "overflow-hidden transition-all duration-700",
+                step === 3 ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
               )}
+              style={{ transitionDelay: `${index * 200}ms` }}
             >
-              {word.text}
-            </span>
+              <span
+                className={cn(
+                  "text-5xl md:text-7xl font-headline tracking-tight",
+                  word.weight
+                )}
+              >
+                {word.text}
+              </span>
+            </div>
           ))}
         </div>
-        <p className="text-base md:text-lg max-w-3xl mt-8 leading-relaxed font-light">
+        <p className={cn("text-base md:text-lg max-w-3xl mt-8 leading-relaxed font-light transition-opacity duration-700",
+           step === 3 ? "opacity-100" : "opacity-0"
+        )} style={{ transitionDelay: `${words.length * 200 + 100}ms` }}>
           The Child Lens is a platform for systemic change in children’s health. We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.
         </p>
       </div>

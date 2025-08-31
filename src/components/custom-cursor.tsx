@@ -10,12 +10,12 @@ const OpenEyeIcon = ({ size = 24 }: { size?: number }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1"
+    strokeWidth="1.2"
     strokeLinecap="round"
     strokeLinejoin="round"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M2 12C2 12 5 6 12 6C19 6 22 12 22 12C22 12 19 18 12 18C5 18 2 12 2 12Z" />
+    <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" />
     <circle cx="12" cy="12" r="3" fill="currentColor" />
   </svg>
 );
@@ -28,15 +28,15 @@ const ClosedEyeIcon = ({ size = 24 }: { size?: number }) => (
         fill="none" 
         xmlns="http://www.w3.org/2000/svg"
         stroke="currentColor"
-        strokeWidth="1"
+        strokeWidth="1.2"
         strokeLinecap="round"
         strokeLinejoin="round"
     >
-        <path d="M4.5 13.5C6.5 15.5 9 16.5 12 16.5C15 16.5 17.5 15.5 19.5 13.5" />
+        <path d="M17.5 10.5C15.5 12.5 13 13.5 10 13.5" />
         <path d="M6 10.5L3 9" />
-        <path d="M18 10.5L21 9" />
-        <path d="M10.5 13.5L9 12" />
-        <path d="M13.5 13.5L15 12" />
+        <path d="M10 13.5L8.5 12" />
+        <path d="M14 13.5L15.5 12" />
+        <path d="M17.5 10.5L21 9" />
     </svg>
 );
 

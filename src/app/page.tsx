@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
+import { ExpandingBoxes } from '@/components/expanding-boxes';
 import { cn } from '@/lib/utils';
 
 export default function Home() {
@@ -66,6 +67,8 @@ export default function Home() {
         </section>
         
         <ScrollingFeatures />
+
+        <ExpandingBoxes />
 
         <section className="h-screen w-full flex items-center justify-center text-center px-4 bg-background">
             <div className="max-w-4xl">

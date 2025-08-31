@@ -31,7 +31,9 @@ export function Header() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
+      if (featuresSection) {
+        observer.unobserve(featuresSection);
+      }
     };
   }, []);
 
@@ -43,7 +45,7 @@ export function Header() {
         className={cn(
           "transition-all duration-300 ease-in-out",
           isScrolled ? "scale-75" : "scale-100",
-          invertLogo ? "filter invert(1)" : ""
+          invertLogo ? "filter invert(1) dark:invert" : ""
         )}
       >
         <Logo />

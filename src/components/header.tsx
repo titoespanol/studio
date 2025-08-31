@@ -25,7 +25,7 @@ export function Header() {
               scrolled ? "scale-75" : "scale-100"
             )}
           >
-            <Image src="/logo.png" alt="Child Lens Logo" width={150} height={40} />
+            <Image src="/logo.png" alt="Child Lens Logo" width={150} height={40} className="invert" />
           </div>
         </div>
       </div>

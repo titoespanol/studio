@@ -42,7 +42,7 @@ export default function Home() {
         >
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://firebasestudio.app/assets/images/2TzBqY5V_2z2aAQAAmX-0.png"
+              src="https://picsum.photos/1920/1080"
               alt="A child's face with dotted light patterns"
               fill
               className="object-cover"

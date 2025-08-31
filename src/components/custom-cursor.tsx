@@ -60,10 +60,11 @@ export function CustomCursor() {
     <div
       ref={followerRef}
       className={cn(
-        "hidden md:block fixed w-6 h-6 rounded-full pointer-events-none z-[9999] transition-transform duration-200 bg-foreground/20 -translate-x-1/2 -translate-y-1/2",
-        isPointer ? "scale-150" : "scale-100",
+        "hidden md:flex items-center justify-center fixed w-8 h-8 rounded-full pointer-events-none z-[9999] transition-transform duration-200 bg-foreground -translate-x-1/2 -translate-y-1/2",
+        isPointer ? "scale-125" : "scale-100",
       )}
     >
+        <div className="w-2 h-2 rounded-full bg-background transition-transform duration-200"></div>
     </div>
   );
 }

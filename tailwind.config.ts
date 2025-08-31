@@ -12,6 +12,7 @@ export default {
       fontFamily: {
         body: ['"Plus Jakarta Sans"', 'sans-serif'],
         headline: ['"Plus Jakarta Sans"', 'sans-serif'],
+        logo: ['"Cormorant Garamond"', 'serif'],
         code: ['monospace'],
       },
       colors: {

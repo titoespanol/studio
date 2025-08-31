@@ -28,10 +28,20 @@ export default function Home() {
             setIsFlashActive(true);
             setTimeout(() => {
                 setIsFlashActive(false);
+
+                // Pause between flashes
+                setTimeout(() => {
+                    // Third flash
+                    setIsFlashActive(true);
+                    setTimeout(() => {
+                        setIsFlashActive(false);
+                    }, 400); // Third flash duration
+                }, 300);
+
             }, 200); // Second flash duration
         }, 300);
 
-      }, 800); // First flash duration (0.8s)
+      }, 500); // First flash duration
     }, 2000); // 2-second delay after animation
   };
 

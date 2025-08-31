@@ -34,7 +34,7 @@ export function Header() {
               width={260}
               height={65}
               priority
-              className="h-auto filter invert"
+              className="h-auto"
               data-ai-hint="monochrome minimalist logo"
             />
           </div>

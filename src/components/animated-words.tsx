@@ -8,36 +8,32 @@ type AnimatedWordsProps = {
 
 export function AnimatedWords({ words }: AnimatedWordsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
     if (words.length <= 1) return;
 
-    const wordChangeTimeout = setTimeout(() => {
-      setIsExiting(true); 
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, 2500);
 
-      const wordSwitchTimeout = setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
-        setIsExiting(false);
-      }, 500); 
-
-      return () => clearTimeout(wordSwitchTimeout);
-    }, 2000); 
-
-    return () => clearTimeout(wordChangeTimeout);
-  }, [currentIndex, words.length]);
+    return () => clearInterval(intervalId);
+  }, [words.length]);
 
   return (
-    <h2 className="absolute inset-0 flex items-center justify-center text-5xl md:text-7xl font-headline font-bold tracking-tight text-center">
-      <span
-        className={`transition-all duration-500 ease-in-out ${
-          isExiting
-            ? 'transform -translate-y-full opacity-0'
-            : 'transform translate-y-0 opacity-100'
-        }`}
-      >
-        {words[currentIndex]}
-      </span>
-    </h2>
+    <div className="relative h-full w-full overflow-hidden">
+      {words.map((word, index) => (
+        <span
+          key={index}
+          aria-hidden={index !== currentIndex}
+          className={`absolute inset-0 flex items-center justify-center text-5xl md:text-7xl font-headline font-bold tracking-tight text-center transition-all duration-700 ease-in-out`}
+          style={{
+            transform: `translateY(${(index - currentIndex) * 100}%)`,
+            opacity: index === currentIndex ? 1 : 0,
+          }}
+        >
+          {word}
+        </span>
+      ))}
+    </div>
   );
 }

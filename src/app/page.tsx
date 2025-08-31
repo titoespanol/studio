@@ -7,7 +7,7 @@ export default function Home() {
       <Header />
       <main>
         <section className="flex flex-col items-center justify-center min-h-screen text-center px-4 pt-24">
-          <div className="space-y-8 max-w-4xl">
+          <div className="space-y-4 max-w-4xl">
             <h1 className="text-5xl md:text-7xl font-headline font-bold tracking-tight">
               Children's health.
             </h1>

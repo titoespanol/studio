@@ -39,7 +39,7 @@ export default function Home() {
   };
 
   return (
-    <div className={cn("bg-background text-foreground", isFlashing && "text-white")}>
+    <div className={cn("bg-background text-foreground", isFlashing && "text-white bg-transparent")}>
       {isFlashing && (
         <div className="fixed inset-0 z-[-1]">
           <Image

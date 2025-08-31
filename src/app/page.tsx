@@ -1,5 +1,6 @@
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
+import { ScrollingFeatures } from '@/components/scrolling-features';
 import Image from 'next/image';
 
 const features = [
@@ -31,6 +32,9 @@ export default function Home() {
             <AnimatedHero />
           </div>
         </section>
+        
+        <ScrollingFeatures />
+
         <section
           id="features-section"
           className="relative min-h-screen w-full flex items-center justify-center py-20"

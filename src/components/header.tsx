@@ -6,18 +6,10 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOverDark, setIsOverDark] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      const featuresSection = document.getElementById('features-section');
-      if (featuresSection) {
-        const { top, bottom } = featuresSection.getBoundingClientRect();
-        const isIntersecting = top < window.innerHeight && bottom > 0;
-        setIsOverDark(isIntersecting);
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -30,8 +22,7 @@ export function Header() {
 
   return (
     <header className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex justify-center py-4 transition-colors duration-300",
-        isOverDark ? "text-white" : "text-black"
+        "fixed top-0 left-0 right-0 z-50 flex justify-center py-4 transition-colors duration-300 text-white"
     )}>
       <div
         className={cn(

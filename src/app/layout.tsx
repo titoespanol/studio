@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ScrollProgressBar } from '@/components/scroll-progress-bar';
-import { CustomCursor } from '@/components/custom-cursor';
 
 export const metadata: Metadata = {
   title: 'Child Lens Landing',
@@ -23,7 +22,6 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <CustomCursor />
         <ScrollProgressBar />
         {children}
         <Toaster />

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedText } from "./animated-text";
+import Image from "next/image";
 
 const features = [
   {
@@ -44,19 +45,23 @@ export function ScrollingFeatures() {
 
       // Feature progress calculation
       const featureScrollLength = scrollableHeight / features.length;
-      const currentFeatureIndex = Math.min(features.length - 1, Math.floor(-top / featureScrollLength));
+      let currentScroll = -top;
+      
+      if (currentScroll < 0) currentScroll = 0;
+      if (currentScroll > scrollableHeight) currentScroll = scrollableHeight;
+
+      const currentFeatureIndex = Math.min(features.length - 1, Math.floor(currentScroll / featureScrollLength));
       setActiveFeatureIndex(currentFeatureIndex);
 
       const newFeatureProgress = features.map((_, index) => {
         const featureStart = featureScrollLength * index;
-        const featureEnd = featureScrollLength * (index + 1);
-        const progressInFeature = (-top - featureStart) / (featureEnd - featureStart);
+        const progressInFeature = (currentScroll - featureStart) / featureScrollLength;
         return Math.max(0, Math.min(1, progressInFeature));
       });
       setFeatureProgress(newFeatureProgress);
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => {
@@ -65,8 +70,18 @@ export function ScrollingFeatures() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${(features.length * 1.5) * 100}vh` }}>
-      <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center">
+    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
+      <div className="absolute inset-0 z-0">
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"
+            alt="A child's face with dotted light patterns"
+            fill
+            className="object-cover"
+            data-ai-hint="child face"
+          />
+        </div>
+        <div className="absolute inset-0 z-0 bg-black opacity-50"></div>
+      <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-white">
         <div className="flex flex-col md:flex-row gap-12 w-full">
           <div className="md:w-1/3">
             <div className="flex flex-col justify-center h-full">

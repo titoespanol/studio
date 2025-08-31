@@ -9,7 +9,6 @@ import { ScrollingFeatures } from '@/components/scrolling-features';
 import { cn } from '@/lib/utils';
 
 export default function Home() {
-  const [isFlashing, setIsFlashing] = useState(false);
   const [isFlashActive, setIsFlashActive] = useState(false);
   const [hasFlashed, setHasFlashed] = useState(false);
 
@@ -19,18 +18,16 @@ export default function Home() {
 
     setTimeout(() => {
       // First flash
-      setIsFlashing(true);
       setIsFlashActive(true);
       setTimeout(() => {
-        setIsFlashing(false);
+        setIsFlashActive(false);
         
         // Pause between flashes
         setTimeout(() => {
             // Second flash
-            setIsFlashing(true);
+            setIsFlashActive(true);
             setTimeout(() => {
-                setIsFlashing(false);
-                setIsFlashActive(false); // Deactivate after the final flash
+                setIsFlashActive(false);
             }, 200); // Second flash duration
         }, 300);
 
@@ -39,18 +36,18 @@ export default function Home() {
   };
 
   return (
-    <div className={cn("bg-background text-foreground", isFlashing && "text-white bg-transparent")}>
-      {isFlashing && (
-        <div className="fixed inset-0 z-[-1]">
-          <Image
-            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/06%20Ocean.jpg?alt=media&token=dee9f107-acea-4825-890f-16fba6d41dc0"
-            alt="Ocean background"
-            fill
-            className="object-cover"
-          />
-        </div>
-      )}
-      <Header isFlashing={isFlashing} />
+    <div className={cn("bg-background text-foreground", isFlashActive && "text-white bg-transparent")}>
+      <div className={cn("fixed inset-0 z-[-1] transition-opacity duration-200", isFlashActive ? "opacity-100" : "opacity-0")}>
+        <Image
+          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/06%20Ocean.jpg?alt=media&token=dee9f107-acea-4825-890f-16fba6d41dc0"
+          alt="Ocean background"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+      
+      <Header isFlashing={isFlashActive} />
       <main>
         <section className="flex flex-col items-center justify-center h-screen px-4">
           <div className="max-w-4xl w-full h-full flex">

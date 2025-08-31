@@ -21,23 +21,25 @@ const OpenEyeIcon = ({ size = 24 }: { size?: number }) => (
 );
 
 const ClosedEyeIcon = ({ size = 24 }: { size?: number }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M4 14.5C4 14.5 7 18.5 12 18.5C17 18.5 20 14.5 20 14.5" />
-    <path d="M6 10l-1.5 -1.5" />
-    <path d="M10 10l-1 -2" />
-    <path d="M14 10l-1 -2" />
-    <path d="M18 10l-1.5 -1.5" />
-  </svg>
+    <svg 
+        width={size} 
+        height={size} 
+        viewBox="0 0 32 18" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M2.14999 6.00977C-0.780008 10.3298 2.58999 15.6598 8.84999 16.4998" />
+        <path d="M29.85 6.00977C32.78 10.3298 29.41 15.6598 23.15 16.4998" />
+        <path d="M3.29999 3.44995L1.09999 1.24995" />
+        <path d="M28.7 3.44995L30.9 1.24995" />
+        <path d="M9 10.2L8.25 8.1" />
+        <path d="M23 10.2L23.75 8.1" />
+        <path d="M16 11.55V9.45" />
+    </svg>
 );
 
 

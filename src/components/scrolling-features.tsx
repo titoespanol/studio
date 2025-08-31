@@ -5,28 +5,23 @@ import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedText } from "./animated-text";
 import Image from "next/image";
-import { Gem, Activity, Anchor, Waypoints } from "lucide-react";
 
 const features = [
   {
     title: 'We build ventures.',
     description: 'From scratch, with scientists, clinicians, and entrepreneurs.',
-    icon: <Gem className="h-8 w-8" />,
   },
   {
     title: 'We scale startups.',
     description: 'Working shoulder to shoulder with startups so their ideas reach farther.',
-    icon: <Activity className="h-8 w-8" />,
   },
   {
     title: 'We influence.',
     description: 'Bringing clarity and courage to those shaping policy and systems.',
-    icon: <Anchor className="h-8 w-8" />,
   },
   {
     title: 'We connect.',
     description: 'Hospitals, innovators, families, and regulators — a chorus strong enough to bend the system.',
-    icon: <Waypoints className="h-8 w-8" />,
   },
 ];
 
@@ -123,7 +118,7 @@ export function ScrollingFeatures() {
                       activeFeatureIndex === index ? "opacity-100" : "opacity-0 pointer-events-none"
                     )}
                   >
-                    <div className="mb-4">{feature.icon}</div>
+                    <div className="mb-4 text-4xl font-headline font-bold">0{index + 1}</div>
                     <h3 className="text-2xl font-bold font-headline mb-2">
                       <AnimatedText text={feature.title} progress={featureProgress[index]} />
                     </h3>

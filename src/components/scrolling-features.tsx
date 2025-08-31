@@ -71,7 +71,7 @@ export function ScrollingFeatures() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
+    <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 75}vh` }}>
       <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center">
         <div className="flex flex-col md:flex-row gap-12 w-full">
           <div className="md:w-1/3">

@@ -50,8 +50,8 @@ export default function Home() {
     <div className={cn("bg-background text-foreground", isFlashActive && "text-white bg-transparent")}>
       <div className={cn("fixed inset-0 z-[-1] transition-opacity duration-200", isFlashActive ? "opacity-100" : "opacity-0")}>
         <Image
-          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/06%20Ocean.jpg?alt=media&token=dee9f107-acea-4825-890f-16fba6d41dc0"
-          alt="Ocean background"
+          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Boho%20Pattern%207.jpg?alt=media&token=319b2028-afc4-4dd2-8282-5dfcabdafdb4"
+          alt="Boho pattern background"
           fill
           className="object-cover"
           priority

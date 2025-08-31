@@ -11,7 +11,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl font-headline font-bold tracking-tight">
               Children's health.
             </h1>
-            <div className="h-24 md:h-28 flex items-center justify-center">
+            <div className="relative h-24 md:h-28 w-full">
               <AnimatedWords words={['Farther.', 'Faster.', 'Forward.']} />
             </div>
             <p className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed">

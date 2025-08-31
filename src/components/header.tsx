@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const LOGO_URL = "https://placehold.co/400x100/000000/FFFFFF/?text=Child+Lens";
+const LOGO_URL = "/logo.png";
 const BRAND_NAME = "Child Lens";
 
 export function Header() {
@@ -31,10 +31,10 @@ export function Header() {
             <Image
               src={LOGO_URL}
               alt={BRAND_NAME}
-              width={160}
-              height={40}
+              width={260}
+              height={65}
               priority
-              className="h-auto"
+              className="h-auto filter invert"
               data-ai-hint="monochrome minimalist logo"
             />
           </div>

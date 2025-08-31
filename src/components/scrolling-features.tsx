@@ -22,23 +22,44 @@ const features = [
   },
 ];
 
+const AnimatedText = ({ text, progress }: { text: string; progress: number }) => {
+  return (
+    <>
+      {text.split('').map((char, i) => {
+        const charProgress = Math.max(0, Math.min(1, (progress - (i * 0.01)) / 0.5));
+        return (
+          <span
+            key={i}
+            className="transition-opacity duration-200"
+            style={{ opacity: charProgress }}
+          >
+            {char}
+          </span>
+        );
+      })}
+    </>
+  );
+};
+
 export function ScrollingFeatures() {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-        if (!containerRef.current) return;
+      if (!containerRef.current) return;
       
-        const containerTop = containerRef.current.getBoundingClientRect().top;
-        const scrollPosition = window.innerHeight - containerTop;
-        const featureHeight = containerRef.current.offsetHeight / features.length;
-        let newIndex = Math.floor(scrollPosition / featureHeight);
-        newIndex = Math.max(0, Math.min(features.length - 1, newIndex));
-
-        if (newIndex !== activeFeatureIndex) {
-            setActiveFeatureIndex(newIndex);
-        }
+      const { top, height } = containerRef.current.getBoundingClientRect();
+      const featureHeight = height / features.length;
+      
+      const index = Math.floor(-top / featureHeight);
+      const newIndex = Math.max(0, Math.min(features.length - 1, index));
+      setActiveFeatureIndex(newIndex);
+      
+      const featureTop = top + newIndex * featureHeight;
+      const featureProgress = Math.max(0, Math.min(1, 1 - (featureTop / window.innerHeight) * 1.5));
+      setProgress(featureProgress);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -47,7 +68,7 @@ export function ScrollingFeatures() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [activeFeatureIndex]);
+  }, []);
 
   return (
     <section ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
@@ -68,13 +89,17 @@ export function ScrollingFeatures() {
                 <div
                   key={index}
                   className={cn(
-                    "absolute inset-0 flex flex-col justify-center p-6 rounded-lg transition-opacity duration-1000 ease-in-out",
-                    activeFeatureIndex === index ? "opacity-100" : "opacity-0"
+                    "absolute inset-0 flex flex-col justify-center p-6 rounded-lg transition-opacity duration-300 ease-in-out",
+                    activeFeatureIndex === index ? "opacity-100" : "opacity-0 pointer-events-none"
                   )}
                 >
                   <span className="text-sm font-light block mb-2">0{index + 1}</span>
-                  <h3 className="text-2xl font-bold font-headline mb-2">{feature.title}</h3>
-                  <p className="font-body font-light text-lg">{feature.description}</p>
+                  <h3 className="text-2xl font-bold font-headline mb-2">
+                    <AnimatedText text={feature.title} progress={activeFeatureIndex === index ? progress : 0} />
+                  </h3>
+                  <p className="font-body font-light text-lg">
+                    <AnimatedText text={feature.description} progress={activeFeatureIndex === index ? progress : 0} />
+                  </p>
                 </div>
               ))}
             </div>

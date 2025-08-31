@@ -22,11 +22,11 @@ export function Header() {
 
   return (
     <header className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex justify-center py-4 transition-colors duration-300 text-white"
+        "fixed top-0 left-0 right-0 z-50 flex justify-center py-4 transition-colors duration-300"
     )}>
       <div
         className={cn(
-          "transition-all duration-300 ease-in-out",
+          "transition-all duration-300 ease-in-out text-white",
           isScrolled ? "scale-75" : "scale-100"
         )}
       >

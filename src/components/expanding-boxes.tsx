@@ -71,7 +71,7 @@ export function ExpandingBoxes() {
                   : 'bg-accent flex-grow'
               )}
             >
-              <h3 className={cn("text-2xl font-headline font-bold", activeBox === index ? 'text-primary' : 'text-muted-foreground')}>
+              <h3 className={cn("text-xl font-headline font-normal", activeBox === index ? 'text-primary' : 'text-muted-foreground')}>
                 {box.name}
               </h3>
             </div>
@@ -87,7 +87,7 @@ export function ExpandingBoxes() {
                             activeBox === index ? "opacity-100" : "opacity-0 pointer-events-none"
                         )}
                     >
-                        <p className="text-xl md:text-2xl font-body font-light leading-relaxed">
+                        <p className="text-2xl font-body leading-relaxed">
                             <AnimatedText text={box.content} progress={progress} />
                         </p>
                     </div>

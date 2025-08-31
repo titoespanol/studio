@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { AnimatedWords } from "./animated-words";
 
-const words = [
-  { text: "Farther.", weight: "font-light" },
-  { text: "Faster.", weight: "font-normal" },
-  { text: "Forward.", weight: "font-bold" },
+const phrases = [
+  { text: "Farther.", weight: "font-light", className: "text-4xl md:text-5xl" },
+  { text: "Faster.", weight: "font-normal", className: "text-4xl md:text-5xl" },
+  { text: "Forward.", weight: "font-bold", className: "text-4xl md:text-5xl" },
 ];
 
 export function AnimatedHero() {
@@ -21,7 +22,7 @@ export function AnimatedHero() {
     
     let delay = 500;
     if (step === 1) { // h1 visible
-        delay = 3500; // Increased duration by 2 seconds
+        delay = 3500;
     } else if (step === 2) { // h1 faded
         delay = 700;
     }
@@ -46,36 +47,20 @@ export function AnimatedHero() {
         ) : (
             <div
                 className={cn(
-                "transition-opacity duration-500 text-left",
-                "opacity-100"
+                "transition-opacity duration-500 text-left w-full",
+                step === 3 ? "opacity-100" : "opacity-0"
                 )}
             >
-                <div className="flex flex-col items-start space-y-1">
-                {words.map((word, index) => (
-                    <div
-                    key={index}
-                    className={cn(
-                        "overflow-hidden transition-all duration-700 ease-out",
-                        step === 3 ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-                    )}
-                    style={{ transitionDelay: `${index * 200}ms` }}
-                    >
-                    <span
-                        className={cn(
-                        "text-4xl md:text-5xl font-headline tracking-tight",
-                        word.weight
-                        )}
-                    >
-                        {word.text}
-                    </span>
-                    </div>
-                ))}
-                </div>
-                <p className={cn("text-sm md:text-base max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-700 ease-out",
-                step === 3 ? "opacity-100" : "opacity-0"
-                )} style={{ transitionDelay: `${words.length * 200 + 100}ms` }}>
+              <AnimatedWords phrases={phrases} />
+              <p 
+                className={cn(
+                  "text-sm md:text-base max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in",
+                  step === 3 ? "opacity-100" : "opacity-0"
+                )}
+                style={{ transitionDelay: '2500ms' }}
+              >
                 The Child Lens is a platform for systemic change in children’s health. We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.
-                </p>
+              </p>
             </div>
         )}
     </div>

@@ -63,7 +63,7 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
                 step >= 1 && step < 2 ? "opacity-100" : "opacity-0"
                 )}
             >
-                Children's health.
+                Children's Health.
             </h1>
         ) : (
             <div

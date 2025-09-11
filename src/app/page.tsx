@@ -20,7 +20,7 @@ const colorPalette = [
 
 const getRandomColorClasses = () => {
   const shuffled = [...colorPalette].sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, 4);
+  const selected = shuffled.slice(0, 5);
   return {
     text: selected[0].text,
     bg: selected[0].bg,
@@ -29,6 +29,7 @@ const getRandomColorClasses = () => {
     logo2: selected[1].text,
     logo3: selected[2].text,
     jupiter: selected[3].text,
+    whyWePlay: selected[4].text,
   };
 };
 
@@ -42,6 +43,7 @@ export default function Home() {
     logo2: colorPalette[1].text,
     logo3: colorPalette[2].text,
     jupiter: colorPalette[3].text,
+    whyWePlay: colorPalette[4].text,
   });
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
@@ -130,7 +132,10 @@ export default function Home() {
         </section>
         
         <div className={cn(isChildLensActive && activeColorClasses.text)}>
-          <ScrollingFeatures />
+          <ScrollingFeatures 
+            isChildLensActive={isChildLensActive} 
+            colorClasses={activeColorClasses} 
+          />
           <ExpandingBoxes />
         </div>
 

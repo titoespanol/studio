@@ -25,7 +25,14 @@ const features = [
   },
 ];
 
-export function ScrollingFeatures() {
+type ScrollingFeaturesProps = {
+  isChildLensActive?: boolean;
+  colorClasses?: {
+    whyWePlay: string;
+  };
+};
+
+export function ScrollingFeatures({ isChildLensActive, colorClasses }: ScrollingFeaturesProps) {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
@@ -77,6 +84,9 @@ export function ScrollingFeatures() {
   const maxBlur = 16; // Increased blur for more evident effect
   const blurAmount = maxBlur * (1 - scrollProgress);
   const darknessAmount = 0.5 * (1 - scrollProgress); // From 50% opacity to 0%
+  
+  const titleText = isChildLensActive ? "Why we play" : "What we do";
+  const titleColorClass = isChildLensActive ? colorClasses?.whyWePlay : "text-white";
 
   return (
     <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
@@ -103,8 +113,8 @@ export function ScrollingFeatures() {
           <div className="flex flex-col md:flex-row gap-12 w-full">
             <div className="md:w-1/3">
               <div className="flex flex-col justify-center h-full">
-                  <h2 className="text-3xl font-bold font-headline mb-4">
-                    <AnimatedText text="What we do" progress={textProgress} />
+                  <h2 className={cn("text-3xl font-bold font-headline mb-4", titleColorClass)}>
+                    <AnimatedText text={titleText} progress={textProgress} />
                   </h2>
                   <p className="font-body font-light text-xl">
                     <AnimatedText text="We believe that change should be more than a concept; it should effectively improve the health and well-being of every child." progress={textProgress} />

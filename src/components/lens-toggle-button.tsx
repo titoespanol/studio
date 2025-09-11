@@ -22,11 +22,11 @@ export function LensToggleButton({ isActive, onClick, colorClasses, isFlashing }
     <Button
       onClick={onClick}
       variant="outline"
-      size="lg"
+      size="sm"
       className={cn(
-        "font-body font-bold text-lg border-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-105",
+        "font-body font-bold text-base border rounded-full transition-all duration-300 ease-in-out transform hover:scale-105",
         isActive 
-          ? `${colorClasses.border} ${colorClasses.bg} text-white`
+          ? `${colorClasses.border} ${colorClasses.bg} text-white hover:bg-transparent`
           : "border-primary bg-transparent text-primary hover:bg-primary hover:text-white",
         isFlashing && "pointer-events-none"
       )}

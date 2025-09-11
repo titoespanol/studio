@@ -8,7 +8,6 @@ import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
 import { ExpandingBoxes } from '@/components/expanding-boxes';
 import { cn } from '@/lib/utils';
-import { LensToggleButton } from '@/components/lens-toggle-button';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -19,7 +18,8 @@ const colorPalette = [
 ];
 
 const getRandomColorClasses = () => {
-  return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+  const randomIndex = Math.floor(Math.random() * colorPalette.length);
+  return colorPalette[randomIndex];
 };
 
 export default function Home() {
@@ -33,6 +33,7 @@ export default function Home() {
 
     setIsFlashing(true);
     const timeouts: NodeJS.Timeout[] = [];
+    
     const flashSequence = [
       { active: true, delay: 500 },
       { active: false, delay: 300 },
@@ -64,7 +65,7 @@ export default function Home() {
       timeouts.forEach(clearTimeout);
     };
   }, [heroAnimationFinished]);
-
+  
   const handleToggleLens = () => {
     if (isFlashing) return;
     setIsChildLensActive(prev => {
@@ -88,23 +89,20 @@ export default function Home() {
         />
       </div>
       
-      <Header isFlashing={isChildLensActive} flashColor={activeColorClasses.text} />
+      <Header 
+        isFlashing={isChildLensActive} 
+        flashColor={activeColorClasses.text}
+        isChildLensActive={isChildLensActive}
+        onToggleLens={handleToggleLens}
+        colorClasses={activeColorClasses}
+        isToggleFlashing={isFlashing}
+        heroAnimationFinished={heroAnimationFinished}
+      />
       <main>
         <section className="flex flex-col items-center justify-center h-screen px-4">
           <div className="max-w-4xl w-full h-full flex flex-col items-center justify-center">
             <div className="w-full">
               <AnimatedHero onAnimationComplete={() => setHeroAnimationFinished(true)} isFlashActive={isChildLensActive}/>
-            </div>
-            <div className={cn(
-              "transition-opacity duration-1000 ease-in mt-8",
-              heroAnimationFinished ? "opacity-100" : "opacity-0"
-            )}>
-              <LensToggleButton 
-                isActive={isChildLensActive} 
-                onClick={handleToggleLens}
-                colorClasses={activeColorClasses}
-                isFlashing={isFlashing}
-              />
             </div>
           </div>
         </section>

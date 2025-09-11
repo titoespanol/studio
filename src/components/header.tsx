@@ -4,13 +4,27 @@
 import { useState, useEffect } from "react";
 import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
+import { LensToggleButton } from "./lens-toggle-button";
 
 type HeaderProps = {
   isFlashing?: boolean;
   flashColor?: string;
+  isChildLensActive: boolean;
+  onToggleLens: () => void;
+  colorClasses: { text: string; bg: string; border: string; };
+  isToggleFlashing: boolean;
+  heroAnimationFinished: boolean;
 };
 
-export function Header({ isFlashing, flashColor }: HeaderProps) {
+export function Header({ 
+  isFlashing, 
+  flashColor,
+  isChildLensActive,
+  onToggleLens,
+  colorClasses,
+  isToggleFlashing,
+  heroAnimationFinished
+}: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [invertLogo, setInvertLogo] = useState(false);
 
@@ -45,7 +59,7 @@ export function Header({ isFlashing, flashColor }: HeaderProps) {
 
   return (
     <header className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex justify-center py-4 transition-colors duration-300"
+        "fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 transition-colors duration-300"
     )}>
       <div
         className={cn(
@@ -56,6 +70,17 @@ export function Header({ isFlashing, flashColor }: HeaderProps) {
         style={{ filter: (invertLogo && !isFlashing) ? 'invert(1)' : 'invert(0)' }}
       >
         <Logo />
+      </div>
+      <div className={cn(
+        "transition-opacity duration-1000 ease-in",
+        heroAnimationFinished ? "opacity-100" : "opacity-0"
+      )}>
+        <LensToggleButton
+          isActive={isChildLensActive}
+          onClick={onToggleLens}
+          colorClasses={colorClasses}
+          isFlashing={isToggleFlashing}
+        />
       </div>
     </header>
   );

@@ -32,7 +32,14 @@ const getRandomColorClasses = () => {
 
 export default function Home() {
   const [isChildLensActive, setIsChildLensActive] = useState(false);
-  const [activeColorClasses, setActiveColorClasses] = useState(getRandomColorClasses());
+  const [activeColorClasses, setActiveColorClasses] = useState({
+    text: colorPalette[0].text,
+    bg: colorPalette[0].bg,
+    border: colorPalette[0].border,
+    logo1: colorPalette[0].text,
+    logo2: colorPalette[1].text,
+    logo3: colorPalette[2].text,
+  });
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
 

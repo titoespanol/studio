@@ -7,15 +7,15 @@ import { AnimatedText } from './animated-text';
 
 const boxes = [
   {
-    name: 'The builder',
+    name: 'The Builder',
     content: 'We bring together scientists, clinicians, and entrepreneurs to construct new ventures from the ground up, laying the foundation for a healthier future.',
   },
   {
-    name: 'The influencer',
+    name: 'The Influencer',
     content: 'With clarity and courage, we engage with policymakers and system leaders to shift perspectives and advocate for systemic change.',
   },
   {
-    name: 'The consultant',
+    name: 'The Consultant',
     content: 'We rigorously test new ideas and models, connecting hospitals, innovators, and families to validate solutions that can truly bend the system.',
   },
 ];

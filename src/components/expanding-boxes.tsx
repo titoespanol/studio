@@ -11,15 +11,11 @@ const boxes = [
     content: 'We bring together scientists, clinicians, and entrepreneurs to construct new ventures from the ground up, laying the foundation for a healthier future.',
   },
   {
-    name: 'The investor',
-    content: 'We strategically invest in promising startups, providing the capital and guidance needed to grow their impact and scale their solutions.',
-  },
-  {
     name: 'The influencer',
     content: 'With clarity and courage, we engage with policymakers and system leaders to shift perspectives and advocate for systemic change.',
   },
   {
-    name: 'The tester',
+    name: 'The consultant',
     content: 'We rigorously test new ideas and models, connecting hospitals, innovators, and families to validate solutions that can truly bend the system.',
   },
 ];

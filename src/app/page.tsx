@@ -1,70 +1,84 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
 import { ExpandingBoxes } from '@/components/expanding-boxes';
 import { cn } from '@/lib/utils';
+import { LensToggleButton } from '@/components/lens-toggle-button';
 
-const flashColors = [
-  "text-[#d45324]",
-  "text-[#ffb53a]",
-  "text-[#f291bc]",
-  "text-[#419ebf]",
-  "text-[#f27236]",
+const colorPalette = [
+  { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
+  { text: "text-[#ffb53a]", bg: "bg-[#ffb53a]", border: "border-[#ffb53a]" },
+  { text: "text-[#f291bc]", bg: "bg-[#f291bc]", border: "border-[#f291bc]" },
+  { text: "text-[#419ebf]", bg: "bg-[#419ebf]", border: "border-[#419ebf]" },
+  { text: "text-[#f27236]", bg: "bg-[#f27236]", border: "border-[#f27236]" },
 ];
 
+const getRandomColorClasses = () => {
+  return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+};
+
 export default function Home() {
-  const [isFlashActive, setIsFlashActive] = useState(false);
-  const [hasFlashed, setHasFlashed] = useState(false);
-  const [activeFlashColor, setActiveFlashColor] = useState("text-white");
+  const [isChildLensActive, setIsChildLensActive] = useState(false);
+  const [activeColorClasses, setActiveColorClasses] = useState(colorPalette[0]);
+  const [isFlashing, setIsFlashing] = useState(true);
+  const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
 
-  const getRandomColor = () => {
-    return flashColors[Math.floor(Math.random() * flashColors.length)];
-  }
+  useEffect(() => {
+    if (!heroAnimationFinished) return;
 
-  const handleAnimationComplete = () => {
-    if (hasFlashed) return;
-    setHasFlashed(true);
+    setIsFlashing(true);
+    const timeouts: NodeJS.Timeout[] = [];
+    const flashSequence = [
+      { active: true, delay: 500 },
+      { active: false, delay: 300 },
+      { active: true, delay: 500 },
+      { active: false, delay: 300 },
+      { active: true, delay: 500 },
+      { active: false, delay: 300 },
+    ];
 
-    setTimeout(() => {
-      // First flash
-      setActiveFlashColor(getRandomColor());
-      setIsFlashActive(true);
-      setTimeout(() => {
-        setIsFlashActive(false);
-        
-        // Pause between flashes
-        setTimeout(() => {
-            // Second flash
-            setActiveFlashColor(getRandomColor());
-            setIsFlashActive(true);
-            setTimeout(() => {
-                setIsFlashActive(false);
+    let cumulativeDelay = 1000;
 
-                // Pause between flashes
-                setTimeout(() => {
-                    // Third flash
-                    setActiveFlashColor(getRandomColor());
-                    setIsFlashActive(true);
-                    setTimeout(() => {
-                        setIsFlashActive(false);
-                    }, 400); // Third flash duration
-                }, 300);
+    flashSequence.forEach(({ active, delay }) => {
+      const timeout = setTimeout(() => {
+        setIsChildLensActive(active);
+        if (active) {
+          setActiveColorClasses(getRandomColorClasses());
+        }
+      }, cumulativeDelay);
+      timeouts.push(timeout);
+      cumulativeDelay += delay;
+    });
 
-            }, 200); // Second flash duration
-        }, 300);
+    const finalTimeout = setTimeout(() => {
+      setIsFlashing(false);
+    }, cumulativeDelay);
+    timeouts.push(finalTimeout);
 
-      }, 500); // First flash duration
-    }, 2000); // 2-second delay after animation
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
+  }, [heroAnimationFinished]);
+
+  const handleToggleLens = () => {
+    if (isFlashing) return;
+    setIsChildLensActive(prev => {
+      const nextState = !prev;
+      if (nextState) {
+        setActiveColorClasses(getRandomColorClasses());
+      }
+      return nextState;
+    });
   };
 
   return (
-    <div className={cn("bg-background text-foreground", isFlashActive && "bg-transparent", isFlashActive && activeFlashColor)}>
-      <div className={cn("fixed inset-0 z-[-1] transition-opacity duration-200", isFlashActive ? "opacity-100" : "opacity-0")}>
+    <div className={cn("bg-background text-foreground", isChildLensActive && "bg-transparent", isChildLensActive && activeColorClasses.text)}>
+      <div className={cn("fixed inset-0 z-[-1] transition-opacity duration-200", isChildLensActive ? "opacity-100" : "opacity-0")}>
         <Image
           src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Boho%20Pattern%207.jpg?alt=media&token=319b2028-afc4-4dd2-8282-5dfcabdafdb4"
           alt="Boho pattern background"
@@ -74,11 +88,24 @@ export default function Home() {
         />
       </div>
       
-      <Header isFlashing={isFlashActive} flashColor={activeFlashColor} />
+      <Header isFlashing={isChildLensActive} flashColor={activeColorClasses.text} />
       <main>
         <section className="flex flex-col items-center justify-center h-screen px-4">
-          <div className="max-w-4xl w-full h-full flex">
-            <AnimatedHero onAnimationComplete={handleAnimationComplete} isFlashActive={isFlashActive}/>
+          <div className="max-w-4xl w-full h-full flex flex-col items-center justify-center">
+            <div className="w-full">
+              <AnimatedHero onAnimationComplete={() => setHeroAnimationFinished(true)} isFlashActive={isChildLensActive}/>
+            </div>
+            <div className={cn(
+              "transition-opacity duration-1000 ease-in mt-8",
+              heroAnimationFinished ? "opacity-100" : "opacity-0"
+            )}>
+              <LensToggleButton 
+                isActive={isChildLensActive} 
+                onClick={handleToggleLens}
+                colorClasses={activeColorClasses}
+                isFlashing={isFlashing}
+              />
+            </div>
           </div>
         </section>
         

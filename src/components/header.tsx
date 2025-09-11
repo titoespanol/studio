@@ -61,18 +61,21 @@ export function Header({
     <header className={cn(
         "fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 transition-colors duration-300"
     )}>
-      <div
-        className={cn(
-          "transition-all duration-300 ease-in-out",
-          isScrolled ? "scale-75" : "scale-100",
-           isFlashing && flashColor
-        )}
-        style={{ filter: (invertLogo && !isFlashing) ? 'invert(1)' : 'invert(0)' }}
-      >
-        <Logo />
+      <div className="flex-1"></div>
+      <div className="flex-1 flex justify-center">
+        <div
+          className={cn(
+            "transition-all duration-300 ease-in-out",
+            isScrolled ? "scale-75" : "scale-100",
+            isFlashing && flashColor
+          )}
+          style={{ filter: (invertLogo && !isFlashing) ? 'invert(1)' : 'invert(0)' }}
+        >
+          <Logo />
+        </div>
       </div>
       <div className={cn(
-        "transition-opacity duration-1000 ease-in",
+        "flex-1 flex justify-end transition-opacity duration-1000 ease-in",
         heroAnimationFinished ? "opacity-100" : "opacity-0"
       )}>
         <LensToggleButton

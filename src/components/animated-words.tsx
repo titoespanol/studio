@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 type AnimatedWordsProps = {
-  phrases: { text: string; weight: string; className: string }[];
+  phrases: { text: string; weight: string; className: string; colorClass?: string }[];
   onComplete: () => void;
 };
 
@@ -42,7 +42,7 @@ export function AnimatedWords({ phrases, onComplete }: AnimatedWordsProps) {
     <div className="flex flex-col items-start font-headline tracking-tight">
       {phrases.map((phrase, index) => (
         <div key={index} className={cn("h-[48px]", phrase.className)}>
-            <span className={cn(phrase.weight)}>
+            <span className={cn(phrase.weight, phrase.colorClass)}>
             {currentPhraseIndex > index ? phrase.text : (currentPhraseIndex === index ? displayedText : "")}
             </span>
         </div>

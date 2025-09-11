@@ -5,20 +5,28 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedWords } from "./animated-words";
 
-const phrases = [
-  { text: "Farther.", weight: "font-light", className: "text-4xl md:text-5xl" },
-  { text: "Faster.", weight: "font-normal", className: "text-4xl md:text-5xl" },
-  { text: "Forward.", weight: "font-bold", className: "text-4xl md:text-5xl" },
-];
-
 type AnimatedHeroProps = {
   onAnimationComplete: () => void;
   isFlashActive: boolean;
+  colorClasses: {
+    jupiter: string;
+  }
 };
 
-export function AnimatedHero({ onAnimationComplete, isFlashActive }: AnimatedHeroProps) {
+export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses }: AnimatedHeroProps) {
   const [step, setStep] = useState(0); // 0: initial, 1: h1 visible, 2: h1 faded, 3: words visible
   const [wordsAnimationFinished, setWordsAnimationFinished] = useState(false);
+
+  const phrases = [
+    { text: "Farther.", weight: "font-light", className: "text-4xl md:text-5xl" },
+    { text: "Faster.", weight: "font-normal", className: "text-4xl md:text-5xl" },
+    { 
+      text: isFlashActive ? "Jupiter." : "Forward.", 
+      weight: "font-bold", 
+      className: "text-4xl md:text-5xl",
+      colorClass: isFlashActive ? colorClasses.jupiter : undefined,
+    },
+  ];
 
   useEffect(() => {
     const sequence = [

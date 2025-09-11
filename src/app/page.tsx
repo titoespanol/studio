@@ -15,11 +15,12 @@ const colorPalette = [
   { text: "text-[#f291bc]", bg: "bg-[#f291bc]", border: "border-[#f291bc]" },
   { text: "text-[#419ebf]", bg: "bg-[#419ebf]", border: "border-[#419ebf]" },
   { text: "text-[#f27236]", bg: "bg-[#f27236]", border: "border-[#f27236]" },
+  { text: "text-[#9c4a79]", bg: "bg-[#9c4a79]", border: "border-[#9c4a79]" },
 ];
 
 const getRandomColorClasses = () => {
   const shuffled = [...colorPalette].sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, 3);
+  const selected = shuffled.slice(0, 4);
   return {
     text: selected[0].text,
     bg: selected[0].bg,
@@ -27,6 +28,7 @@ const getRandomColorClasses = () => {
     logo1: selected[0].text,
     logo2: selected[1].text,
     logo3: selected[2].text,
+    jupiter: selected[3].text,
   };
 };
 
@@ -39,6 +41,7 @@ export default function Home() {
     logo1: colorPalette[0].text,
     logo2: colorPalette[1].text,
     logo3: colorPalette[2].text,
+    jupiter: colorPalette[3].text,
   });
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
@@ -117,7 +120,11 @@ export default function Home() {
         <section className="flex flex-col items-center justify-center h-screen px-4">
           <div className="max-w-4xl w-full h-full flex flex-col items-center justify-center">
             <div className="w-full">
-              <AnimatedHero onAnimationComplete={() => setHeroAnimationFinished(true)} isFlashActive={isChildLensActive}/>
+              <AnimatedHero 
+                onAnimationComplete={() => setHeroAnimationFinished(true)} 
+                isFlashActive={isChildLensActive}
+                colorClasses={activeColorClasses}
+              />
             </div>
           </div>
         </section>

@@ -11,7 +11,14 @@ type HeaderProps = {
   flashColor?: string;
   isChildLensActive: boolean;
   onToggleLens: () => void;
-  colorClasses: { text: string; bg: string; border: string; };
+  colorClasses: {
+    text: string;
+    bg: string;
+    border: string;
+    logo1: string;
+    logo2: string;
+    logo3: string;
+  };
   isToggleFlashing: boolean;
   heroAnimationFinished: boolean;
 };
@@ -66,12 +73,11 @@ export function Header({
         <div
           className={cn(
             "transition-all duration-300 ease-in-out",
-            isScrolled ? "scale-75" : "scale-100",
-            isFlashing && flashColor
+            isScrolled ? "scale-75" : "scale-100"
           )}
           style={{ filter: (invertLogo && !isFlashing) ? 'invert(1)' : 'invert(0)' }}
         >
-          <Logo />
+          <Logo isChildLensActive={isChildLensActive} colorClasses={colorClasses} />
         </div>
       </div>
       <div className={cn(

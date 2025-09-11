@@ -1,16 +1,21 @@
 
-import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-export function Logo() {
+type LogoProps = {
+  isChildLensActive?: boolean;
+  colorClasses?: {
+    logo1: string;
+    logo2: string;
+    logo3: string;
+  };
+};
+
+export function Logo({ isChildLensActive, colorClasses }: LogoProps) {
   return (
-    <div className="relative w-40 h-12">
-      <Image
-        src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/TimesBlack.png?alt=media&token=77cbe246-5974-4dfd-ab91-2d4f830f91e2"
-        alt="The Child Lens Logo"
-        fill
-        className="object-contain"
-        priority
-      />
+    <div className="relative w-40 h-12 text-4xl font-logo font-bold flex items-center justify-center space-x-2">
+      <span className={cn("transition-colors duration-300", isChildLensActive && colorClasses?.logo1)}>The</span>
+      <span className={cn("transition-colors duration-300", isChildLensActive && colorClasses?.logo2)}>Child</span>
+      <span className={cn("transition-colors duration-300", isChildLensActive && colorClasses?.logo3)}>Lens</span>
     </div>
   );
 }

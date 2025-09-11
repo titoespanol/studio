@@ -18,13 +18,21 @@ const colorPalette = [
 ];
 
 const getRandomColorClasses = () => {
-  const randomIndex = Math.floor(Math.random() * colorPalette.length);
-  return colorPalette[randomIndex];
+  const shuffled = [...colorPalette].sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 3);
+  return {
+    text: selected[0].text,
+    bg: selected[0].bg,
+    border: selected[0].border,
+    logo1: selected[0].text,
+    logo2: selected[1].text,
+    logo3: selected[2].text,
+  };
 };
 
 export default function Home() {
   const [isChildLensActive, setIsChildLensActive] = useState(false);
-  const [activeColorClasses, setActiveColorClasses] = useState(colorPalette[0]);
+  const [activeColorClasses, setActiveColorClasses] = useState(getRandomColorClasses());
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
 
@@ -78,7 +86,7 @@ export default function Home() {
   };
 
   return (
-    <div className={cn("bg-background text-foreground", isChildLensActive && "bg-transparent", isChildLensActive && activeColorClasses.text)}>
+    <div className={cn("bg-background text-foreground", isChildLensActive && "bg-transparent")}>
       <div className={cn("fixed inset-0 z-[-1] transition-opacity duration-200", isChildLensActive ? "opacity-100" : "opacity-0")}>
         <Image
           src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Boho%20Pattern%207.jpg?alt=media&token=319b2028-afc4-4dd2-8282-5dfcabdafdb4"
@@ -107,9 +115,11 @@ export default function Home() {
           </div>
         </section>
         
-        <ScrollingFeatures />
+        <div className={cn(isChildLensActive && activeColorClasses.text)}>
+          <ScrollingFeatures />
+          <ExpandingBoxes />
+        </div>
 
-        <ExpandingBoxes />
 
         <section className="h-screen w-full flex items-center justify-center text-center px-4 bg-background">
             <div className="max-w-4xl">

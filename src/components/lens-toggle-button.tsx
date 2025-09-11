@@ -26,8 +26,8 @@ export function LensToggleButton({ isActive, onClick, colorClasses, isFlashing }
       className={cn(
         "font-body font-bold text-xs border rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 h-8 px-3",
         isActive 
-          ? `${colorClasses.border} ${colorClasses.bg} text-white hover:bg-transparent`
-          : "border-primary bg-transparent text-primary hover:bg-primary hover:text-white",
+          ? "border-primary bg-transparent text-primary hover:bg-primary hover:text-white"
+          : `${colorClasses.border} ${colorClasses.bg} text-white hover:bg-transparent`,
         isFlashing && "pointer-events-none"
       )}
     >

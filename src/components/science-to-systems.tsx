@@ -15,31 +15,38 @@ type ScienceToSystemsProps = {
     };
 };
 
+const Highlight = ({ children, className }: { children: React.ReactNode, className: string }) => (
+    <span className={cn("font-extrabold text-lg", className)}>{children}</span>
+);
+
 const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   {
     smallTitle: "The Builder",
-    rawContent: "We sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. We help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. We craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. We open doors to investors, hospitals and partners — but you keep the steering wheel.",
     content: (progress: number) => (
         <p>
-            <AnimatedText progress={progress} text="We sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. We help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. We craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. We open doors to investors, hospitals and partners — but you keep the steering wheel." />
+            <AnimatedText progress={progress}>
+                <Highlight className={colorClasses.we1}>We</Highlight> sit next to you and turn your science into a paediatric venture, step by step. Together, <Highlight className={colorClasses.we2}>we</Highlight> define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <Highlight className={colorClasses.we3}>We</Highlight> help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. <Highlight className={colorClasses.we4}>We</Highlight> craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <Highlight className={colorClasses.we1}>We</Highlight> open doors to investors, hospitals and partners — but you keep the steering wheel.
+            </AnimatedText>
         </p>
     ),
   },
   {
     smallTitle: "The Right Hand",
-    rawContent: "We act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — we bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. We don’t just advise from afar — we roll up our sleeves and help make progress real.",
     content: (progress: number) => (
         <p>
-            <AnimatedText progress={progress} text="We act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — we bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. We don’t just advise from afar — we roll up our sleeves and help make progress real." />
+            <AnimatedText progress={progress}>
+                <Highlight className={colorClasses.we1}>We</Highlight> act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — <Highlight className={colorClasses.we2}>we</Highlight> bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. <Highlight className={colorClasses.we3}>We</Highlight> don’t just advise from afar — <Highlight className={colorClasses.we4}>we</Highlight> roll up our sleeves and help make progress real.
+            </AnimatedText>
         </p>
     ),
   },
   {
     smallTitle: "The Voice",
-    rawContent: "We work to make children’s health impossible to ignore. With clarity and courage, we engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. We speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.",
     content: (progress: number) => (
         <p>
-            <AnimatedText progress={progress} text="We work to make children’s health impossible to ignore. With clarity and courage, we engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. We speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules." />
+            <AnimatedText progress={progress}>
+                <Highlight className={colorClasses.we1}>We</Highlight> work to make children’s health impossible to ignore. With clarity and courage, <Highlight className={colorClasses.we2}>we</Highlight> engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. <Highlight className={colorClasses.we3}>We</Highlight> speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.
+            </AnimatedText>
         </p>
     ),
   }

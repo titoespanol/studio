@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { ScienceToSystems } from '@/components/science-to-systems';
 import { RevealingText } from '@/components/revealing-text';
 import { WhoWeAre } from '@/components/who-we-are';
+import { ContactUs } from '@/components/contact-us';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -171,6 +172,8 @@ export default function Home() {
               <p className="mt-6 text-xl font-body font-bold">— Nelson Mandela</p>
             </div>
         </section>
+
+        <ContactUs />
       </main>
     </div>
   );

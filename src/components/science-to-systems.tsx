@@ -57,14 +57,11 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
     <section className="bg-background text-foreground py-24">
       <div className="container mx-auto px-4 text-center flex flex-col items-center">
         
-        <AnimatedContent>
+        <AnimatedContent className="mb-12">
             <h3 className={cn("text-xl font-bold", colorClasses.text)}>
                 {currentSection.smallTitle}
             </h3>
-        </AnimatedContent>
-
-        <AnimatedContent>
-            <h1 className="text-6xl font-bold font-headline tracking-tighter mb-12">
+            <h1 className="text-6xl font-bold font-headline tracking-tighter">
                 {currentSection.mainTitle}
             </h1>
         </AnimatedContent>

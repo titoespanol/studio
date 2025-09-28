@@ -58,7 +58,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       <div className="container mx-auto px-4 text-center flex flex-col items-center">
         
         <AnimatedContent>
-            <h3 className={cn("text-xl font-bold mb-4", colorClasses.text)}>
+            <h3 className={cn("text-xl font-bold mb-2", colorClasses.text)}>
                 {currentSection.smallTitle}
             </h3>
         </AnimatedContent>

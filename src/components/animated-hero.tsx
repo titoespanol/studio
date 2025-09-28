@@ -75,7 +75,7 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
               <AnimatedWords phrases={phrases} onComplete={() => setWordsAnimationFinished(true)} />
               <p 
                 className={cn(
-                  "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-light transition-opacity duration-1000 ease-in md:mr-32",
+                  "text-base md:text-lg max-w-3xl mt-6 leading-relaxed font-normal transition-opacity duration-1000 ease-in md:mr-32",
                   wordsAnimationFinished ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: '500ms' }}

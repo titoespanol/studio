@@ -88,11 +88,12 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
               </p>
               <div 
                 className={cn(
-                  "mt-6 flex gap-4 transition-opacity duration-1000 ease-in",
+                  "mt-6 flex items-center gap-4 transition-opacity duration-1000 ease-in",
                   wordsAnimationFinished ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: '700ms' }}
               >
+                <p className="text-xs font-medium mr-2">Go directly to:</p>
                 <a href="#who-we-are">
                   <Button variant="outline" size="sm" className="text-black border-black h-8 px-3 text-xs">
                     Who We Are <ArrowDown className="ml-2 h-3 w-3" />

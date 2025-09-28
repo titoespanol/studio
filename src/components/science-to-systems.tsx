@@ -3,6 +3,7 @@
 
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
+import { AnimatedText } from "./animated-text";
 
 type ScienceToSystemsProps = {
     colorClasses: {
@@ -17,25 +18,28 @@ type ScienceToSystemsProps = {
 const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   {
     smallTitle: "The Builder",
-    content: (
+    rawContent: "We sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. We help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. We craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. We open doors to investors, hospitals and partners — but you keep the steering wheel.",
+    content: (progress: number) => (
         <p>
-            <span className={cn("font-bold text-lg", colorClasses.we1)}>We</span> sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <span className={cn("font-bold text-lg", colorClasses.we2)}>We</span> help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. <span className={cn("font-bold text-lg", colorClasses.we3)}>We</span> craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <span className={cn("font-bold text-lg", colorClasses.we4)}>We</span> open doors to investors, hospitals and partners — but you keep the steering wheel.
+            <AnimatedText progress={progress} text="We sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. We help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. We craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. We open doors to investors, hospitals and partners — but you keep the steering wheel." />
         </p>
     ),
   },
   {
     smallTitle: "The Right Hand",
-    content: (
+    rawContent: "We act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — we bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. We don’t just advise from afar — we roll up our sleeves and help make progress real.",
+    content: (progress: number) => (
         <p>
-            <span className={cn("font-bold text-lg", colorClasses.text)}>We</span> act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — <span className={cn("font-bold text-lg", colorClasses.we1)}>we</span> bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. <span className={cn("font-bold text-lg", colorClasses.we2)}>We</span> don’t just advise from afar — <span className={cn("font-bold text-lg", colorClasses.we3)}>we</span> roll up our sleeves and help make progress real.
+            <AnimatedText progress={progress} text="We act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — we bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. We don’t just advise from afar — we roll up our sleeves and help make progress real." />
         </p>
     ),
   },
   {
     smallTitle: "The Voice",
-    content: (
+    rawContent: "We work to make children’s health impossible to ignore. With clarity and courage, we engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. We speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.",
+    content: (progress: number) => (
         <p>
-            <span className={cn("font-bold text-lg", colorClasses.we1)}>We</span> work to make children’s health impossible to ignore. With clarity and courage, <span className={cn("font-bold text-lg", colorClasses.we2)}>we</span> engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. <span className={cn("font-bold text-lg", colorClasses.we3)}>We</span> speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.
+            <AnimatedText progress={progress} text="We work to make children’s health impossible to ignore. With clarity and courage, we engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. We speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules." />
         </p>
     ),
   }
@@ -45,6 +49,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
 export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
   const sections = getSections({ colorClasses });
   const [activeSection, setActiveSection] = useState(0);
+  const [sectionProgress, setSectionProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,6 +69,9 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       if (currentSectionIndex !== activeSection) {
         setActiveSection(currentSectionIndex);
       }
+
+      const progressInSection = (currentScroll - (currentSectionIndex * sectionScrollLength)) / sectionScrollLength;
+      setSectionProgress(Math.max(0, Math.min(1, progressInSection)));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -97,7 +105,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
                                 activeSection === index ? "opacity-100" : "opacity-0"
                             )}
                         >
-                          {section.content}
+                          {activeSection === index ? section.content(sectionProgress) : section.content(0)}
                         </div>
                     ))}
                 </div>

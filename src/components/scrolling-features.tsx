@@ -76,7 +76,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
           style={{ filter: `blur(${blurAmount}px)` }}
         >
           <Image
-            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"
+            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/ulls%20nena%20tallada%20tiny.jpg?alt=media&token=3dc30680-3b54-4148-b3e6-8c46ace3d478"
             alt="A child's face with dotted light patterns"
             fill
             className="object-cover"

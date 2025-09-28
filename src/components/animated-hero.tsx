@@ -39,9 +39,9 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
     
     let delay = 500;
     if (step === 1) { // h1 visible
-        delay = 3500;
+        delay = 1750; // Was 3500
     } else if (step === 2) { // h1 faded
-        delay = 700;
+        delay = 350; // Was 700
     }
 
     if (step < sequence.length) {

@@ -29,7 +29,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   {
     smallTitle: (
         <span className="flex items-center">
-            <CircledNumber number={1} /> The Builder
+            <CircledNumber number={1} /> <span className={colorClasses.we1}>The Builder</span>
         </span>
     ),
     content: (progress: number) => (
@@ -43,7 +43,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   {
     smallTitle: (
         <span className="flex items-center">
-            <CircledNumber number={2} /> The Right Hand
+            <CircledNumber number={2} /> <span className={colorClasses.we2}>The Right Hand</span>
         </span>
     ),
     content: (progress: number) => (
@@ -57,7 +57,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   {
     smallTitle: (
         <span className="flex items-center">
-            <CircledNumber number={3} /> The Voice
+            <CircledNumber number={3} /> <span className={colorClasses.we3}>The Voice</span>
         </span>
     ),
     content: (progress: number) => (
@@ -114,7 +114,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
         <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
             <div className="w-full max-w-3xl">
                 <div className="mb-12">
-                    <h3 className={cn("text-xl font-bold flex items-center justify-center", colorClasses.text)}>
+                    <h3 className={cn("text-xl font-bold flex items-center justify-center")}>
                         {sections[activeSection].smallTitle}
                     </h3>
                     <h1 className="text-6xl font-bold font-headline tracking-tighter">

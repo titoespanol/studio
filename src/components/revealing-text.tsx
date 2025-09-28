@@ -15,7 +15,6 @@ const paragraphs = [
   [
     "This is the lens we bring.",
     "And it lives through three ways of working:",
-    "The Builder. The Right Hand. The Voice.",
   ],
 ];
 

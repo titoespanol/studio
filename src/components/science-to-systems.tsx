@@ -4,18 +4,30 @@
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 
-const sections = [
+type ScienceToSystemsProps = {
+    colorClasses: {
+        text: string;
+    };
+};
+
+const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   {
     smallTitle: "The Builder",
     mainTitle: "From Science to Systems",
-    content: "We sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. We help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. We craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. We open doors to investors, hospitals and partners — but you keep the steering wheel.",
-    colorClass: "text-[#d45324]", // Example color, will be overridden
+    content: (
+        <p className="text-base md:text-lg font-body leading-relaxed">
+            <span className={cn("font-bold", colorClasses.text)}>We</span> sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <span className={cn("font-bold", colorClasses.text)}>We</span> help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. <span className={cn("font-bold", colorClasses.text)}>We</span> craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <span className={cn("font-bold", colorClasses.text)}>We</span> open doors to investors, hospitals and partners — but you keep the steering wheel.
+        </p>
+    ),
   },
   {
     smallTitle: "The Right Hand",
     mainTitle: "From Science to Systems",
-    content: "We act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — we bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. We don’t just advise from afar — we roll up our sleeves and help make progress real.",
-    colorClass: "text-[#ffb53a]",
+    content: (
+        <p className="text-base md:text-lg font-body leading-relaxed">
+            We act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — we bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. We don’t just advise from afar — we roll up our sleeves and help make progress real.
+        </p>
+    ),
   },
   // {
   //   smallTitle: "The Voice",
@@ -24,13 +36,9 @@ const sections = [
   // }
 ];
 
-type ScienceToSystemsProps = {
-    colorClasses: {
-        text: string;
-    };
-};
 
 export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
+  const sections = getSections({ colorClasses });
   const [activeSection, setActiveSection] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -59,7 +67,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [activeSection]);
+  }, [activeSection, sections.length]);
 
 
   return (
@@ -84,9 +92,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
                                     {section.mainTitle}
                                 </h1>
                             </div>
-                            <p className="text-base md:text-lg font-body leading-relaxed">
-                                {section.content}
-                            </p>
+                            {section.content}
                         </div>
                     </div>
                 ))}
@@ -96,5 +102,3 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
     </section>
   );
 }
-
-    

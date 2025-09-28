@@ -66,7 +66,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
   const darknessAmount = 0.5 * (1 - scrollProgress);
   
   const titleText = isChildLensActive ? "Solving one problem is a piece of cake" : "Solving one problem isn’t enough.";
-  const titleColorClass = isChildLensActive ? colorClasses?.pieceOfCake : "text-foreground";
+  const titleColorClass = isChildLensActive ? colorClasses?.pieceOfCake : "text-[#f2efe8]";
 
   return (
     <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background" style={{ height: `${paragraphs.length * 150}vh` }}>
@@ -89,7 +89,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
         ></div>
       </div>
       <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${paragraphs.length * 150}vh` }}>
-        <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-white">
+        <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-[#f2efe8]">
           <div className="md:w-3/5">
               <div className="flex flex-col justify-center h-full space-y-8 pt-12">
                   <h2 className={cn("text-5xl font-bold font-headline", titleColorClass)}>

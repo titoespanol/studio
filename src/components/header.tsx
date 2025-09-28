@@ -35,6 +35,12 @@ export function Header({
   const [isScrolled, setIsScrolled] = useState(false);
   const [invertLogoForFeatures, setInvertLogoForFeatures] = useState(false);
   const [invertLogoForMandela, setInvertLogoForMandela] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 10); // Small delay to ensure transition triggers
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +85,8 @@ export function Header({
 
   return (
     <header className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 transition-colors duration-300"
+        "fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 transition-all duration-2000",
+        isVisible ? "opacity-100" : "opacity-0"
     )}>
       <div className="flex-1"></div>
       <div className="flex-1 flex justify-center">

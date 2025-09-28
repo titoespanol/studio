@@ -8,6 +8,7 @@ import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
 import { cn } from '@/lib/utils';
 import { ScienceToSystems } from '@/components/science-to-systems';
+import { RevealingText } from '@/components/revealing-text';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -144,6 +145,8 @@ export default function Home() {
             colorClasses={activeColorClasses} 
           />
         </div>
+
+        <RevealingText />
 
         <ScienceToSystems colorClasses={activeColorClasses} />
         

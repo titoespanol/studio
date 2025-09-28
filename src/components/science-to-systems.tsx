@@ -33,11 +33,15 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
         </p>
     ),
   },
-  // {
-  //   smallTitle: "The Voice",
-  //   mainTitle: "From Science to Systems",
-  //   content: "...",
-  // }
+  {
+    smallTitle: "The Voice",
+    mainTitle: "From Science to Systems",
+    content: (
+        <p className="text-base md:text-lg font-body leading-relaxed">
+            <span className="font-bold">We</span> work to make children’s health impossible to ignore. With clarity and courage, <span className="font-bold">we</span> engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. <span className="font-bold">We</span> speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.
+        </p>
+    ),
+  }
 ];
 
 

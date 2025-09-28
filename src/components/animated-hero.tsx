@@ -94,13 +94,13 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
                 style={{ transitionDelay: '700ms' }}
               >
                 <a href="#who-we-are">
-                  <Button variant="outline" size="sm" className="text-black border-black">
-                    Who We Are <ArrowDown className="ml-2 h-4 w-4" />
+                  <Button variant="outline" size="sm" className="text-black border-black h-8 px-3 text-xs">
+                    Who We Are <ArrowDown className="ml-2 h-3 w-3" />
                   </Button>
                 </a>
                 <a href="#contact">
-                  <Button variant="outline" size="sm" className="text-black border-black">
-                    Contact Us <ArrowDown className="ml-2 h-4 w-4" />
+                  <Button variant="outline" size="sm" className="text-black border-black h-8 px-3 text-xs">
+                    Contact Us <ArrowDown className="ml-2 h-3 w-3" />
                   </Button>
                 </a>
               </div>

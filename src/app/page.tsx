@@ -9,6 +9,7 @@ import { ScrollingFeatures } from '@/components/scrolling-features';
 import { cn } from '@/lib/utils';
 import { ScienceToSystems } from '@/components/science-to-systems';
 import { RevealingText } from '@/components/revealing-text';
+import { WhoWeAre } from '@/components/who-we-are';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -149,6 +150,8 @@ export default function Home() {
         <RevealingText colorClasses={activeColorClasses} />
 
         <ScienceToSystems colorClasses={activeColorClasses} />
+
+        <WhoWeAre />
         
         <section className="relative h-screen w-full flex items-center justify-center text-center px-4 text-[#f2efe8]">
             <div className="absolute inset-0 z-0">

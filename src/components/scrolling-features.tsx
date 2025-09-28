@@ -9,7 +9,7 @@ import Image from "next/image";
 const paragraphs = [
   'You can improve a product. Train a team. Change a policy. But if the system stays the same, it keeps breaking children.',
   'At The Child Lens, we don’t just treat the symptoms. We dig deep into the tangled roots — where funding gaps, power dynamics and cultural blind spots quietly shape outcomes.',
-  'Because real impact in children’s health takes more than a brilliant idea. It takes bold ventures, brave voices, and a systemic lens.',
+  'Real impact in children’s health takes more than a brilliant idea. It takes The Builder, The Right Hand, and The Voice.',
 ];
 
 type ScrollingFeaturesProps = {

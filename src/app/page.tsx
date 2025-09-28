@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
@@ -57,6 +57,13 @@ export default function Home() {
   });
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
 
   useEffect(() => {
     if (!heroAnimationFinished) return;
@@ -156,13 +163,15 @@ export default function Home() {
         
         <section id="mandela-section" className="relative h-screen w-full flex items-center justify-center text-center px-4 text-[#f2efe8]">
             <div className="absolute inset-0 z-0">
-                <Image
-                    src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"
-                    alt="Nelson Mandela"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="portrait man"
-                />
+                <video
+                    ref={videoRef}
+                    src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/envato_video_gen_Sep_28_2025_12_10_09.mp4?alt=media&token=85df7269-3573-41a5-b437-2dd24fd5d91e"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                ></video>
                 <div className="absolute inset-0 bg-black/30" />
             </div>
             <div className="max-w-4xl z-10">

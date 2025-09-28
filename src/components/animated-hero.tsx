@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedWords } from "./animated-words";
+import { Button } from "./ui/button";
 
 type AnimatedHeroProps = {
   onAnimationComplete: () => void;
@@ -84,6 +85,20 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
                 <br/>
                 We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.
               </p>
+              <div 
+                className={cn(
+                  "mt-8 flex gap-4 transition-opacity duration-1000 ease-in",
+                  wordsAnimationFinished ? "opacity-100" : "opacity-0"
+                )}
+                style={{ transitionDelay: '700ms' }}
+              >
+                <a href="#who-we-are">
+                  <Button variant="outline" className="text-black border-black">Who We Are</Button>
+                </a>
+                <a href="#contact">
+                  <Button variant="outline" className="text-black border-black">Contact Us</Button>
+                </a>
+              </div>
             </div>
         )}
     </div>

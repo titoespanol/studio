@@ -49,7 +49,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
   const borderColorClass = isChildLensActive ? colorClasses.jupiter : "text-primary";
 
   return (
-    <section className="bg-background text-foreground py-20 md:py-32">
+    <section id="who-we-are" className="bg-background text-foreground py-20 md:py-32">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-5xl md:text-7xl font-headline font-bold text-black mb-8">
           Who we are.

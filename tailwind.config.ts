@@ -12,7 +12,7 @@ export default {
       fontFamily: {
         body: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         headline: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        logo: ['"Playfair Display"', 'serif'],
+        logo: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {

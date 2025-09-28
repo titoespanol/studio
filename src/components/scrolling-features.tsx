@@ -95,13 +95,13 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
                   <h2 className={cn("text-3xl font-bold font-headline", titleColorClass)}>
                     {titleText}
                   </h2>
-                  <div className="relative font-body font-normal text-xl space-y-6">
+                  <div className="relative font-body font-normal text-xl h-48">
                     {paragraphs.map((p, index) => (
                        <p
                          key={index}
                          className={cn(
-                           "transition-opacity duration-300 ease-in-out",
-                           activeParagraph === index ? "opacity-100" : "opacity-50"
+                           "absolute top-0 left-0 transition-opacity duration-500 ease-in-out",
+                           activeParagraph === index ? "opacity-100" : "opacity-0"
                          )}
                        >
                          <AnimatedText text={p} progress={paragraphProgress[index]} />

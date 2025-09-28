@@ -12,7 +12,7 @@ export default {
       fontFamily: {
         body: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         headline: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        logo: ['Poppins', 'sans-serif'],
+        logo: ['"Playfair Display"', 'serif'],
         code: ['monospace'],
       },
       colors: {

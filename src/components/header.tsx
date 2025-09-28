@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
-import { LensToggleButton } from "./lens-toggle-button";
+import { LayeredButton } from "./layered-button";
 
 type HeaderProps = {
   isFlashing?: boolean;
@@ -104,7 +104,7 @@ export function Header({
         "flex-1 flex justify-end transition-opacity duration-1000 ease-in",
         heroAnimationFinished ? "opacity-100" : "opacity-0"
       )}>
-        <LensToggleButton
+        <LayeredButton
           isActive={isChildLensActive}
           onClick={onToggleLens}
           colorClasses={colorClasses}

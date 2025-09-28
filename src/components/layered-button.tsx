@@ -15,14 +15,7 @@ type LayeredButtonProps = {
     layer2?: string;
   };
   isFlashing: boolean;
-};
-
-const layerColors = {
-  yellow: 'bg-[#ffb53a]',
-  blue: 'bg-[#419ebf]',
-  pink: 'bg-[#f291bc]',
-  orange: 'bg-[#f27236]',
-  purple: 'bg-[#9c4a79]',
+  forceWhite?: boolean;
 };
 
 const colorPalette = [
@@ -34,7 +27,7 @@ const colorPalette = [
   { text: "text-[#9c4a79]", bg: "bg-[#9c4a79]", border: "border-[#9c4a79]" },
 ];
 
-export function LayeredButton({ isActive, onClick, colorClasses, isFlashing }: LayeredButtonProps) {
+export function LayeredButton({ isActive, onClick, colorClasses, isFlashing, forceWhite }: LayeredButtonProps) {
     const buttonText = isActive ? 'ADULT LENS' : 'CHILD LENS';
 
     const getTwoOtherColors = (baseColor: string) => {
@@ -53,7 +46,9 @@ export function LayeredButton({ isActive, onClick, colorClasses, isFlashing }: L
               size="sm"
               className={cn(
                 "font-body font-bold text-xs border rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 h-8 px-4 py-2",
-                "border-primary bg-transparent text-primary hover:bg-primary hover:text-white",
+                forceWhite 
+                    ? "border-white bg-transparent text-white hover:bg-white hover:text-black" 
+                    : "border-primary bg-transparent text-primary hover:bg-primary hover:text-white",
                 isFlashing && "pointer-events-none"
               )}
             >

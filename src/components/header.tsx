@@ -33,8 +33,8 @@ export function Header({
   heroAnimationFinished
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [invertLogoForFeatures, setInvertLogoForFeatures] = useState(false);
-  const [invertLogoForMandela, setInvertLogoForMandela] = useState(false);
+  const [overFeaturesSection, setOverFeaturesSection] = useState(false);
+  const [overMandelaSection, setOverMandelaSection] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export function Header({
     const featuresObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                setInvertLogoForFeatures(entry.isIntersecting);
+                setOverFeaturesSection(entry.isIntersecting);
             });
         },
         { threshold: 0.2 }
@@ -62,7 +62,7 @@ export function Header({
     const mandelaObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                setInvertLogoForMandela(entry.isIntersecting);
+                setOverMandelaSection(entry.isIntersecting);
             });
         },
         { threshold: 0.2 }
@@ -81,7 +81,8 @@ export function Header({
     };
   }, []);
 
-  const shouldInvertLogo = (invertLogoForFeatures || invertLogoForMandela) && !isFlashing;
+  const shouldInvertLogo = (overFeaturesSection || overMandelaSection) && !isChildLensActive;
+  const shouldInvertButton = (overFeaturesSection || overMandelaSection) && !isChildLensActive;
 
   return (
     <header className={cn(
@@ -109,6 +110,7 @@ export function Header({
           onClick={onToggleLens}
           colorClasses={colorClasses}
           isFlashing={isToggleFlashing}
+          forceWhite={shouldInvertButton}
         />
       </div>
     </header>

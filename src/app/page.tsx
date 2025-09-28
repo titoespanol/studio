@@ -146,7 +146,7 @@ export default function Home() {
           />
         </div>
 
-        <RevealingText />
+        <RevealingText colorClasses={activeColorClasses} />
 
         <ScienceToSystems colorClasses={activeColorClasses} />
         

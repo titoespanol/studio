@@ -1,10 +1,16 @@
 
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-const paragraphs = [
+type RevealingTextProps = {
+  colorClasses: {
+    text: string;
+  };
+};
+
+const getParagraphs = ({ colorClasses }: RevealingTextProps): ReactNode[][] => [
   [
     "We don’t just fix problems.",
     "We strengthen the systems that shape children’s lives.",
@@ -14,11 +20,12 @@ const paragraphs = [
   ],
   [
     "This is the lens we bring.",
-    "And it lives through three ways of working:",
+    <>And it lives through <span className={cn("font-bold", colorClasses.text)}>3</span> ways of working:</>,
   ],
 ];
 
-export function RevealingText() {
+export function RevealingText({ colorClasses }: RevealingTextProps) {
+  const paragraphs = getParagraphs({ colorClasses });
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeParagraph, setActiveParagraph] = useState(0);
 
@@ -45,7 +52,7 @@ export function RevealingText() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [paragraphs.length]);
 
   return (
     <section ref={containerRef} className="bg-background text-foreground" style={{ height: `${paragraphs.length * 80}vh` }}>

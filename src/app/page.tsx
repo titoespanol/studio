@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
-import { ExpandingBoxes } from '@/components/expanding-boxes';
 import { cn } from '@/lib/utils';
 
 const colorPalette = [
@@ -136,7 +135,6 @@ export default function Home() {
             isChildLensActive={isChildLensActive} 
             colorClasses={activeColorClasses} 
           />
-          <ExpandingBoxes />
         </div>
 
 

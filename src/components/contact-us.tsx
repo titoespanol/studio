@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Pin, MapPin } from "lucide-react";
+import { Mail, Pin } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -103,7 +103,9 @@ export function ContactUs() {
                 <Button type="submit" className="w-full" size="lg">Send Message</Button>
               </form>
             </Form>
-            <div className="mt-12 space-y-4 text-base">
+          </div>
+          <div className="flex flex-col gap-8">
+            <div className="space-y-4 text-base">
                 <div className="flex items-start">
                     <Mail className="w-5 h-5 mr-3 mt-1 shrink-0"/>
                     <a href="mailto:pilar@thechildlens.com" className="hover:underline">pilar@thechildlens.com</a>
@@ -113,18 +115,18 @@ export function ContactUs() {
                     <p>Tech Pier 07<br/>Via Laietana, 26, Ciutat Vella, 08003 Barcelona</p>
                 </div>
             </div>
-          </div>
-          <div className="h-[400px] md:h-[500px] w-full rounded-lg overflow-hidden shadow-lg">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.686267158732!2d2.176059915425712!3d41.3809623792648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2f8b5a7b6f5%3A0xac8d6897c5a8e01!2sTech%20Barcelona%20-%20Pier07!5e0!3m2!1sen!2ses!4v1682522745778!5m2!1sen!2ses"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Tech Pier 07 Location"
-            ></iframe>
+            <div className="h-[300px] md:h-[400px] w-full rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.686267158732!2d2.176059915425712!3d41.3809623792648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2f8b5a7b6f5%3A0xac8d6897c5a8e01!2sTech%20Barcelona%20-%20Pier07!5e0!3m2!1sen!2ses!4v1682522745778!5m2!1sen!2ses"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Tech Pier 07 Location"
+                ></iframe>
+            </div>
           </div>
         </div>
       </div>

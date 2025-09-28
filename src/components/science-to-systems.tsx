@@ -7,6 +7,10 @@ import { useState, useEffect, useRef } from "react";
 type ScienceToSystemsProps = {
     colorClasses: {
         text: string;
+        we1: string;
+        we2: string;
+        we3: string;
+        we4: string;
     };
 };
 
@@ -16,7 +20,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
     mainTitle: "From Science to Systems",
     content: (
         <p className="text-base md:text-lg font-body leading-relaxed">
-            <span className={cn("font-bold", colorClasses.text)}>We</span> sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <span className={cn("font-bold", colorClasses.text)}>We</span> help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. <span className={cn("font-bold", colorClasses.text)}>We</span> craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <span className={cn("font-bold", colorClasses.text)}>We</span> open doors to investors, hospitals and partners — but you keep the steering wheel.
+            <span className={cn("font-bold", colorClasses.we1)}>We</span> sit next to you and turn your science into a paediatric venture, step by step. Together, we define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <span className={cn("font-bold", colorClasses.we2)}>We</span> help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. <span className={cn("font-bold", colorClasses.we3)}>We</span> craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <span className={cn("font-bold", colorClasses.we4)}>We</span> open doors to investors, hospitals and partners — but you keep the steering wheel.
         </p>
     ),
   },

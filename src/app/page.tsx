@@ -20,16 +20,19 @@ const colorPalette = [
 
 const getRandomColorClasses = () => {
   const shuffled = [...colorPalette].sort(() => 0.5 - Math.random());
-  const selected = shuffled.slice(0, 5);
   return {
-    text: selected[0].text,
-    bg: selected[0].bg,
-    border: selected[0].border,
-    logo1: selected[0].text,
-    logo2: selected[1].text,
-    logo3: selected[2].text,
-    jupiter: selected[3].text,
-    whyWePlay: selected[4].text,
+    text: shuffled[0].text,
+    bg: shuffled[0].bg,
+    border: shuffled[0].border,
+    logo1: shuffled[0].text,
+    logo2: shuffled[1].text,
+    logo3: shuffled[2].text,
+    jupiter: shuffled[3].text,
+    whyWePlay: shuffled[4].text,
+    we1: shuffled[0].text,
+    we2: shuffled[1].text,
+    we3: shuffled[2].text,
+    we4: shuffled[3].text,
   };
 };
 
@@ -44,6 +47,10 @@ export default function Home() {
     logo3: colorPalette[2].text,
     jupiter: colorPalette[3].text,
     whyWePlay: colorPalette[4].text,
+    we1: colorPalette[0].text,
+    we2: colorPalette[1].text,
+    we3: colorPalette[2].text,
+    we4: colorPalette[3].text,
   });
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);

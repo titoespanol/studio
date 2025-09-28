@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedWords } from "./animated-words";
 import { Button } from "./ui/button";
+import { ArrowDown } from "lucide-react";
 
 type AnimatedHeroProps = {
   onAnimationComplete: () => void;
@@ -87,16 +88,20 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
               </p>
               <div 
                 className={cn(
-                  "mt-8 flex gap-4 transition-opacity duration-1000 ease-in",
+                  "mt-6 flex gap-4 transition-opacity duration-1000 ease-in",
                   wordsAnimationFinished ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: '700ms' }}
               >
                 <a href="#who-we-are">
-                  <Button variant="outline" className="text-black border-black">Who We Are</Button>
+                  <Button variant="outline" size="sm" className="text-black border-black">
+                    Who We Are <ArrowDown className="ml-2 h-4 w-4" />
+                  </Button>
                 </a>
                 <a href="#contact">
-                  <Button variant="outline" className="text-black border-black">Contact Us</Button>
+                  <Button variant="outline" size="sm" className="text-black border-black">
+                    Contact Us <ArrowDown className="ml-2 h-4 w-4" />
+                  </Button>
                 </a>
               </div>
             </div>

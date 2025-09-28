@@ -33,7 +33,8 @@ export function Header({
   heroAnimationFinished
 }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [invertLogo, setInvertLogo] = useState(false);
+  const [invertLogoForFeatures, setInvertLogoForFeatures] = useState(false);
+  const [invertLogoForMandela, setInvertLogoForMandela] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,28 +42,40 @@ export function Header({
     };
 
     const featuresSection = document.querySelector("#features-section");
-    if (!featuresSection) return;
+    const mandelaSection = document.querySelector("#mandela-section");
 
-    const observer = new IntersectionObserver(
+    const featuresObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                setInvertLogo(entry.isIntersecting);
+                setInvertLogoForFeatures(entry.isIntersecting);
             });
         },
-        { threshold: 0.2 } // Adjust threshold as needed
+        { threshold: 0.2 }
     );
 
-    observer.observe(featuresSection);
+    const mandelaObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                setInvertLogoForMandela(entry.isIntersecting);
+            });
+        },
+        { threshold: 0.2 }
+    );
+
+    if (featuresSection) featuresObserver.observe(featuresSection);
+    if (mandelaSection) mandelaObserver.observe(mandelaSection);
+
     window.addEventListener("scroll", handleScroll);
     handleScroll(); 
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (featuresSection) {
-        observer.unobserve(featuresSection);
-      }
+      if (featuresSection) featuresObserver.unobserve(featuresSection);
+      if (mandelaSection) mandelaObserver.unobserve(mandelaSection);
     };
   }, []);
+
+  const shouldInvertLogo = (invertLogoForFeatures || invertLogoForMandela) && !isFlashing;
 
   return (
     <header className={cn(
@@ -75,7 +88,7 @@ export function Header({
             "transition-all duration-300 ease-in-out",
             isScrolled ? "scale-75" : "scale-100"
           )}
-          style={{ filter: (invertLogo && !isFlashing) ? 'invert(1)' : 'invert(0)' }}
+          style={{ filter: shouldInvertLogo ? 'invert(1)' : 'invert(0)' }}
         >
           <Logo />
         </div>

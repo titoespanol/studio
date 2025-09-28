@@ -154,7 +154,7 @@ export default function Home() {
 
         <WhoWeAre isChildLensActive={isChildLensActive} />
         
-        <section className="relative h-screen w-full flex items-center justify-center text-center px-4 text-[#f2efe8]">
+        <section id="mandela-section" className="relative h-screen w-full flex items-center justify-center text-center px-4 text-[#f2efe8]">
             <div className="absolute inset-0 z-0">
                 <Image
                     src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"

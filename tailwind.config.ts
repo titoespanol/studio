@@ -12,7 +12,7 @@ export default {
       fontFamily: {
         body: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         headline: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        logo: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        logo: ['Sniglet', 'cursive'],
         code: ['monospace'],
       },
       colors: {

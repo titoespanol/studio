@@ -15,7 +15,7 @@ const paragraphs = [
 type ScrollingFeaturesProps = {
   isChildLensActive?: boolean;
   colorClasses?: {
-    whyWePlay: string;
+    pieceOfCake: string;
   };
 };
 
@@ -65,8 +65,8 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
   const blurAmount = maxBlur * (1 - scrollProgress);
   const darknessAmount = 0.5 * (1 - scrollProgress);
   
-  const titleText = isChildLensActive ? "Why we play" : "Solving one problem isn’t enough.";
-  const titleColorClass = isChildLensActive ? colorClasses?.whyWePlay : "text-foreground";
+  const titleText = isChildLensActive ? "Solving one problem is a piece of cake" : "Solving one problem isn’t enough.";
+  const titleColorClass = isChildLensActive ? colorClasses?.pieceOfCake : "text-foreground";
 
   return (
     <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${paragraphs.length * 100}vh` }}>
@@ -95,7 +95,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
                   <h2 className={cn("text-5xl font-bold font-headline", titleColorClass)}>
                     {titleText}
                   </h2>
-                  <div className="relative font-body font-normal text-xl h-48">
+                  <div className="relative font-body font-normal text-xl h-48 text-foreground">
                     {paragraphs.map((p, index) => (
                        <p
                          key={index}

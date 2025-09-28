@@ -150,8 +150,18 @@ export default function Home() {
 
         <ScienceToSystems colorClasses={activeColorClasses} />
         
-        <section className="h-screen w-full flex items-center justify-center text-center px-4 bg-background">
-            <div className="max-w-4xl">
+        <section className="relative h-screen w-full flex items-center justify-center text-center px-4 text-[#f2efe8]">
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/portrait-2025-02-11-15-26-54-utc%20(1).jpg?alt=media&token=70b462e8-f371-4b30-a8a7-5cb2a5c40811"
+                    alt="Nelson Mandela"
+                    fill
+                    className="object-cover"
+                    data-ai-hint="portrait man"
+                />
+                <div className="absolute inset-0 bg-black/60" />
+            </div>
+            <div className="max-w-4xl z-10">
               <p className="text-4xl md:text-6xl font-headline font-light leading-tight">
                 "There can be no keener revelation of a society's soul than the way in which it treats its children."
               </p>

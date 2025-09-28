@@ -13,6 +13,7 @@ export default {
         body: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         headline: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         logo: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        sniglet: ['"Sniglet"', 'cursive'],
         code: ['monospace'],
       },
       colors: {

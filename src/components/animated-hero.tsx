@@ -57,7 +57,7 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
   }, [wordsAnimationFinished, onAnimationComplete]);
 
   return (
-    <div className="flex items-center justify-center w-full h-auto">
+    <div className="flex items-center justify-center w-full h-full">
         {step < 3 ? (
             <h1
                 className={cn(

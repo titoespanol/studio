@@ -159,7 +159,7 @@ export default function Home() {
                     className="object-cover"
                     data-ai-hint="portrait man"
                 />
-                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-black/30" />
             </div>
             <div className="max-w-4xl z-10">
               <p className="text-4xl md:text-6xl font-headline font-light leading-tight">

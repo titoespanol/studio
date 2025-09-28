@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { AnimatedHero } from '@/components/animated-hero';
 import { Header } from '@/components/header';
 import { ScrollingFeatures } from '@/components/scrolling-features';
-import { VentureBuilding } from '@/components/venture-building';
 import { cn } from '@/lib/utils';
 
 const colorPalette = [
@@ -138,8 +137,6 @@ export default function Home() {
           />
         </div>
         
-        <VentureBuilding />
-
         <section className="h-screen w-full flex items-center justify-center text-center px-4 bg-background">
             <div className="max-w-4xl">
               <p className="text-4xl md:text-6xl font-headline font-light leading-tight">

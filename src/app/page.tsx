@@ -152,7 +152,7 @@ export default function Home() {
 
         <ScienceToSystems colorClasses={activeColorClasses} />
 
-        <WhoWeAre />
+        <WhoWeAre isChildLensActive={isChildLensActive} />
         
         <section className="relative h-screen w-full flex items-center justify-center text-center px-4 text-[#f2efe8]">
             <div className="absolute inset-0 z-0">

@@ -54,23 +54,23 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
   const currentSection = sections[0]; // For now, only show the first section
 
   return (
-    <section className="bg-background text-foreground py-32">
+    <section className="bg-background text-foreground py-24">
       <div className="container mx-auto px-4 text-center flex flex-col items-center">
         
         <AnimatedContent>
-            <h3 className={cn("text-2xl font-bold mb-4", colorClasses.text)}>
+            <h3 className={cn("text-xl font-bold mb-4", colorClasses.text)}>
                 {currentSection.smallTitle}
             </h3>
         </AnimatedContent>
 
         <AnimatedContent>
-            <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter mb-12">
+            <h1 className="text-6xl font-bold font-headline tracking-tighter mb-12">
                 {currentSection.mainTitle}
             </h1>
         </AnimatedContent>
 
         <AnimatedContent>
-            <p className="max-w-3xl text-lg md:text-xl font-body leading-relaxed">
+            <p className="max-w-3xl text-base md:text-lg font-body leading-relaxed">
                 {currentSection.content}
             </p>
         </AnimatedContent>

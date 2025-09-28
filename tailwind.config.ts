@@ -10,9 +10,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['"Cormorant Garamond"', 'serif'],
-        headline: ['"Plus Jakarta Sans"', 'sans-serif'],
-        logo: ['"Cormorant Garamond"', 'serif'],
+        body: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        headline: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        logo: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {

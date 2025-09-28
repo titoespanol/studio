@@ -77,7 +77,7 @@ export function Header({
           )}
           style={{ filter: (invertLogo && !isFlashing) ? 'invert(1)' : 'invert(0)' }}
         >
-          <Logo isChildLensActive={isChildLensActive} colorClasses={colorClasses} />
+          <Logo />
         </div>
       </div>
       <div className={cn(

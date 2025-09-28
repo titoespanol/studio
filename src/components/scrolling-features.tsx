@@ -6,23 +6,10 @@ import { cn } from "@/lib/utils";
 import { AnimatedText } from "./animated-text";
 import Image from "next/image";
 
-const features = [
-  {
-    title: 'We build ventures.',
-    description: 'From scratch, with scientists, clinicians, and entrepreneurs.',
-  },
-  {
-    title: 'We scale startups.',
-    description: 'Working shoulder to shoulder with startups so their ideas reach farther.',
-  },
-  {
-    title: 'We influence.',
-    description: 'Bringing clarity and courage to those shaping policy and systems.',
-  },
-  {
-    title: 'We connect.',
-    description: 'Hospitals, innovators, families, and regulators — a chorus strong enough to bend the system.',
-  },
+const paragraphs = [
+  'You can improve a product. Train a team. Change a policy. But if the system stays the same, it keeps breaking children.',
+  'At The Child Lens, we don’t just treat the symptoms. We dig deep into the tangled roots — where funding gaps, power dynamics and cultural blind spots quietly shape outcomes.',
+  'Because real impact in children’s health takes more than a brilliant idea. It takes bold ventures, brave voices, and a systemic lens.',
 ];
 
 type ScrollingFeaturesProps = {
@@ -33,11 +20,11 @@ type ScrollingFeaturesProps = {
 };
 
 export function ScrollingFeatures({ isChildLensActive, colorClasses }: ScrollingFeaturesProps) {
-  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
-  const [textProgress, setTextProgress] = useState(0);
-  const [featureProgress, setFeatureProgress] = useState(new Array(features.length).fill(0));
+  
+  const [activeParagraph, setActiveParagraph] = useState(0);
+  const [paragraphProgress, setParagraphProgress] = useState(new Array(paragraphs.length).fill(0));
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -47,12 +34,6 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
       const { top, height } = textContainerRef.current.getBoundingClientRect();
       const scrollableHeight = height - window.innerHeight;
 
-      // Text progress for "What we do" section
-      const textAnimationStart = window.innerHeight * 0.5;
-      const textAnimationEnd = window.innerHeight * 0.2;
-      const newTextProgress = Math.max(0, Math.min(1, (textAnimationStart - top) / (textAnimationStart - textAnimationEnd)));
-      setTextProgress(newTextProgress);
-
       let currentScroll = -top;
       if (currentScroll < 0) currentScroll = 0;
       if (currentScroll > scrollableHeight) currentScroll = scrollableHeight;
@@ -60,17 +41,16 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
       const overallProgress = scrollableHeight > 0 ? currentScroll / scrollableHeight : 0;
       setScrollProgress(overallProgress);
 
-      // Feature progress calculation
-      const featureScrollLength = scrollableHeight / features.length;
-      const currentFeatureIndex = Math.min(features.length - 1, Math.floor(currentScroll / featureScrollLength));
-      setActiveFeatureIndex(currentFeatureIndex);
+      const paragraphScrollLength = scrollableHeight / paragraphs.length;
+      const currentParagraphIndex = Math.min(paragraphs.length - 1, Math.floor(currentScroll / paragraphScrollLength));
+      setActiveParagraph(currentParagraphIndex);
 
-      const newFeatureProgress = features.map((_, index) => {
-        const featureStart = featureScrollLength * index;
-        const progressInFeature = (currentScroll - featureStart) / featureScrollLength;
-        return Math.max(0, Math.min(1, progressInFeature));
+      const newParagraphProgress = paragraphs.map((_, index) => {
+        const paragraphStart = paragraphScrollLength * index;
+        const progressInParagraph = (currentScroll - paragraphStart) / paragraphScrollLength;
+        return Math.max(0, Math.min(1, progressInParagraph));
       });
-      setFeatureProgress(newFeatureProgress);
+      setParagraphProgress(newParagraphProgress);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -81,15 +61,15 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
     };
   }, []);
 
-  const maxBlur = 16; // Increased blur for more evident effect
+  const maxBlur = 16;
   const blurAmount = maxBlur * (1 - scrollProgress);
-  const darknessAmount = 0.5 * (1 - scrollProgress); // From 50% opacity to 0%
+  const darknessAmount = 0.5 * (1 - scrollProgress);
   
-  const titleText = isChildLensActive ? "Why we play" : "What we do";
+  const titleText = isChildLensActive ? "Why we play" : "Solving one problem isn’t enough.";
   const titleColorClass = isChildLensActive ? colorClasses?.whyWePlay : "text-white";
 
   return (
-    <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${features.length * 100}vh` }}>
+    <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${paragraphs.length * 100}vh` }}>
       <div className="sticky top-0 h-screen w-full">
         <div 
           className="absolute inset-0 z-0" 
@@ -108,41 +88,27 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
             style={{ opacity: darknessAmount }}
         ></div>
       </div>
-      <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${features.length * 100}vh` }}>
+      <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${paragraphs.length * 100}vh` }}>
         <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-white">
-          <div className="flex flex-col md:flex-row gap-12 w-full">
-            <div className="md:w-1/3">
-              <div className="flex flex-col justify-center h-full">
-                  <h2 className={cn("text-3xl font-bold font-headline mb-4", titleColorClass)}>
-                    <AnimatedText text={titleText} progress={textProgress} />
+          <div className="md:w-2/5">
+              <div className="flex flex-col justify-center h-full space-y-8">
+                  <h2 className={cn("text-3xl font-bold font-headline", titleColorClass)}>
+                    {titleText}
                   </h2>
-                  <p className="font-body font-normal text-xl">
-                    <AnimatedText text="We believe that change should be more than a concept; it should effectively improve the health and well-being of every child." progress={textProgress} />
-                  </p>
-              </div>
-            </div>
-
-            <div className="md:w-2/3 h-full flex items-center justify-center">
-              <div className="relative w-full" style={{ height: '30vh' }}>
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "absolute inset-0 flex flex-col justify-center p-6 rounded-lg transition-opacity duration-300 ease-in-out",
-                      activeFeatureIndex === index ? "opacity-100" : "opacity-0 pointer-events-none"
-                    )}
-                  >
-                    <div className="mb-4 text-4xl font-headline font-bold">0{index + 1}</div>
-                    <h3 className="text-2xl font-bold font-headline mb-2">
-                      <AnimatedText text={feature.title} progress={featureProgress[index]} />
-                    </h3>
-                    <p className="font-body font-normal text-xl">
-                      <AnimatedText text={feature.description} progress={featureProgress[index]} />
-                    </p>
+                  <div className="relative font-body font-normal text-xl space-y-6">
+                    {paragraphs.map((p, index) => (
+                       <p
+                         key={index}
+                         className={cn(
+                           "transition-opacity duration-300 ease-in-out",
+                           activeParagraph === index ? "opacity-100" : "opacity-50"
+                         )}
+                       >
+                         <AnimatedText text={p} progress={paragraphProgress[index]} />
+                       </p>
+                    ))}
                   </div>
-                ))}
               </div>
-            </div>
           </div>
         </div>
       </div>

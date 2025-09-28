@@ -84,7 +84,7 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
               >
                 The Child Lens is a platform for systemic change in children’s health.
                 <br/>
-                We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail our children’s health.
+                We build ventures from scratch, walk hand-in-hand with startups, and shift the perspectives of those in power — all to unearth the deep roots of systems that fail children’s health.
               </p>
               <div 
                 className={cn(

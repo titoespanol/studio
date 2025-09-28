@@ -69,7 +69,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
   const titleColorClass = isChildLensActive ? colorClasses?.pieceOfCake : "text-foreground";
 
   return (
-    <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background text-foreground" style={{ height: `${paragraphs.length * 100}vh` }}>
+    <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background" style={{ height: `${paragraphs.length * 150}vh` }}>
       <div className="sticky top-0 h-screen w-full">
         <div 
           className="absolute inset-0 z-0" 
@@ -88,7 +88,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
             style={{ opacity: darknessAmount }}
         ></div>
       </div>
-      <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${paragraphs.length * 100}vh` }}>
+      <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${paragraphs.length * 150}vh` }}>
         <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-foreground" style={{filter: 'invert(1)'}}>
           <div className="md:w-3/5">
               <div className="flex flex-col justify-center h-full space-y-8 pt-12">

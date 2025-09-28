@@ -76,13 +76,13 @@ export function LayeredButton({ isActive, onClick, colorClasses, isFlashing }: L
       <div className={cn(
           "absolute w-full h-full rounded-full border-2 border-black",
           layer2Color
-      )} style={{ top: '8px', left: '0' }} />
+      )} style={{ top: '8px', left: '8px' }} />
       
       {/* Layer 1 (Middle) */}
       <div className={cn(
           "absolute w-full h-full rounded-full border-2 border-black",
           layer1Color
-      )} style={{ top: '4px', left: '0' }} />
+      )} style={{ top: '4px', left: '4px' }} />
 
       {/* Top Layer (Button itself) */}
       <div className={cn(

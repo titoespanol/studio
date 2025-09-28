@@ -51,9 +51,20 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
   return (
     <section className="bg-background text-foreground py-20 md:py-32">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-5xl md:text-7xl font-headline font-bold text-black mb-16">
+        <h2 className="text-5xl md:text-7xl font-headline font-bold text-black mb-8">
           Who we are.
         </h2>
+        <div className="max-w-3xl mx-auto text-base md:text-lg font-body text-black mb-16 space-y-4">
+          <p>
+            We’re not just a team — we’re co-pilots, sparring partners, and system shifters.
+          </p>
+          <p>
+            We’ve sat on boards, built ventures, pitched to investors, and rolled up our sleeves inside hospitals, startups and foundations.
+          </p>
+          <p>
+            We believe real change in children’s health needs brave ideas, grounded action, and the right people around the table.
+          </p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-16 max-w-4xl mx-auto">
           {teamMembers.map((member) => {
             const imageUrl = isChildLensActive && member.childImageUrl ? member.childImageUrl : member.imageUrl;

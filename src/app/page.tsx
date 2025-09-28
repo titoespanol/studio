@@ -152,7 +152,7 @@ export default function Home() {
 
         <ScienceToSystems colorClasses={activeColorClasses} />
 
-        <WhoWeAre isChildLensActive={isChildLensActive} />
+        <WhoWeAre isChildLensActive={isChildLensActive} colorClasses={activeColorClasses} />
         
         <section id="mandela-section" className="relative h-screen w-full flex items-center justify-center text-center px-4 text-[#f2efe8]">
             <div className="absolute inset-0 z-0">

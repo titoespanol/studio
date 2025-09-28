@@ -2,7 +2,7 @@
 "use client";
 
 import Image from 'next/image';
-import { Linkedin } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const teamMembers = [
   {
@@ -23,9 +23,25 @@ const teamMembers = [
 
 type WhoWeAreProps = {
   isChildLensActive?: boolean;
+  colorClasses: {
+    jupiter: string;
+  };
 };
 
-export function WhoWeAre({ isChildLensActive }: WhoWeAreProps) {
+const ElegantLinkedinIcon = () => (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="currentColor" 
+      className="w-5 h-5"
+    >
+      <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.25 6.5 1.75 1.75 0 0 1 6.5 8.25ZM19 19h-3v-4.75c0-1.4-1.1-2.5-2.5-2.5S11 12.85 11 14.25V19h-3v-9h2.9v1.35c.7-1.2 2-1.85 3.35-1.85A3.75 3.75 0 0 1 19 12.25z"></path>
+    </svg>
+);
+
+export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
+  const borderColorClass = isChildLensActive ? colorClasses.jupiter : "text-primary";
+
   return (
     <section className="bg-background text-foreground py-20 md:py-32">
       <div className="container mx-auto px-4 text-center">
@@ -37,19 +53,21 @@ export function WhoWeAre({ isChildLensActive }: WhoWeAreProps) {
             const imageUrl = isChildLensActive && member.childImageUrl ? member.childImageUrl : member.imageUrl;
             return (
               <div key={member.name} className="flex flex-col items-center">
-                <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg mb-4">
-                  <Image
-                    src={imageUrl}
-                    alt={`Portrait of ${member.name}`}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={member.dataAiHint}
-                  />
+                <div className={cn("relative w-40 h-40 md:w-48 md:h-48 rounded-full p-1 border-2 border-dotted", borderColorClass)}>
+                  <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
+                    <Image
+                      src={imageUrl}
+                      alt={`Portrait of ${member.name}`}
+                      fill
+                      className="object-cover"
+                      data-ai-hint={member.dataAiHint}
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 mt-4">
                   <h3 className="text-xl font-bold font-body">{member.name}</h3>
-                  <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-black hover:text-primary">
-                    <Linkedin className="w-5 h-5" />
+                  <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-black hover:text-primary transition-colors">
+                    <ElegantLinkedinIcon />
                   </a>
                 </div>
               </div>

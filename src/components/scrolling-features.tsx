@@ -89,13 +89,13 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
         ></div>
       </div>
       <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${paragraphs.length * 150}vh` }}>
-        <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-foreground" style={{filter: 'invert(1)'}}>
+        <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-white">
           <div className="md:w-3/5">
               <div className="flex flex-col justify-center h-full space-y-8 pt-12">
                   <h2 className={cn("text-5xl font-bold font-headline", titleColorClass)}>
                     {titleText}
                   </h2>
-                  <div className="relative font-body font-normal text-xl h-48 text-foreground">
+                  <div className="relative font-body font-normal text-xl h-48">
                     {paragraphs.map((p, index) => (
                        <p
                          key={index}
@@ -104,7 +104,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
                            activeParagraph === index ? "opacity-100" : "opacity-0"
                          )}
                        >
-                         <AnimatedText text={p} progress={paragraphProgress[index]} />
+                         <AnimatedText progress={paragraphProgress[index]}>{p}</AnimatedText>
                        </p>
                     ))}
                   </div>

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 const teamMembers = [
   {
     name: 'Pilar Puig',
+    role: 'Founder',
     imageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/PilarAdult.jpg?alt=media&token=27246f22-facd-4a6f-b23f-d8ccf9171703',
     childImageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Pilar%20Child.jpg?alt=media&token=dda46087-5129-4b71-95aa-79ff0a27bc5f',
     dataAiHint: 'portrait woman',
@@ -14,6 +15,7 @@ const teamMembers = [
   },
   {
     name: 'Marc Ramis',
+    role: 'Advisor',
     imageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Marc%20Adult.jpg?alt=media&token=3339e3af-4813-4560-97ce-f1f0069c866d',
     childImageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/marc%20child.jpg?alt=media&token=55ff189e-36f9-4dfe-ba53-4f287100bb3e',
     dataAiHint: 'portrait man',
@@ -81,6 +83,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                     <ElegantLinkedinIcon />
                   </a>
                 </div>
+                <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
               </div>
             );
           })}

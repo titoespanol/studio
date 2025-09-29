@@ -81,7 +81,13 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
 export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
   const sections = getSections({ colorClasses });
   const [activeSection, setActiveSection] = useState(0);
+  const [sectionProgress, setSectionProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    sectionRefs.current = sectionRefs.current.slice(0, sections.length);
+  }, [sections.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,9 +106,21 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       let currentSectionIndex = Math.floor(overallProgress * numSections);
       currentSectionIndex = Math.min(numSections - 1, currentSectionIndex);
 
-      if (currentSectionIndex !== activeSection) {
-        setActiveSection(currentSectionIndex);
-      }
+      setActiveSection(currentSectionIndex);
+
+      const sectionScrollLength = scrollableHeight / numSections;
+      const scrollInSection = currentScroll - (sectionScrollLength * currentSectionIndex);
+      
+      // Add padding to the progress calculation. 
+      // 0-20% of scroll = progress 0
+      // 20-80% of scroll = progress 0 -> 1
+      // 80-100% of scroll = progress 1
+      const startPadding = 0.2;
+      const endPadding = 0.8;
+      let progress = (scrollInSection / sectionScrollLength - startPadding) / (endPadding - startPadding);
+      progress = Math.max(0, Math.min(1, progress));
+
+      setSectionProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -111,7 +129,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [activeSection, sections, sections.length]);
+  }, [sections.length]);
 
 
   return (
@@ -132,11 +150,11 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
                         <div
                             key={index}
                             className={cn(
-                                "absolute inset-0 transition-opacity duration-700 ease-in-out",
+                                "absolute inset-0 transition-opacity duration-300 ease-in-out",
                                 activeSection === index ? "opacity-100" : "opacity-0"
                             )}
                         >
-                          {activeSection === index ? section.content(1) : section.content(0)}
+                          {activeSection === index ? section.content(sectionProgress) : section.content(0)}
                         </div>
                     ))}
                 </div>

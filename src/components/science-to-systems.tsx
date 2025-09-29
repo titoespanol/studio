@@ -95,15 +95,19 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       if (currentScroll < 0) currentScroll = 0;
       if (currentScroll > scrollableHeight) currentScroll = scrollableHeight;
       
-      const sectionScrollLength = scrollableHeight / sections.length;
-      const currentSectionIndex = Math.min(sections.length - 1, Math.floor(currentScroll / sectionScrollLength));
+      const progress = scrollableHeight > 0 ? currentScroll / scrollableHeight : 1;
+      // The multiplier (e.g., 1.5) makes each section take up more scroll height.
+      const currentSectionIndex = Math.min(sections.length - 1, Math.floor(progress * sections.length));
+
 
       if (currentSectionIndex !== activeSection) {
         setActiveSection(currentSectionIndex);
       }
+      
+      const sectionLength = 1 / sections.length;
+      const progressWithinSection = (progress - (currentSectionIndex * sectionLength)) / sectionLength;
 
-      const progressInSection = (currentScroll - (currentSectionIndex * sectionScrollLength)) / sectionScrollLength;
-      setSectionProgress(Math.max(0, Math.min(1, progressInSection)));
+      setSectionProgress(Math.max(0, Math.min(1, progressWithinSection)));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -112,7 +116,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [activeSection, sections.length]);
+  }, [activeSection, sections, sections.length]);
 
 
   return (

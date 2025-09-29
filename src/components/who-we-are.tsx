@@ -82,7 +82,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
             We’re not just a team — we’re co-pilots, sparring partners, and system shifters.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-16 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-16 max-w-sm sm:max-w-4xl mx-auto">
           {teamMembers.map((member) => {
             const imageUrl = isChildLensActive && member.childImageUrl ? member.childImageUrl : member.imageUrl;
             

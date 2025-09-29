@@ -61,7 +61,7 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
         {step < 3 ? (
             <h1
                 className={cn(
-                "text-5xl md:text-7xl font-headline font-bold tracking-tight transition-opacity duration-500 text-center",
+                "text-6xl md:text-7xl font-headline font-bold tracking-tight transition-opacity duration-500 text-center",
                 step >= 1 && step < 2 ? "opacity-100" : "opacity-0"
                 )}
             >
@@ -88,22 +88,24 @@ export function AnimatedHero({ onAnimationComplete, isFlashActive, colorClasses 
               </p>
               <div 
                 className={cn(
-                  "mt-6 flex items-center gap-4 transition-opacity duration-1000 ease-in",
+                  "mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 transition-opacity duration-1000 ease-in",
                   wordsAnimationFinished ? "opacity-100" : "opacity-0"
                 )}
                 style={{ transitionDelay: '700ms' }}
               >
                 <p className="text-xs font-medium mr-2">Go directly to:</p>
-                <a href="#who-we-are">
-                  <Button variant="outline" size="sm" className="text-black border-black h-8 px-3 text-xs">
-                    Who We Are <ArrowDown className="ml-2 h-3 w-3" />
-                  </Button>
-                </a>
-                <a href="#contact">
-                  <Button variant="outline" size="sm" className="text-black border-black h-8 px-3 text-xs">
-                    Contact Us <ArrowDown className="ml-2 h-3 w-3" />
-                  </Button>
-                </a>
+                <div className="flex flex-col sm:flex-row gap-2">
+                    <a href="#who-we-are">
+                      <Button variant="outline" size="sm" className="text-black border-black h-8 px-3 text-xs w-full">
+                        Who We Are <ArrowDown className="ml-2 h-3 w-3" />
+                      </Button>
+                    </a>
+                    <a href="#contact">
+                      <Button variant="outline" size="sm" className="text-black border-black h-8 px-3 text-xs w-full">
+                        Contact Us <ArrowDown className="ml-2 h-3 w-3" />
+                      </Button>
+                    </a>
+                </div>
               </div>
             </div>
         )}

@@ -36,12 +36,12 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
         <div>
             <p className="mb-4">
               <AnimatedText progress={progress}>
-                  <Highlight className={colorClasses.we1}>We</Highlight> <span className={colorClasses.we1}>sit</span> next to you and turn your science into a paediatric venture, step by step.
+                  <Highlight className={colorClasses.we1}>We</Highlight> <span className={cn(colorClasses.we1)}>sit</span> next to you and turn your science into a paediatric venture, step by step.
               </AnimatedText>
             </p>
             <p>
                 <AnimatedText progress={progress}>
-                    Together, <Highlight className={colorClasses.we2}>we</Highlight> define the value proposition, map risks — clinical, regulatory, and science-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <Highlight className={colorClasses.we3}>We</Highlight> <span className={colorClasses.we3}>help</span> you shape endpoints that matter to children and clinicians, design with ethics and privacy, and outline a realistic path to first-in-child data. <Highlight className={colorClasses.we4}>We</Highlight> <span className={colorClasses.we4}>craft</span> the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <Highlight className={colorClasses.we1}>We</Highlight> <span className={colorClasses.we1}>open</span> doors to investors, hospitals and partners — while you keep the steering wheel.
+                    Together, <Highlight className={colorClasses.we2}>we</Highlight> define the value proposition, map risks — clinical, regulatory, and science-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <Highlight className={colorClasses.we3}>We</Highlight> <span className={cn(colorClasses.we3)}>help</span> you shape endpoints that matter to children and clinicians, design with ethics and privacy, and outline a realistic path to first-in-child data. <Highlight className={colorClasses.we4}>We</Highlight> <span className={cn(colorClasses.we4)}>craft</span> the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <Highlight className={colorClasses.we1}>We</Highlight> <span className={cn(colorClasses.we1)}>open</span> doors to investors, hospitals and partners — while you keep the steering wheel.
                 </AnimatedText>
             </p>
         </div>
@@ -96,7 +96,6 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       if (currentScroll > scrollableHeight) currentScroll = scrollableHeight;
       
       const progress = scrollableHeight > 0 ? currentScroll / scrollableHeight : 1;
-      // The multiplier (e.g., 1.5) makes each section take up more scroll height.
       const currentSectionIndex = Math.min(sections.length - 1, Math.floor(progress * sections.length));
 
 
@@ -120,7 +119,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
 
 
   return (
-    <section ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 150}vh` }}>
+    <section ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 200}vh` }}>
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center">
         <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
             <div className="w-full max-w-3xl">

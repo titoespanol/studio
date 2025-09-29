@@ -29,7 +29,7 @@ const teamMembers = [
         { text: 'Company builder:', bold: true, details: ' licensing, business plan, governance, fundraising.' },
         { text: 'Network orchestrator:', bold: true, details: ' VCs, corporates, family offices, clinicians.' },
         { text: 'Fundraiser:', bold: true, details: ' narrative, materials, investor process.' },
-        { text: 'Selected collaborations include:', bold: true, details: ' Sant Joan de Déu Hospital, the University of Oxford, DIVE Medical, Gate2Brain, WHI Institute, Ship2B Foundation.' },
+        { text: 'Selected collaborations include:', bold: true, details: ' Sant Joan de Déu Hospital, University of Oxford, DIVE Medical, Gate2Brain, WHI Institute, Ship2B Foundation.' },
         { text: 'Venture Partner', bold: true, details: ' at Montana Impact Fund.' },
       ]
     }
@@ -113,7 +113,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[625px]">
                     <DialogHeader>
-                      <DialogTitle className="text-2xl font-bold mb-4">{member.bio.title}</DialogTitle>
+                      <DialogTitle className="text-2xl font-bold mb-4 font-body">{member.bio.title}</DialogTitle>
                       <DialogDescription asChild>
                         <div className="text-base text-foreground space-y-4 font-body">
                           {member.bio.content.map((item, index) => (

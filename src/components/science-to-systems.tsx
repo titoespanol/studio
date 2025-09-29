@@ -81,7 +81,6 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
 export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
   const sections = getSections({ colorClasses });
   const [activeSection, setActiveSection] = useState(0);
-  const [sectionProgress, setSectionProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -98,19 +97,12 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       const overallProgress = scrollableHeight > 0 ? currentScroll / scrollableHeight : 1;
       
       const numSections = sections.length;
-      const progressPerSection = 1 / numSections;
-      
-      let currentSectionIndex = Math.floor(overallProgress / progressPerSection);
+      let currentSectionIndex = Math.floor(overallProgress * numSections);
       currentSectionIndex = Math.min(numSections - 1, currentSectionIndex);
 
       if (currentSectionIndex !== activeSection) {
         setActiveSection(currentSectionIndex);
       }
-      
-      const startOfCurrentSection = progressPerSection * currentSectionIndex;
-      const progressWithinSection = (overallProgress - startOfCurrentSection) / progressPerSection;
-
-      setSectionProgress(Math.max(0, Math.min(1, progressWithinSection)));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -123,7 +115,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
 
 
   return (
-    <section ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 200}vh` }}>
+    <section ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 250}vh` }}>
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center">
         <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
             <div className="w-full max-w-3xl">
@@ -144,7 +136,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
                                 activeSection === index ? "opacity-100" : "opacity-0"
                             )}
                         >
-                          {activeSection === index ? section.content(sectionProgress) : section.content(0)}
+                          {activeSection === index ? section.content(1) : section.content(0)}
                         </div>
                     ))}
                 </div>

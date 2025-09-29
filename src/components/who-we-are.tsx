@@ -3,6 +3,15 @@
 
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
 
 const teamMembers = [
   {
@@ -12,6 +21,18 @@ const teamMembers = [
     childImageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Pilar%20Child.jpg?alt=media&token=dda46087-5129-4b71-95aa-79ff0a27bc5f',
     dataAiHint: 'portrait woman',
     linkedinUrl: 'https://www.linkedin.com/in/pilar-puig-s%C3%A0rries-phd/',
+    bio: {
+      title: 'Pilar Puig',
+      content: [
+        { text: 'Founder at The Child Lens.', bold: true },
+        { text: 'Worked with leading children’s hospitals, top-tier universities, and early-stage healthtech teams across Europe and the UK.' },
+        { text: 'Company builder:', bold: true, details: ' licensing, business plan, governance, fundraising.' },
+        { text: 'Network orchestrator:', bold: true, details: ' VCs, corporates, family offices, clinicians.' },
+        { text: 'Fundraiser:', bold: true, details: ' narrative, materials, investor process.' },
+        { text: 'Selected collaborations include:', bold: true, details: ' Sant Joan de Déu Hospital, the University of Oxford, DIVE Medical, Gate2Brain, WHI Institute, Ship2B Foundation.' },
+        { text: 'Venture Partner', bold: true, details: ' at Montana Impact Fund.' },
+      ]
+    }
   },
   {
     name: 'Marc Ramis',
@@ -64,6 +85,51 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-16 max-w-4xl mx-auto">
           {teamMembers.map((member) => {
             const imageUrl = isChildLensActive && member.childImageUrl ? member.childImageUrl : member.imageUrl;
+            
+            if (member.bio) {
+              return (
+                <Dialog key={member.name}>
+                  <DialogTrigger asChild>
+                    <div className="flex flex-col items-center cursor-pointer">
+                      <div className={cn("relative w-40 h-40 md:w-48 md:h-48 rounded-full p-1 border-2 border-dotted", borderColorClass)}>
+                        <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
+                          <Image
+                            src={imageUrl}
+                            alt={`Portrait of ${member.name}`}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={member.dataAiHint}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 mt-4">
+                        <h3 className="text-xl font-bold font-body">{member.name}</h3>
+                        <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-black hover:text-primary transition-colors" onClick={(e) => e.stopPropagation()}>
+                          <ElegantLinkedinIcon />
+                        </a>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[625px]">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl font-bold mb-4">{member.bio.title}</DialogTitle>
+                      <DialogDescription asChild>
+                        <div className="text-base text-foreground space-y-4 font-body">
+                          {member.bio.content.map((item, index) => (
+                            <p key={index}>
+                              {item.bold ? <strong>{item.text}</strong> : item.text}
+                              {item.details}
+                            </p>
+                          ))}
+                        </div>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              );
+            }
+
             return (
               <div key={member.name} className="flex flex-col items-center">
                 <div className={cn("relative w-40 h-40 md:w-48 md:h-48 rounded-full p-1 border-2 border-dotted", borderColorClass)}>

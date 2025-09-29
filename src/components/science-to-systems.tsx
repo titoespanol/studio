@@ -70,7 +70,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
     content: (progress: number) => (
         <p>
             <AnimatedText progress={progress}>
-                <Highlight className={colorClasses.we1}>We</Highlight> <span className={cn(colorClasses.we1)}>work</span> to make children’s health impossible to ignore. With clarity and courage, <Highlight className={colorClasses.we2}>we</Highlight> engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. <Highlight className={colorClasses.we3}>We</Highlight> <span className={cn(colorClasses.we3)}>speak</span> the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.
+                <Highlight className={colorClasses.we1}>We</Highlight> <span className={cn(colorClasses.we1)}>work</span> to make children’s health impossible to ignore. With clarity and courage, <Highlight className={colorClasses.we2}>we</Highlight> <span className={cn(colorClasses.we2)}>engage</span> directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. <Highlight className={colorClasses.we3}>We</Highlight> <span className={cn(colorClasses.we3)}>speak</span> the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.
             </AnimatedText>
         </p>
     ),
@@ -83,11 +83,6 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
   const [activeSection, setActiveSection] = useState(0);
   const [sectionProgress, setSectionProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    sectionRefs.current = sectionRefs.current.slice(0, sections.length);
-  }, [sections.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -111,10 +106,6 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       const sectionScrollLength = scrollableHeight / numSections;
       const scrollInSection = currentScroll - (sectionScrollLength * currentSectionIndex);
       
-      // Add padding to the progress calculation. 
-      // 0-20% of scroll = progress 0
-      // 20-80% of scroll = progress 0 -> 1
-      // 80-100% of scroll = progress 1
       const startPadding = 0.2;
       const endPadding = 0.8;
       let progress = (scrollInSection / sectionScrollLength - startPadding) / (endPadding - startPadding);

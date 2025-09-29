@@ -56,7 +56,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
     content: (progress: number) => (
         <p>
             <AnimatedText progress={progress}>
-                <Highlight className={colorClasses.we1}>We</Highlight> act as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — <Highlight className={colorClasses.we2}>we</Highlight> bring clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. <Highlight className={colorClasses.we3}>We</Highlight> don’t just advise from afar — <Highlight className={colorClasses.we4}>we</Highlight> roll up our sleeves and help make progress real.
+                <Highlight className={colorClasses.we1}>We</Highlight> <span className={cn(colorClasses.we1)}>act</span> as your right hand in paediatric innovation, sitting beside your team to make the path clear and doable. With deep experience across biotech, medtech and digital health — from boardrooms to hands-on execution — <Highlight className={colorClasses.we2}>we</Highlight> <span className={cn(colorClasses.we2)}>bring</span> clarity on what matters next, focus on the few moves that truly move the needle, and momentum to keep things moving. <Highlight className={colorClasses.we3}>We</Highlight> <span className={cn(colorClasses.we3)}>don’t</span> just advise from afar — <Highlight className={colorClasses.we4}>we</Highlight> <span className={cn(colorClasses.we4)}>roll up</span> our sleeves and help make progress real.
             </AnimatedText>
         </p>
     ),
@@ -70,7 +70,7 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
     content: (progress: number) => (
         <p>
             <AnimatedText progress={progress}>
-                <Highlight className={colorClasses.we1}>We</Highlight> work to make children’s health impossible to ignore. With clarity and courage, <Highlight className={colorClasses.we2}>we</Highlight> engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. <Highlight className={colorClasses.we3}>We</Highlight> speak the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.
+                <Highlight className={colorClasses.we1}>We</Highlight> <span className={cn(colorClasses.we1)}>work</span> to make children’s health impossible to ignore. With clarity and courage, <Highlight className={colorClasses.we2}>we</Highlight> engage directly with policymakers, hospital leaders, funders and other system actors to shift how decisions are made and whose needs are prioritised. <Highlight className={colorClasses.we3}>We</Highlight> <span className={cn(colorClasses.we3)}>speak</span> the language of science, but also of policy, equity and long-term impact. Because transforming children’s health requires more than great ventures — it demands structural change, bold voices, and a collective willingness to rethink the rules.
             </AnimatedText>
         </p>
     ),

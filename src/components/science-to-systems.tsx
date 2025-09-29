@@ -95,16 +95,20 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
       if (currentScroll < 0) currentScroll = 0;
       if (currentScroll > scrollableHeight) currentScroll = scrollableHeight;
       
-      const progress = scrollableHeight > 0 ? currentScroll / scrollableHeight : 1;
-      const currentSectionIndex = Math.min(sections.length - 1, Math.floor(progress * sections.length));
-
+      const overallProgress = scrollableHeight > 0 ? currentScroll / scrollableHeight : 1;
+      
+      const numSections = sections.length;
+      const progressPerSection = 1 / numSections;
+      
+      let currentSectionIndex = Math.floor(overallProgress / progressPerSection);
+      currentSectionIndex = Math.min(numSections - 1, currentSectionIndex);
 
       if (currentSectionIndex !== activeSection) {
         setActiveSection(currentSectionIndex);
       }
       
-      const sectionLength = 1 / sections.length;
-      const progressWithinSection = (progress - (currentSectionIndex * sectionLength)) / sectionLength;
+      const startOfCurrentSection = progressPerSection * currentSectionIndex;
+      const progressWithinSection = (overallProgress - startOfCurrentSection) / progressPerSection;
 
       setSectionProgress(Math.max(0, Math.min(1, progressWithinSection)));
     };

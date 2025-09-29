@@ -33,11 +33,18 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
         </span>
     ),
     content: (progress: number) => (
-        <p>
-            <AnimatedText progress={progress}>
-                <Highlight className={colorClasses.we1}>We</Highlight> sit next to you and turn your science into a paediatric venture, step by step. Together, <Highlight className={colorClasses.we2}>we</Highlight> define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <Highlight className={colorClasses.we3}>We</Highlight> help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. <Highlight className={colorClasses.we4}>We</Highlight> craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <Highlight className={colorClasses.we1}>We</Highlight> open doors to investors, hospitals and partners — but you keep the steering wheel.
-            </AnimatedText>
-        </p>
+        <div>
+            <p className="mb-4">
+              <AnimatedText progress={progress}>
+                  <Highlight className={colorClasses.we1}>We</Highlight> sit next to you and turn your science into a paediatric venture, step by step.
+              </AnimatedText>
+            </p>
+            <p>
+                <AnimatedText progress={progress}>
+                    Together, <Highlight className={colorClasses.we2}>we</Highlight> define the value proposition, map risks — clinical, regulatory, and product-related — check your IP position, and agree on go/no-go criteria that feel fair and doable. <Highlight className={colorClasses.we3}>We</Highlight> help you shape endpoints that matter to children and clinicians, design with ethics and privacy from the start, and outline a realistic path to first-in-child data. <Highlight className={colorClasses.we4}>We</Highlight> craft the essentials — one-pager, deck, pilot brief, budget, and a clear, fundable story. <Highlight className={colorClasses.we1}>We</Highlight> open doors to investors, hospitals and partners — but you keep the steering wheel.
+                </AnimatedText>
+            </p>
+        </div>
     ),
   },
   {

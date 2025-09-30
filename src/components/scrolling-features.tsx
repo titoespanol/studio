@@ -21,9 +21,9 @@ const getParagraphs = ({ colorClasses, isChildLensActive }: ScrollingFeaturesPro
   'At The Child Lens, we don’t just treat the symptoms. We dig deep into the tangled roots — where funding gaps, power dynamics and cultural blind spots quietly shape outcomes.',
   <>
     Real impact in children’s health takes more than a brilliant idea. It takes{' '}
-    <span className={cn(isChildLensActive ? colorClasses.we1 : "text-white")}>The Builder</span>,{' '}
-    <span className={cn(isChildLensActive ? colorClasses.we2 : "text-white")}>The Right Hand</span>, and{' '}
-    <span className={cn(isChildLensActive ? colorClasses.we3 : "text-white")}>The Voice</span>.
+    <span className={cn("font-bold", colorClasses.we1)}>The Builder</span>,{' '}
+    <span className={cn("font-bold", colorClasses.we2)}>The Right Hand</span>, and{' '}
+    <span className={cn("font-bold", colorClasses.we3)}>The Voice</span>.
   </>,
 ];
 

@@ -41,6 +41,14 @@ const teamMembers = [
     childImageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/marc%20child.jpg?alt=media&token=55ff189e-36f9-4dfe-ba53-4f287100bb3e',
     dataAiHint: 'portrait man',
     linkedinUrl: 'https://www.linkedin.com/in/markramis/',
+    bio: {
+      title: 'Marc Ramis',
+      content: [
+        { text: 'He is currently dedicated to building companies focused on pediatric innovation. Marc is the Founder and Partner at Montana.' },
+        { text: 'Marc co-founded and is a Partner at Chasing Science and Manor House Partners, both early-stage venture builders between London and Barcelona. From England, he also dedicates his time to advising organisations such as Deep Science Ventures and Inside Out. Additionally, he is a Venture Partner at Ship2B Ventures and Korion Life Sciences.' },
+        { text: 'Most recently, Marc served as Co-founder & CEO of Rejuveron Senescence Therapeutics AG, Ninevah Therapeutics Ltd, and Senolytic Therapeutics Inc. He served also as a Board Member or Strategic Advisor for Aptadel Therapeutics, Retinset Therapeutics, Gate2Brain, Dive Medical, Oniria Therapeutics, Nanobots Therapeutics, Cebiotex, Cyclomed, and GeneTether.' }
+      ]
+    }
   },
 ];
 

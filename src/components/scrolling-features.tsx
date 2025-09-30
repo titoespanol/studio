@@ -6,22 +6,32 @@ import { cn } from "@/lib/utils";
 import { AnimatedText } from "./animated-text";
 import Image from "next/image";
 
-const paragraphs = [
-  'You can advance a therapy, change a policy, or raise a fund. If the parts don’t speak, change doesn’t travel.',
-  'At The Child Lens, we don’t just treat the symptoms. We dig deep into the tangled roots — where funding gaps, power dynamics and cultural blind spots quietly shape outcomes.',
-  'Real impact in children’s health takes more than a brilliant idea. It takes The Builder, The Right Hand, and The Voice.',
-];
-
 type ScrollingFeaturesProps = {
   isChildLensActive?: boolean;
-  colorClasses?: {
+  colorClasses: {
     pieceOfCake: string;
+    we1: string;
+    we2: string;
+    we3: string;
   };
 };
+
+const getParagraphs = ({ colorClasses, isChildLensActive }: ScrollingFeaturesProps) => [
+  'You can advance a therapy, change a policy, or raise a fund. If the parts don’t speak, change doesn’t travel.',
+  'At The Child Lens, we don’t just treat the symptoms. We dig deep into the tangled roots — where funding gaps, power dynamics and cultural blind spots quietly shape outcomes.',
+  <>
+    Real impact in children’s health takes more than a brilliant idea. It takes{' '}
+    <span className={cn(isChildLensActive ? colorClasses.we1 : "text-white")}>The Builder</span>,{' '}
+    <span className={cn(isChildLensActive ? colorClasses.we2 : "text-white")}>The Right Hand</span>, and{' '}
+    <span className={cn(isChildLensActive ? colorClasses.we3 : "text-white")}>The Voice</span>.
+  </>,
+];
+
 
 export function ScrollingFeatures({ isChildLensActive, colorClasses }: ScrollingFeaturesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
+  const paragraphs = getParagraphs({ isChildLensActive, colorClasses });
   
   const [activeParagraph, setActiveParagraph] = useState(0);
   const [paragraphProgress, setParagraphProgress] = useState(new Array(paragraphs.length).fill(0));
@@ -59,17 +69,19 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [paragraphs.length]);
 
   const maxBlur = 16;
   const blurAmount = maxBlur * (1 - scrollProgress);
   const darknessAmount = 0.5 * (1 - scrollProgress);
   
-  const titleText = isChildLensActive ? "Solving one problem is a piece of cake" : "When systems speak, change travels.";
+  const titleText = isChildLensActive ? "Solving one problem is a piece of cake." : "When systems speak, change travels.";
   const titleColorClass = isChildLensActive ? colorClasses?.pieceOfCake : "text-[#f2efe8]";
 
+  const sectionHeight = `${paragraphs.length * 175}vh`;
+
   return (
-    <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background" style={{ height: `${paragraphs.length * 150}vh` }}>
+    <section id="features-section" ref={containerRef} className="relative w-full py-20 bg-background" style={{ height: sectionHeight }}>
       <div className="sticky top-0 h-screen w-full">
         <div 
           className="absolute inset-0 z-0" 
@@ -88,7 +100,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
             style={{ opacity: darknessAmount }}
         ></div>
       </div>
-      <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: `${paragraphs.length * 150}vh` }}>
+      <div ref={textContainerRef} className="absolute top-0 left-0 w-full" style={{ height: sectionHeight }}>
         <div className="sticky top-0 max-w-6xl mx-auto px-4 h-screen flex items-center z-10 text-[#f2efe8]">
           <div className="md:w-2/5">
               <div className="flex flex-col justify-center h-full space-y-8 pt-12">
@@ -97,7 +109,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
                   </h2>
                   <div className="relative font-body font-normal text-xl h-48">
                     {paragraphs.map((p, index) => (
-                       <p
+                       <div
                          key={index}
                          className={cn(
                            "absolute top-0 left-0 transition-opacity duration-500 ease-in-out",
@@ -105,7 +117,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
                          )}
                        >
                          <AnimatedText progress={paragraphProgress[index]}>{p}</AnimatedText>
-                       </p>
+                       </div>
                     ))}
                   </div>
               </div>

@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog"
 
 
@@ -119,7 +120,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                       <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[625px]">
+                  <DialogContent className="sm:max-w-[625px]" showCloseButton={false}>
                     <DialogHeader>
                       <DialogTitle className="text-2xl font-bold mb-4 font-body">{member.bio.title}</DialogTitle>
                       <DialogDescription asChild>
@@ -133,6 +134,17 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                         </div>
                       </DialogDescription>
                     </DialogHeader>
+                    <DialogClose asChild>
+                      <button className="absolute top-4 right-4 h-12 w-12 rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+                        <Image
+                          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Pilar%20Child.jpg?alt=media&token=dda46087-5129-4b71-95aa-79ff0a27bc5f"
+                          alt="Close"
+                          width={48}
+                          height={48}
+                          className="object-cover"
+                        />
+                      </button>
+                    </DialogClose>
                   </DialogContent>
                 </Dialog>
               );

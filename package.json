@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "deploy:prod": "npx firebase-tools apphosting:backends:deploy studio --project child-lens-landing"
+    "deploy:prod": "npx firebase-tools deploy --only apphosting"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.14.1",

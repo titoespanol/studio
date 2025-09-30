@@ -28,8 +28,8 @@ const CircledNumber = ({ number }: { number: number }) => (
 const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   {
     smallTitle: (
-        <span className="flex items-center">
-            <CircledNumber number={1} /> <span className={colorClasses.we1}>The Builder</span>
+        <span className={cn("flex items-center", colorClasses.we1)}>
+            <CircledNumber number={1} /> The Builder
         </span>
     ),
     content: (progress: number) => (
@@ -49,8 +49,8 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   },
   {
     smallTitle: (
-        <span className="flex items-center">
-            <CircledNumber number={2} /> <span className={colorClasses.we2}>The Right Hand</span>
+        <span className={cn("flex items-center", colorClasses.we2)}>
+            <CircledNumber number={2} /> The Right Hand
         </span>
     ),
     content: (progress: number) => (
@@ -63,8 +63,8 @@ const getSections = ({ colorClasses }: ScienceToSystemsProps) => [
   },
   {
     smallTitle: (
-        <span className="flex items-center">
-            <CircledNumber number={3} /> <span className={colorClasses.we3}>The Voice</span>
+        <span className={cn("flex items-center", colorClasses.we3)}>
+            <CircledNumber number={3} /> The Voice
         </span>
     ),
     content: (progress: number) => (
@@ -124,7 +124,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
 
 
   return (
-    <section ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 250}vh` }}>
+    <section ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 300}vh` }}>
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center">
         <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
             <div className="w-full max-w-3xl">

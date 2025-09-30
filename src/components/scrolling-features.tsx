@@ -75,7 +75,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
   const blurAmount = maxBlur * (1 - scrollProgress);
   const darknessAmount = 0.5 * (1 - scrollProgress);
   
-  const titleText = isChildLensActive ? "Solving one problem is a piece of cake." : "When systems speak, change travels.";
+  const titleText = isChildLensActive ? "All for one and one for all." : "When systems speak, change travels.";
   const titleColorClass = isChildLensActive ? colorClasses?.pieceOfCake : "text-[#f2efe8]";
 
   const sectionHeight = `${paragraphs.length * 175}vh`;

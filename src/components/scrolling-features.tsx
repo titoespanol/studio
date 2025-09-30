@@ -7,7 +7,7 @@ import { AnimatedText } from "./animated-text";
 import Image from "next/image";
 
 const paragraphs = [
-  'You can improve a product. Train a team. Change a policy. But if the system stays the same, it keeps breaking children.',
+  'You can advance a therapy, change a policy, or raise a fund. If the parts don’t speak, change doesn’t travel.',
   'At The Child Lens, we don’t just treat the symptoms. We dig deep into the tangled roots — where funding gaps, power dynamics and cultural blind spots quietly shape outcomes.',
   'Real impact in children’s health takes more than a brilliant idea. It takes The Builder, The Right Hand, and The Voice.',
 ];
@@ -65,7 +65,7 @@ export function ScrollingFeatures({ isChildLensActive, colorClasses }: Scrolling
   const blurAmount = maxBlur * (1 - scrollProgress);
   const darknessAmount = 0.5 * (1 - scrollProgress);
   
-  const titleText = isChildLensActive ? "Solving one problem is a piece of cake" : "Solving one problem isn’t enough.";
+  const titleText = isChildLensActive ? "Solving one problem is a piece of cake" : "When systems speak, change travels.";
   const titleColorClass = isChildLensActive ? colorClasses?.pieceOfCake : "text-[#f2efe8]";
 
   return (

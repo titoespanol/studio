@@ -135,13 +135,13 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                       </DialogDescription>
                     </DialogHeader>
                     <DialogClose asChild>
-                      <button className="absolute top-4 right-4 h-12 w-12 rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+                      <button className="absolute top-4 right-4 h-12 w-12 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
                         <Image
-                          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Pilar%20Child.jpg?alt=media&token=dda46087-5129-4b71-95aa-79ff0a27bc5f"
+                          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/close%20button.png?alt=media&token=9ced44d4-15cd-45c5-aa21-00af9c7b887e"
                           alt="Close"
                           width={48}
                           height={48}
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </button>
                     </DialogClose>

@@ -120,31 +120,34 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                       <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[625px]" showCloseButton={false}>
-                    <DialogHeader>
-                      <DialogTitle className="text-2xl font-bold mb-4 font-body">{member.bio.title}</DialogTitle>
-                      <DialogDescription asChild>
-                        <div className="text-base text-foreground space-y-4 font-body">
-                          {member.bio.content.map((item, index) => (
-                            <p key={index}>
-                              {item.bold ? <strong>{item.text}</strong> : item.text}
-                              {item.details}
-                            </p>
-                          ))}
-                        </div>
-                      </DialogDescription>
-                    </DialogHeader>
-                    <DialogClose asChild>
-                      <button className="absolute top-4 right-4 h-12 w-12 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-                        <Image
-                          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/close%20button.png?alt=media&token=9ced44d4-15cd-45c5-aa21-00af9c7b887e"
-                          alt="Close"
-                          width={48}
-                          height={48}
-                          className="object-contain"
-                        />
-                      </button>
-                    </DialogClose>
+                  <DialogContent className="sm:max-w-[625px] bg-transparent border-none shadow-none" showCloseButton={false}>
+                    <div className="bg-[#f2efe8] p-8 rounded-lg relative">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold mb-4 font-body">{member.bio.title}</DialogTitle>
+                        <DialogDescription asChild>
+                          <div className="text-base text-foreground space-y-4 font-body">
+                            {member.bio.content.map((item, index) => (
+                              <p key={index}>
+                                {item.bold ? <strong>{item.text}</strong> : item.text}
+                                {item.details}
+                              </p>
+                            ))}
+                          </div>
+                        </DialogDescription>
+                      </DialogHeader>
+                      <DialogClose asChild>
+                        <button className="absolute -top-5 -right-5 h-16 w-16 focus:outline-none focus:ring-0">
+                          <Image
+                            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/close%20button.png?alt=media&token=9ced44d4-15cd-45c5-aa21-00af9c7b887e"
+                            alt="Close"
+                            width={64}
+                            height={64}
+                            className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+                            style={{ transform: 'rotate(29deg)' }}
+                          />
+                        </button>
+                      </DialogClose>
+                    </div>
                   </DialogContent>
                 </Dialog>
               );

@@ -5,6 +5,14 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "appHosting": {
+      "backends": [
+        {
+          "id": "studio",
+          "region": "us-central1"
+        }
+      ]
+    }
   }
 }

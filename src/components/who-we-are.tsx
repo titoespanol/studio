@@ -136,7 +136,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                         </DialogDescription>
                       </DialogHeader>
                       <DialogClose asChild>
-                        <button className="absolute -top-5 -right-5 h-16 w-16 focus:outline-none focus:ring-0">
+                        <button className="absolute -top-2 -right-2 h-16 w-16 focus:outline-none focus:ring-0">
                           <Image
                             src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/close%20button.png?alt=media&token=9ced44d4-15cd-45c5-aa21-00af9c7b887e"
                             alt="Close"

@@ -43,7 +43,7 @@ export function ContactUs() {
   function onSubmit(values: FormData) {
     const subject = encodeURIComponent(`New message from ${values.name}`);
     const body = encodeURIComponent(values.message);
-    window.location.href = `mailto:pilarpuig@thechildlens.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:team@thechildlens.com?subject=${subject}&body=${body}`;
   }
 
   return (
@@ -107,7 +107,7 @@ export function ContactUs() {
             <div className="space-y-4 text-base">
                 <div className="flex items-start">
                     <Mail className="w-5 h-5 mr-3 mt-1 shrink-0"/>
-                    <a href="mailto:pilarpuig@thechildlens.com" className="hover:underline">pilarpuig@thechildlens.com</a>
+                    <a href="mailto:team@thechildlens.com" className="hover:underline">team@thechildlens.com</a>
                 </div>
                  <div className="flex items-start">
                     <Pin className="w-5 h-5 mr-3 mt-1 shrink-0"/>

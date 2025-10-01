@@ -111,7 +111,7 @@ export function ContactUs() {
                 </div>
                  <div className="flex items-start">
                     <Pin className="w-5 h-5 mr-3 mt-1 shrink-0"/>
-                    <p>Tech Pier 07<br/>Via Laietana, 26, Ciutat Vella, 08003 Barcelona</p>
+                    <p>Tech Barcelona - Pier07<br/>Via Laietana, 26, Ciutat Vella, 08003 Barcelona</p>
                 </div>
             </div>
             <div className="h-[300px] md:h-[400px] w-full rounded-lg overflow-hidden shadow-lg">

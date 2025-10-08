@@ -13,7 +13,7 @@ type RevealingTextProps = {
   };
 };
 
-const ParallaxText = ({ children, className }: { children: ReactNode; className?: string }) => {
+const ParallaxText = ({ children, className, movement = 10 }: { children: ReactNode; className?: string; movement?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const [style, setStyle] = useState({});
 
@@ -26,7 +26,6 @@ const ParallaxText = ({ children, className }: { children: ReactNode; className?
         const xPos = (clientX / innerWidth - 0.5) * 2; // -1 to 1
         const yPos = (clientY / innerHeight - 0.5) * 2; // -1 to 1
 
-        const movement = 10;
         const transform = `translate(${xPos * movement}px, ${yPos * movement}px)`;
 
         setStyle({ transform, transition: 'transform 0.1s ease-out' });
@@ -37,7 +36,7 @@ const ParallaxText = ({ children, className }: { children: ReactNode; className?
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [movement]);
 
   return (
     <span ref={ref} style={style} className={cn("inline-block", className)}>
@@ -63,7 +62,7 @@ const getParagraphs = ({ colorClasses }: RevealingTextProps): ReactNode[][] => [
   ],
   [
     <>This is the <HighlightedText className={colorClasses.lens}>lens</HighlightedText> we bring.</>,
-    <>And it lives through <span className={cn("font-bold", colorClasses.text)}>3</span> ways of working:</>,
+    <>And it lives through <ParallaxText movement={3}><span className={cn("font-bold", colorClasses.text)}>3</span></ParallaxText> ways of working:</>,
   ],
 ];
 
@@ -101,12 +100,14 @@ export function RevealingText({ colorClasses }: RevealingTextProps) {
     <section ref={containerRef} className="bg-background text-foreground" style={{ height: `${paragraphs.length * 100}vh` }}>
       <div className="sticky top-0 h-screen w-full flex items-end justify-start pb-24">
         <div className="relative w-full md:w-3/5 lg:w-2/5 md:ml-20 lg:ml-40 px-4 font-body text-base md:text-xl font-medium leading-relaxed">
-          <span className={cn(
-            "absolute -top-16 text-9xl font-sniglet opacity-50 left-0 md:-left-12",
-            colorClasses.text
-          )}>
-            “
-          </span>
+          <ParallaxText movement={5}>
+            <span className={cn(
+              "absolute -top-16 text-9xl font-sniglet opacity-50 left-0 md:-left-12",
+              colorClasses.text
+            )}>
+              “
+            </span>
+          </ParallaxText>
           <div className="relative h-48">
             {paragraphs.map((p, index) => (
               <div

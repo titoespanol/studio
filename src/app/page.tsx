@@ -36,25 +36,15 @@ const getRandomColorClasses = () => {
     we2: shuffled[1].text,
     we3: shuffled[2].text,
     we4: shuffled[3].text,
+    systems: shuffled[0].text,
+    buildSolutions: shuffled[1].text,
+    lens: shuffled[2].text,
   };
 };
 
 export default function Home() {
   const [isChildLensActive, setIsChildLensActive] = useState(false);
-  const [activeColorClasses, setActiveColorClasses] = useState({
-    text: colorPalette[0].text,
-    bg: colorPalette[0].bg,
-    border: colorPalette[0].border,
-    logo1: colorPalette[0].text,
-    logo2: colorPalette[1].text,
-    logo3: colorPalette[2].text,
-    jupiter: colorPalette[3].text,
-    pieceOfCake: colorPalette[4].text,
-    we1: colorPalette[0].text,
-    we2: colorPalette[1].text,
-    we3: colorPalette[2].text,
-    we4: colorPalette[3].text,
-  });
+  const [activeColorClasses, setActiveColorClasses] = useState(getRandomColorClasses());
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);

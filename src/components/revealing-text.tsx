@@ -7,19 +7,26 @@ import { cn } from "@/lib/utils";
 type RevealingTextProps = {
   colorClasses: {
     text: string;
+    systems: string;
+    buildSolutions: string;
+    lens: string;
   };
 };
+
+const HighlightedText = ({ children, className }: { children: ReactNode, className: string }) => (
+  <span className={cn("font-bold", className)}>{children}</span>
+);
 
 const getParagraphs = ({ colorClasses }: RevealingTextProps): ReactNode[][] => [
   [
     "We don’t just fix problems.",
-    "We strengthen the systems that shape children’s lives.",
+    <>We strengthen the <HighlightedText className={colorClasses.systems}>systems</HighlightedText> that shape children’s lives.</>,
     "That’s why, when someone brings us a challenge,",
     "we look at it from different angles",
-    "and build solutions that last.",
+    <>and <HighlightedText className={colorClasses.buildSolutions}>build solutions</HighlightedText> that last.</>,
   ],
   [
-    "This is the lens we bring.",
+    <>This is the <HighlightedText className={colorClasses.lens}>lens</HighlightedText> we bring.</>,
     <>And it lives through <span className={cn("font-bold", colorClasses.text)}>3</span> ways of working:</>,
   ],
 ];

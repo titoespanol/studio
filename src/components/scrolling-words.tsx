@@ -1,6 +1,6 @@
 
 "use client";
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { cn } from "@/lib/utils";
 
 const colorPalette = [
@@ -21,15 +21,42 @@ type ScrollingWordsProps = {
 };
 
 export function ScrollingWords({ colorClasses }: ScrollingWordsProps) {
+    const [titleVisible, setTitleVisible] = useState(false);
+    const containerRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTitleVisible(true);
+                }
+            },
+            {
+                rootMargin: '0px',
+                threshold: 0.1
+            }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, []);
 
     const wordColors = words.map((_, index) => {
         return colorPalette[index % colorPalette.length];
     });
 
     return (
-        <section id="scrolling-words-section" className="scrolling-words-section">
-            <h2>We Can&nbsp;</h2>
-            <ul style={{ '--count': words.length } as React.CSSProperties}>
+        <section id="scrolling-words-section" ref={containerRef} className="scrolling-words-section">
+            <h2 className={cn('transition-opacity duration-1000', titleVisible ? 'opacity-100' : 'opacity-0')}>We can&nbsp;</h2>
+            <ul style={{ '--count': words.length } as React.CSSProperties} className={cn('transition-opacity duration-1000', titleVisible ? 'opacity-100' : 'opacity-0')}
+            style={{transitionDelay: titleVisible ? '500ms' : '0ms' }}>
                 {words.map((word, index) => (
                     <li key={word} style={{ '--i': index, color: wordColors[index] } as React.CSSProperties}>
                         {word}

@@ -24,27 +24,6 @@ const colorPalette = [
   { text: "text-[#9c4a79]", bg: "bg-[#9c4a79]", border: "border-[#9c4a79]" },
 ];
 
-const getRandomColorClasses = () => {
-  const shuffled = [...colorPalette].sort(() => 0.5 - Math.random());
-  return {
-    text: shuffled[0].text,
-    bg: shuffled[0].bg,
-    border: shuffled[0].border,
-    logo1: shuffled[0].text,
-    logo2: shuffled[1].text,
-    logo3: shuffled[2].text,
-    jupiter: shuffled[3].text,
-    pieceOfCake: shuffled[4].text,
-    we1: shuffled[0].text,
-    we2: shuffled[1].text,
-    we3: shuffled[2].text,
-    we4: shuffled[3].text,
-    systems: shuffled[0].text,
-    buildSolutions: shuffled[1].text,
-    lens: shuffled[2].text,
-  };
-};
-
 const initialColorClasses = {
   text: colorPalette[0].text,
   bg: colorPalette[0].bg,
@@ -70,6 +49,27 @@ export default function Home() {
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+
+  const getRandomColorClasses = () => {
+    const shuffled = [...colorPalette].sort(() => 0.5 - Math.random());
+    return {
+      text: shuffled[0].text,
+      bg: shuffled[0].bg,
+      border: shuffled[0].border,
+      logo1: shuffled[0].text,
+      logo2: shuffled[1].text,
+      logo3: shuffled[2].text,
+      jupiter: shuffled[3].text,
+      pieceOfCake: shuffled[4].text,
+      we1: shuffled[0].text,
+      we2: shuffled[1].text,
+      we3: shuffled[2].text,
+      we4: shuffled[3].text,
+      systems: shuffled[0].text,
+      buildSolutions: shuffled[1].text,
+      lens: shuffled[2].text,
+    };
+  };
 
   useEffect(() => {
     // Moved random color generation to client-side only to avoid hydration errors

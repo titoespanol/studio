@@ -47,7 +47,7 @@ const ParallaxText = ({ children, className, movement = 10 }: { children: ReactN
 
 
 const HighlightedText = ({ children, className }: { children: ReactNode, className: string }) => (
-    <ParallaxText>
+    <ParallaxText movement={5}>
         <span className={cn("font-bold", className)}>{children}</span>
     </ParallaxText>
 );

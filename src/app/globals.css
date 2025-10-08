@@ -129,8 +129,8 @@
     text-indent: 12px;
     color: hsl(var(--primary));
     animation: 
-      colorText 5s ease-out infinite,
-      nudgeText 5s ease-out infinite;
+      colorText 5s ease-out 3,
+      nudgeText 5s ease-out 3;
   }
 
   .mouse {
@@ -148,8 +148,8 @@
     border-radius: 100px;
     background-size: 100% 200%;
     animation: 
-      colorSlide 5s linear infinite,
-      nudgeMouse 5s ease-out infinite;
+      colorSlide 5s linear 3,
+      nudgeMouse 5s ease-out 3;
   }
   .mouse:before,
   .mouse:after {
@@ -169,7 +169,7 @@
     width: 5px; /* 10px */
     height: 5px; /* 10px */
     border-radius: 100%;
-    animation: trackBallSlide 5s linear infinite;
+    animation: trackBallSlide 5s linear 3;
   }
 }
 

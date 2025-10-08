@@ -62,7 +62,7 @@ const getParagraphs = ({ colorClasses }: RevealingTextProps): ReactNode[][] => [
   ],
   [
     <>This is the <HighlightedText className={colorClasses.lens}>lens</HighlightedText> we bring.</>,
-    <>And it lives through <ParallaxText movement={3}><span className={cn("font-bold", colorClasses.text)}>3</span></ParallaxText> ways of working:</>,
+    <>And it lives through <ParallaxText movement={1}><span className={cn("font-bold", colorClasses.text)}>3</span></ParallaxText> ways of working:</>,
   ],
 ];
 
@@ -100,7 +100,7 @@ export function RevealingText({ colorClasses }: RevealingTextProps) {
     <section ref={containerRef} className="bg-background text-foreground" style={{ height: `${paragraphs.length * 100}vh` }}>
       <div className="sticky top-0 h-screen w-full flex items-end justify-start pb-24">
         <div className="relative w-full md:w-3/5 lg:w-2/5 md:ml-20 lg:ml-40 px-4 font-body text-base md:text-xl font-medium leading-relaxed">
-          <ParallaxText movement={5}>
+          <ParallaxText movement={2}>
             <span className={cn(
               "absolute -top-16 text-9xl font-sniglet opacity-50 left-0 md:-left-12",
               colorClasses.text

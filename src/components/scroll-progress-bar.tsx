@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -49,8 +50,10 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
     }
 
     const timeoutId = setTimeout(() => {
-      handleScroll();
-      calculateSectionPoints();
+      if (typeof window !== 'undefined') {
+        handleScroll();
+        calculateSectionPoints();
+      }
     }, 100);
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -66,7 +69,7 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
   const activeColor = colors[activeSection % colors.length];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-1">
+    <div className="fixed top-0 left-0 right-0 z-50 h-1 w-full">
       <div className="relative w-full h-full bg-transparent">
         <div 
           className="h-full transition-colors duration-200" 
@@ -78,7 +81,7 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
         <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center">
             {sectionPoints.map((point, index) => {
                 const isPassed = index <= activeSection;
-                const pointColor = isPassed ? colors[index % colors.length] : '#e5e7eb'; // e5e7eb is gray-200
+                const pointColor = isPassed ? activeColor : '#e5e7eb';
 
                 return (
                     <div

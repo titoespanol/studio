@@ -15,8 +15,6 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
 
   useEffect(() => {
     const handleScroll = () => {
-      if (typeof document === 'undefined') return;
-
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPosition = window.scrollY;
       setProgress(totalHeight > 0 ? (scrollPosition / totalHeight) * 100 : 0);
@@ -38,7 +36,6 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
     };
 
     const calculateSectionPoints = () => {
-        if (typeof document === 'undefined') return;
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const points = sections.map((id) => {
             const el = document.getElementById(id);
@@ -73,7 +70,7 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
               backgroundImage: `linear-gradient(to right, ${colors.join(', ')})` 
           }} 
         />
-        <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center px-0">
+        <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center">
             {sectionPoints.map((point, index) => (
                 <div
                     key={index}
@@ -81,11 +78,13 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
                     style={{ left: `${point}%`}}
                 >
                     <div
-                    className={cn(
-                        "w-2 h-2 rounded-full transition-all duration-300",
-                        index === activeSection ? colors[index % colors.length] : "bg-gray-300",
-                        index === activeSection ? 'scale-150' : 'scale-100'
-                    )}
+                      className={cn(
+                          "w-2 h-2 rounded-full transition-all duration-300",
+                          index === activeSection ? 'scale-150' : 'scale-100 bg-gray-300'
+                      )}
+                      style={{
+                        backgroundColor: index === activeSection ? colors[index % colors.length] : undefined
+                      }}
                     />
                 </div>
             ))}

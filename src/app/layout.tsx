@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 };
 
 const colorPalette = [
-  "bg-[#d45324]",
-  "bg-[#ffb53a]",
-  "bg-[#f291bc]",
-  "bg-[#419ebf]",
-  "bg-[#f27236]",
-  "bg-[#9c4a79]",
+  "#d45324",
+  "#ffb53a",
+  "#f291bc",
+  "#419ebf",
+  "#f27236",
+  "#9c4a79",
 ];
 
 const sections = [

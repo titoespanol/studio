@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import { cn } from "@/lib/utils";
@@ -12,7 +11,7 @@ const colorPalette = [
     "#9c4a79",
 ];
 
-const words = ["Meet", "Collaborate", "Solve", "Play", "Win?"];
+const words = ["meet", "collaborate", "solve", "play", "win?"];
 
 type ScrollingWordsProps = {
     colorClasses: {

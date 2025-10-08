@@ -308,6 +308,7 @@
     6rem
   );
   min-height: 150vh;
+  margin-top: 300px;
 }
 
 .scrolling-words-section h2 {

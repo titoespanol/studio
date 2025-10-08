@@ -50,23 +50,14 @@ export function Header({
     const featuresSection = document.querySelector("#features-section");
     const mandelaSection = document.querySelector("#mandela-section");
 
-    const featuresObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                setOverFeaturesSection(entry.isIntersecting);
-            });
-        },
-        { threshold: 0.2 }
-    );
+    const observerCallback = (setter: React.Dispatch<React.SetStateAction<boolean>>) => (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry) => {
+            setter(entry.isIntersecting);
+        });
+    };
 
-    const mandelaObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                setOverMandelaSection(entry.isIntersecting);
-            });
-        },
-        { threshold: 0.2 }
-    );
+    const featuresObserver = new IntersectionObserver(observerCallback(setOverFeaturesSection), { threshold: 0.2 });
+    const mandelaObserver = new IntersectionObserver(observerCallback(setOverMandelaSection), { threshold: 0.2 });
 
     if (featuresSection) featuresObserver.observe(featuresSection);
     if (mandelaSection) mandelaObserver.observe(mandelaSection);
@@ -85,7 +76,7 @@ export function Header({
 
   return (
     <header className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 transition-all duration-2000",
+        "fixed top-0 left-0 right-0 z-50 flex justify-between items-center py-4 px-4 md:px-8 transition-all duration-300",
         isVisible ? "opacity-100" : "opacity-0"
     )}>
       <div className="flex-1"></div>

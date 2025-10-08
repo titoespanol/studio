@@ -12,6 +12,7 @@ import { RevealingText } from '@/components/revealing-text';
 import { WhoWeAre } from '@/components/who-we-are';
 import { ContactUs } from '@/components/contact-us';
 import { ScrollIndicator } from '@/components/scroll-indicator';
+import { LightingFooter } from '@/components/LightingFooter';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -43,13 +44,35 @@ const getRandomColorClasses = () => {
   };
 };
 
+const initialColorClasses = {
+  text: colorPalette[0].text,
+  bg: colorPalette[0].bg,
+  border: colorPalette[0].border,
+  logo1: colorPalette[0].text,
+  logo2: colorPalette[1].text,
+  logo3: colorPalette[2].text,
+  jupiter: colorPalette[3].text,
+  pieceOfCake: colorPalette[4].text,
+  we1: colorPalette[0].text,
+  we2: colorPalette[1].text,
+  we3: colorPalette[2].text,
+  we4: colorPalette[3].text,
+  systems: colorPalette[0].text,
+  buildSolutions: colorPalette[1].text,
+  lens: colorPalette[2].text,
+};
+
 export default function Home() {
   const [isChildLensActive, setIsChildLensActive] = useState(false);
-  const [activeColorClasses, setActiveColorClasses] = useState(getRandomColorClasses());
+  const [activeColorClasses, setActiveColorClasses] = useState(initialColorClasses);
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+
+  useEffect(() => {
+    setActiveColorClasses(getRandomColorClasses());
+  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -179,6 +202,7 @@ export default function Home() {
         </section>
 
         <ContactUs />
+        <LightingFooter />
       </main>
     </div>
   );

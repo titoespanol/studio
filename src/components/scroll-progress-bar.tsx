@@ -48,19 +48,14 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
         setSectionPoints(points);
     }
 
+    const timeoutId = setTimeout(() => {
+      handleScroll();
+      calculateSectionPoints();
+    }, 100);
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', calculateSectionPoints);
     
-    // Initial calculations
-    handleScroll();
-    calculateSectionPoints();
-    
-    // Recalculate on mount
-    const timeoutId = setTimeout(() => {
-        handleScroll();
-        calculateSectionPoints();
-    }, 100);
-
     return () => {
         window.removeEventListener('scroll', handleScroll);
         window.removeEventListener('resize', calculateSectionPoints);
@@ -70,15 +65,15 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 h-1">
-      <div className="relative w-full h-full bg-gray-200">
+      <div className="relative w-full h-full bg-transparent">
         <div 
-          className="h-full transition-all duration-300" 
+          className="h-full transition-all duration-100" 
           style={{ 
               width: `${progress}%`,
               backgroundImage: `linear-gradient(to right, ${colors.join(', ')})` 
           }} 
         />
-        <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center">
+        <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center px-0">
             {sectionPoints.map((point, index) => (
                 <div
                     key={index}

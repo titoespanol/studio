@@ -13,6 +13,7 @@ import { WhoWeAre } from '@/components/who-we-are';
 import { ContactUs } from '@/components/contact-us';
 import { ScrollIndicator } from '@/components/scroll-indicator';
 import { PixelFooter } from '@/components/PixelFooter';
+import { ScrollingWords } from '@/components/scrolling-words';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -71,10 +72,9 @@ export default function Home() {
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
 
   useEffect(() => {
+    // Moved random color generation to client-side only to avoid hydration errors
     setActiveColorClasses(getRandomColorClasses());
-  }, []);
-
-  useEffect(() => {
+    
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.5;
     }
@@ -166,6 +166,8 @@ export default function Home() {
              </div>
            )}
         </section>
+
+        <ScrollingWords colorClasses={activeColorClasses} />
         
         <div className={cn(isChildLensActive && activeColorClasses.text)}>
           <ScrollingFeatures 

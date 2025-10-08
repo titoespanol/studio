@@ -3,6 +3,7 @@
 
 import { useState, useRef, useEffect, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { RadialPulse } from "./radial-pulse";
 
 type RevealingTextProps = {
   colorClasses: {
@@ -62,7 +63,10 @@ const getParagraphs = ({ colorClasses }: RevealingTextProps): ReactNode[][] => [
   ],
   [
     <>This is the <HighlightedText className={colorClasses.lens}>lens</HighlightedText> we bring.</>,
-    <>And it lives through <ParallaxText movement={1}><span className={cn("font-bold", colorClasses.text)}>3</span></ParallaxText> ways of working:</>,
+    <span className="flex items-center gap-3">
+        <>And it lives through <ParallaxText movement={1}><span className={cn("font-bold", colorClasses.text)}>3</span></ParallaxText> ways of working:</>
+        <RadialPulse color={colorClasses.text} />
+    </span>,
   ],
 ];
 

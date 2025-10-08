@@ -13,8 +13,44 @@ type RevealingTextProps = {
   };
 };
 
+const ParallaxText = ({ children, className }: { children: ReactNode; className?: string }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [style, setStyle] = useState({});
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (ref.current) {
+        const { clientX, clientY } = event;
+        const { innerWidth, innerHeight } = window;
+
+        const xPos = (clientX / innerWidth - 0.5) * 2; // -1 to 1
+        const yPos = (clientY / innerHeight - 0.5) * 2; // -1 to 1
+
+        const movement = 10;
+        const transform = `translate(${xPos * movement}px, ${yPos * movement}px)`;
+
+        setStyle({ transform, transition: 'transform 0.1s ease-out' });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <span ref={ref} style={style} className={cn("inline-block", className)}>
+      {children}
+    </span>
+  );
+};
+
+
 const HighlightedText = ({ children, className }: { children: ReactNode, className: string }) => (
-  <span className={cn("font-bold", className)}>{children}</span>
+    <ParallaxText>
+        <span className={cn("font-bold", className)}>{children}</span>
+    </ParallaxText>
 );
 
 const getParagraphs = ({ colorClasses }: RevealingTextProps): ReactNode[][] => [

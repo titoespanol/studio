@@ -11,12 +11,15 @@ type ScrollProgressBarProps = {
 export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) {
   const [progress, setProgress] = useState(0);
   const [activeSection, setActiveSection] = useState(0);
+  const [sectionPoints, setSectionPoints] = useState<number[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
+      if (typeof document === 'undefined') return;
+
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPosition = window.scrollY;
-      setProgress((scrollPosition / totalHeight) * 100);
+      setProgress(totalHeight > 0 ? (scrollPosition / totalHeight) * 100 : 0);
 
       const sectionPositions = sections.map(id => {
           const el = document.getElementById(id);
@@ -34,25 +37,40 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
       setActiveSection(currentSection);
     };
 
+    const calculateSectionPoints = () => {
+        if (typeof document === 'undefined') return;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const points = sections.map((id) => {
+            const el = document.getElementById(id);
+            if (!el || totalHeight <= 0) return 0;
+            return (el.offsetTop / totalHeight) * 100;
+        });
+        setSectionPoints(points);
+    }
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener('resize', calculateSectionPoints);
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Initial calculations
+    handleScroll();
+    calculateSectionPoints();
+    
+    // Recalculate on mount
+    const timeoutId = setTimeout(() => {
+        handleScroll();
+        calculateSectionPoints();
+    }, 100);
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', calculateSectionPoints);
+        clearTimeout(timeoutId);
+    }
   }, [sections]);
 
-  const sectionPoints = sections.map((id) => {
-    if (typeof document === 'undefined') {
-      return 0;
-    }
-    const el = document.getElementById(id);
-    if (!el) return 0;
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    return (el.offsetTop / totalHeight) * 100;
-  });
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-4 flex items-center">
-      <div className="relative w-full h-1 bg-gray-200">
+    <div className="fixed top-0 left-0 right-0 z-50 h-1">
+      <div className="relative w-full h-full bg-gray-200">
         <div 
           className="h-full transition-all duration-300" 
           style={{ 
@@ -60,16 +78,21 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
               backgroundImage: `linear-gradient(to right, ${colors.join(', ')})` 
           }} 
         />
-        <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-2">
-            {sections.map((_, index) => (
+        <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center">
+            {sectionPoints.map((point, index) => (
                 <div
-                key={index}
-                className={cn(
-                    "w-2 h-2 rounded-full transition-all duration-300",
-                    index === activeSection ? colors[index % colors.length] : "bg-gray-300",
-                    index === activeSection ? 'scale-150' : 'scale-100'
-                )}
-                />
+                    key={index}
+                    className="absolute -translate-x-1/2"
+                    style={{ left: `${point}%`}}
+                >
+                    <div
+                    className={cn(
+                        "w-2 h-2 rounded-full transition-all duration-300",
+                        index === activeSection ? colors[index % colors.length] : "bg-gray-300",
+                        index === activeSection ? 'scale-150' : 'scale-100'
+                    )}
+                    />
+                </div>
             ))}
         </div>
       </div>

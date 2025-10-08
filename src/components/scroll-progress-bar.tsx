@@ -40,7 +40,8 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
         const points = sections.map((id) => {
             const el = document.getElementById(id);
             if (!el || totalHeight <= 0) return 0;
-            return (el.offsetTop / totalHeight) * 100;
+            const pointPosition = ((el.offsetTop + el.offsetHeight / 2) / totalHeight) * 100;
+            return Math.min(100, pointPosition);
         });
         setSectionPoints(points);
     }
@@ -60,6 +61,8 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
     }
   }, [sections]);
 
+  const activeColor = colors[activeSection % colors.length];
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 h-1">
       <div className="relative w-full h-full bg-transparent">
@@ -67,7 +70,7 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
           className="h-full transition-all duration-100" 
           style={{ 
               width: `${progress}%`,
-              backgroundImage: `linear-gradient(to right, ${colors.join(', ')})` 
+              backgroundColor: activeColor,
           }} 
         />
         <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center">

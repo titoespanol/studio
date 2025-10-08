@@ -65,7 +65,6 @@ const getParagraphs = ({ colorClasses }: RevealingTextProps): ReactNode[][] => [
     <>This is the <HighlightedText className={colorClasses.lens}>lens</HighlightedText> we bring.</>,
     <span className="flex items-center gap-3">
         <>And it lives through <ParallaxText movement={1}><span className={cn("font-bold", colorClasses.text)}>3</span></ParallaxText> ways of working:</>
-        <RadialPulse color={colorClasses.text} />
     </span>,
   ],
 ];
@@ -105,12 +104,9 @@ export function RevealingText({ colorClasses }: RevealingTextProps) {
       <div className="sticky top-0 h-screen w-full flex items-end justify-start pb-24">
         <div className="relative w-full md:w-3/5 lg:w-2/5 md:ml-20 lg:ml-40 px-4 font-body text-base md:text-xl font-medium leading-relaxed">
           <ParallaxText movement={2}>
-            <span className={cn(
-              "absolute -top-16 text-9xl font-sniglet opacity-50 left-0 md:-left-12",
-              colorClasses.text
-            )}>
-              “
-            </span>
+            <div className="absolute -top-16 left-0 md:-left-12">
+              <RadialPulse color={colorClasses.text} className="w-16 h-16" />
+            </div>
           </ParallaxText>
           <div className="relative h-48">
             {paragraphs.map((p, index) => (

@@ -69,8 +69,8 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
   const activeColor = colors[activeSection % colors.length];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 h-1 w-full">
-      <div className="relative w-full h-full bg-transparent">
+    <div className="fixed top-0 left-0 right-0 z-50 w-full">
+      <div className="relative w-full h-0.5 bg-transparent">
         <div 
           className="h-full transition-colors duration-200" 
           style={{ 
@@ -91,8 +91,8 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
                     >
                         <div
                           className={cn(
-                              "w-2 h-2 rounded-full transition-all duration-300",
-                              index === activeSection ? 'scale-150' : 'scale-100'
+                              "w-1.5 h-1.5 rounded-full transition-all duration-300",
+                              index === activeSection ? 'scale-125' : 'scale-100'
                           )}
                           style={{
                             backgroundColor: pointColor
@@ -106,3 +106,4 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
     </div>
   );
 }
+

@@ -7,6 +7,15 @@ const rand = (min: number, max: number) => {
   return Math.random() * (max - min) + min;
 };
 
+const colorPalette = [
+  "#d45324",
+  "#ffb53a",
+  "#f291bc",
+  "#419ebf",
+  "#f27236",
+  "#9c4a79",
+];
+
 class Pixel {
     x: number;
     y: number;
@@ -138,10 +147,7 @@ export function PixelCanvas() {
     };
 
     const initPixels = () => {
-        const h = Math.floor(rand(0, 360));
-        const colorsLen = 5;
-        const colors = Array.from({ length: colorsLen }, (_, index) => `hsl(${Math.floor(rand(h, h + (index + 1) * 10))} 100% ${rand(50, 80)}%)`);
-
+        const colors = [...colorPalette].sort(() => 0.5 - Math.random());
         const gap = 6;
         const step = (width + height) * 0.005;
         const speed = rand(0.008, 0.25);
@@ -155,7 +161,7 @@ export function PixelCanvas() {
                     continue;
                 }
 
-                const color = colors[Math.floor(Math.random() * colorsLen)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
                 const delay = getDelay(x, y);
                 const delayHide = getDelay(x, y);
 

@@ -102,10 +102,10 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                   <DialogTrigger asChild>
                     <div className="flex flex-col items-center cursor-pointer group">
                       <div className="relative w-40 h-40 md:w-48 md:h-48">
-                          <div className="absolute inset-0 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-110">
+                          <div className="absolute -inset-2 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-105">
                               <PixelCanvas />
                           </div>
-                          <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80", borderColorClass)}>
+                          <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80 transition-transform duration-300 ease-in-out group-hover:scale-110", borderColorClass)}>
                               <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
                                 <Image
                                     src={imageUrl}
@@ -162,10 +162,10 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
             return (
               <div key={member.name} className="flex flex-col items-center group">
                  <div className="relative w-40 h-40 md:w-48 md:h-48">
-                    <div className="absolute inset-0 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-110">
+                    <div className="absolute -inset-2 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-105">
                         <PixelCanvas />
                     </div>
-                    <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80", borderColorClass)}>
+                    <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80 transition-transform duration-300 ease-in-out group-hover:scale-110", borderColorClass)}>
                       <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
                         <Image
                           src={imageUrl}

@@ -9,12 +9,22 @@ export const metadata: Metadata = {
 };
 
 const colorPalette = [
-  { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
-  { text: "text-[#ffb53a]", bg: "bg-[#ffb53a]", border: "border-[#ffb53a]" },
-  { text: "text-[#f291bc]", bg: "bg-[#f291bc]", border: "border-[#f291bc]" },
-  { text: "text-[#419ebf]", bg: "bg-[#419ebf]", border: "border-[#419ebf]" },
-  { text: "text-[#f27236]", bg: "bg-[#f27236]", border: "border-[#f27236]" },
-  { text: "text-[#9c4a79]", bg: "bg-[#9c4a79]", border: "border-[#9c4a79]" },
+  "bg-[#d45324]",
+  "bg-[#ffb53a]",
+  "bg-[#f291bc]",
+  "bg-[#419ebf]",
+  "bg-[#f27236]",
+  "bg-[#9c4a79]",
+];
+
+const sections = [
+  'hero-section',
+  'features-section',
+  'revealing-text-section',
+  'science-to-systems-section',
+  'who-we-are',
+  'mandela-section',
+  'contact'
 ];
 
 export default function RootLayout({
@@ -30,7 +40,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <ScrollProgressBar colors={colorPalette.map(c => c.bg)} />
+        <ScrollProgressBar colors={colorPalette} sections={sections} />
         {children}
         <Toaster />
       </body>

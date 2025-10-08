@@ -129,7 +129,7 @@ export default function Home() {
         heroAnimationFinished={heroAnimationFinished}
       />
       <main>
-        <section className="flex flex-col items-center justify-center h-screen px-4">
+        <section id="hero-section" className="flex flex-col items-center justify-center h-screen px-4">
           <div className="max-w-4xl w-full h-full">
             <AnimatedHero 
               onAnimationComplete={() => setHeroAnimationFinished(true)} 

@@ -100,7 +100,7 @@ export function RevealingText({ colorClasses }: RevealingTextProps) {
   }, [paragraphs.length]);
 
   return (
-    <section ref={containerRef} className="bg-background text-foreground" style={{ height: `${paragraphs.length * 100}vh` }}>
+    <section id="revealing-text-section" ref={containerRef} className="bg-background text-foreground" style={{ height: `${paragraphs.length * 100}vh` }}>
       <div className="sticky top-0 h-screen w-full flex items-end justify-start pb-24">
         <div className="relative w-full md:w-3/5 lg:w-2/5 md:ml-20 lg:ml-40 px-4 font-body text-base md:text-xl font-medium leading-relaxed">
           <ParallaxText movement={2}>

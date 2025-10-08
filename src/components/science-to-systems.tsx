@@ -124,7 +124,7 @@ export function ScienceToSystems({ colorClasses }: ScienceToSystemsProps) {
 
 
   return (
-    <section ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 300}vh` }}>
+    <section id="science-to-systems-section" ref={containerRef} className="bg-background text-foreground relative" style={{ height: `${sections.length * 300}vh` }}>
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center">
         <div className="container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
             <div className="w-full max-w-3xl">

@@ -81,8 +81,7 @@ export function Header({
     };
   }, []);
 
-  const shouldInvertLogo = (overFeaturesSection || overMandelaSection) && !isChildLensActive;
-  const shouldInvertButton = (overFeaturesSection || overMandelaSection) && !isChildLensActive;
+  const shouldInvertElements = (overFeaturesSection || overMandelaSection) && !isChildLensActive;
 
   return (
     <header className={cn(
@@ -94,9 +93,9 @@ export function Header({
         <div
           className={cn(
             "transition-all duration-300 ease-in-out",
-            isScrolled ? "scale-75" : "scale-100"
+            isScrolled ? "scale-75" : "scale-100",
+            shouldInvertElements && "invert"
           )}
-          style={{ filter: shouldInvertLogo ? 'invert(1)' : 'invert(0)' }}
         >
           <Logo />
         </div>
@@ -110,7 +109,7 @@ export function Header({
           onClick={onToggleLens}
           colorClasses={colorClasses}
           isFlashing={isToggleFlashing}
-          forceWhite={shouldInvertButton}
+          forceWhite={shouldInvertElements}
         />
       </div>
     </header>

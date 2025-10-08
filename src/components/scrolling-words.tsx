@@ -17,9 +17,10 @@ type ScrollingWordsProps = {
     colorClasses: {
         text: string;
     };
+    isChildLensActive?: boolean;
 };
 
-export function ScrollingWords({ colorClasses }: ScrollingWordsProps) {
+export function ScrollingWords({ colorClasses, isChildLensActive }: ScrollingWordsProps) {
     const [titleVisible, setTitleVisible] = useState(false);
     const containerRef = useRef<HTMLElement>(null);
 
@@ -50,10 +51,12 @@ export function ScrollingWords({ colorClasses }: ScrollingWordsProps) {
     const wordColors = words.map((_, index) => {
         return colorPalette[index % colorPalette.length];
     });
+    
+    const titleText = isChildLensActive ? "Let's " : "Why don't we ";
 
     return (
         <section id="scrolling-words-section" ref={containerRef} className="scrolling-words-section">
-            <h2 className={cn('transition-opacity duration-1000', titleVisible ? 'opacity-100' : 'opacity-0')}>Why don't we&nbsp;</h2>
+            <h2 className={cn('transition-opacity duration-1000', titleVisible ? 'opacity-100' : 'opacity-0')}>{titleText}</h2>
             <ul style={{ '--count': words.length } as React.CSSProperties} className={cn('transition-opacity duration-1000', titleVisible ? 'opacity-100' : 'opacity-0')}
             style={{transitionDelay: titleVisible ? '500ms' : '0ms' }}>
                 {words.map((word, index) => (

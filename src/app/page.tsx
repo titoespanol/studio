@@ -167,7 +167,7 @@ export default function Home() {
            )}
         </section>
 
-        <ScrollingWords colorClasses={activeColorClasses} />
+        <ScrollingWords colorClasses={activeColorClasses} isChildLensActive={isChildLensActive} />
         
         <div className={cn(isChildLensActive && activeColorClasses.text)}>
           <ScrollingFeatures 

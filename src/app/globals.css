@@ -169,7 +169,7 @@
     width: 5px; /* 10px */
     height: 5px; /* 10px */
     border-radius: 100%;
-    animation: trackBallSlide 5s linear 3;
+    animation: trackBallSlide 5s linear 3 forwards;
   }
 }
 
@@ -257,8 +257,12 @@
     opacity: 0;
     transform: scale(0.4) translateY(-20px);
   }
-  88%, 100% {
+  88%, 99% {
     opacity: 1;
+    transform: scale(1) translateY(-10px);
+  }
+  100% {
+    opacity: 0;
     transform: scale(1) translateY(-10px);
   }
 }

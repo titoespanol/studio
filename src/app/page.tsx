@@ -56,15 +56,6 @@ export default function Home() {
       videoRef.current.playbackRate = 0.5;
     }
   }, []);
-
-  useEffect(() => {
-    if (heroAnimationFinished) {
-      const timer = setTimeout(() => {
-        setShowScrollIndicator(true);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [heroAnimationFinished]);
   
   useEffect(() => {
     if (!heroAnimationFinished) return;
@@ -96,6 +87,7 @@ export default function Home() {
 
     const finalTimeout = setTimeout(() => {
       setIsFlashing(false);
+      setShowScrollIndicator(true);
     }, cumulativeDelay);
     timeouts.push(finalTimeout);
 

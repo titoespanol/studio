@@ -37,9 +37,11 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
 
     const calculateSectionPoints = () => {
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight <= 0) return;
+
         const points = sections.map((id) => {
             const el = document.getElementById(id);
-            if (!el || totalHeight <= 0) return 0;
+            if (!el) return 0;
             const pointPosition = ((el.offsetTop + el.offsetHeight / 2) / totalHeight) * 100;
             return Math.min(100, pointPosition);
         });
@@ -67,30 +69,35 @@ export function ScrollProgressBar({ colors, sections }: ScrollProgressBarProps) 
     <div className="fixed top-0 left-0 right-0 z-50 h-1">
       <div className="relative w-full h-full bg-transparent">
         <div 
-          className="h-full transition-all duration-100" 
+          className="h-full transition-colors duration-200" 
           style={{ 
               width: `${progress}%`,
               backgroundColor: activeColor,
           }} 
         />
         <div className="absolute top-1/2 -translate-y-1/2 w-full flex items-center">
-            {sectionPoints.map((point, index) => (
-                <div
-                    key={index}
-                    className="absolute -translate-x-1/2"
-                    style={{ left: `${point}%`}}
-                >
+            {sectionPoints.map((point, index) => {
+                const isPassed = index <= activeSection;
+                const pointColor = isPassed ? colors[index % colors.length] : '#e5e7eb'; // e5e7eb is gray-200
+
+                return (
                     <div
-                      className={cn(
-                          "w-2 h-2 rounded-full transition-all duration-300",
-                          index === activeSection ? 'scale-150' : 'scale-100 bg-gray-300'
-                      )}
-                      style={{
-                        backgroundColor: index === activeSection ? colors[index % colors.length] : undefined
-                      }}
-                    />
-                </div>
-            ))}
+                        key={index}
+                        className="absolute -translate-x-1/2"
+                        style={{ left: `${point}%`}}
+                    >
+                        <div
+                          className={cn(
+                              "w-2 h-2 rounded-full transition-all duration-300",
+                              index === activeSection ? 'scale-150' : 'scale-100'
+                          )}
+                          style={{
+                            backgroundColor: pointColor
+                          }}
+                        />
+                    </div>
+                )
+            })}
         </div>
       </div>
     </div>

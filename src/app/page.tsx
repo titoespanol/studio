@@ -11,6 +11,7 @@ import { ScienceToSystems } from '@/components/science-to-systems';
 import { RevealingText } from '@/components/revealing-text';
 import { WhoWeAre } from '@/components/who-we-are';
 import { ContactUs } from '@/components/contact-us';
+import { ScrollIndicator } from '@/components/scroll-indicator';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -48,6 +49,7 @@ export default function Home() {
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -55,6 +57,15 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    if (heroAnimationFinished) {
+      const timer = setTimeout(() => {
+        setShowScrollIndicator(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [heroAnimationFinished]);
+  
   useEffect(() => {
     if (!heroAnimationFinished) return;
 
@@ -134,6 +145,11 @@ export default function Home() {
               colorClasses={activeColorClasses}
             />
           </div>
+          {showScrollIndicator && (
+             <div className="absolute bottom-4 transition-opacity duration-500">
+               <ScrollIndicator />
+             </div>
+           )}
         </section>
         
         <div className={cn(isChildLensActive && activeColorClasses.text)}>

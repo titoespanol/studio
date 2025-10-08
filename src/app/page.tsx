@@ -12,7 +12,7 @@ import { RevealingText } from '@/components/revealing-text';
 import { WhoWeAre } from '@/components/who-we-are';
 import { ContactUs } from '@/components/contact-us';
 import { ScrollIndicator } from '@/components/scroll-indicator';
-import { LightingFooter } from '@/components/LightingFooter';
+import { PixelFooter } from '@/components/PixelFooter';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -202,7 +202,7 @@ export default function Home() {
         </section>
 
         <ContactUs />
-        <LightingFooter />
+        <PixelFooter />
       </main>
     </div>
   );

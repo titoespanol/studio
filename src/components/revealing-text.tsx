@@ -104,8 +104,8 @@ export function RevealingText({ colorClasses }: RevealingTextProps) {
       <div className="sticky top-0 h-screen w-full flex items-end justify-start pb-24">
         <div className="relative w-full md:w-3/5 lg:w-2/5 md:ml-20 lg:ml-40 px-4 font-body text-base md:text-xl font-medium leading-relaxed">
           <ParallaxText movement={2}>
-            <div className="absolute -top-8 left-0 md:-left-8">
-              <RadialPulse color={colorClasses.text} className="w-8 h-8" />
+            <div className="absolute -top-2 left-0 md:-left-6">
+              <RadialPulse color={colorClasses.text} className="w-3 h-3" />
             </div>
           </ParallaxText>
           <div className="relative h-48">

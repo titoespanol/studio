@@ -13,6 +13,13 @@
           "region": "us-central1"
         }
       ]
-    }
+    },
+    "redirects": [
+      {
+        "source": "www.thechildlens.com",
+        "destination": "https://thechildlens.com",
+        "type": 301
+      }
+    ]
   }
 }

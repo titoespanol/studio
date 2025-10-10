@@ -13,6 +13,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog"
 import { PixelCanvas } from './pixel-canvas';
+import { useState, useEffect } from 'react';
 
 
 const teamMembers = [
@@ -80,6 +81,11 @@ const ElegantLinkedinIcon = () => (
 
 export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
   const borderColorClass = isChildLensActive ? colorClasses.jupiter : "text-primary";
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <section id="who-we-are" className="bg-background text-foreground py-20 md:py-32">
@@ -103,7 +109,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                     <div className="flex flex-col items-center cursor-pointer group">
                       <div className="relative w-40 h-40 md:w-48 md:h-48">
                           <div className="absolute -inset-2 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-105">
-                              <PixelCanvas />
+                              {isClient && <PixelCanvas />}
                           </div>
                           <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80 transition-transform duration-300 ease-in-out group-hover:scale-110", borderColorClass)}>
                               <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
@@ -163,7 +169,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
               <div key={member.name} className="flex flex-col items-center group">
                  <div className="relative w-40 h-40 md:w-48 md:h-48">
                     <div className="absolute -inset-2 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-105">
-                        <PixelCanvas />
+                        {isClient && <PixelCanvas />}
                     </div>
                     <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80 transition-transform duration-300 ease-in-out group-hover:scale-110", borderColorClass)}>
                       <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">

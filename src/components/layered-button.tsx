@@ -3,6 +3,7 @@
 
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
+import { useState, useEffect } from 'react';
 
 type LayeredButtonProps = {
   isActive: boolean;
@@ -29,14 +30,18 @@ const colorPalette = [
 
 export function LayeredButton({ isActive, onClick, colorClasses, isFlashing, forceWhite }: LayeredButtonProps) {
     const buttonText = isActive ? 'ADULT LENS' : 'CHILD LENS';
+    const [layerColors, setLayerColors] = useState<string[]>([]);
 
-    const getTwoOtherColors = (baseColor: string) => {
-        const availableColors = colorPalette.filter(c => c.bg !== baseColor);
-        const shuffled = [...availableColors].sort(() => 0.5 - Math.random());
-        return [shuffled[0].bg, shuffled[1].bg];
-    }
-    
-    const [layer1Color, layer2Color] = getTwoOtherColors(colorClasses.bg);
+    useEffect(() => {
+        const getTwoOtherColors = (baseColor: string) => {
+            const availableColors = colorPalette.filter(c => c.bg !== baseColor);
+            const shuffled = [...availableColors].sort(() => 0.5 - Math.random());
+            return [shuffled[0].bg, shuffled[1].bg];
+        }
+        if (isActive) {
+            setLayerColors(getTwoOtherColors(colorClasses.bg));
+        }
+    }, [isActive, colorClasses.bg]);
 
     if (!isActive) {
         return (
@@ -56,6 +61,8 @@ export function LayeredButton({ isActive, onClick, colorClasses, isFlashing, for
             </Button>
         )
     }
+
+  const [layer1Color, layer2Color] = layerColors;
 
   return (
     <button

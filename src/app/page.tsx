@@ -52,10 +52,9 @@ export default function Home() {
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    // This effect runs only on the client, after hydration.
     setActiveColorClasses(getRandomColorClasses());
     
     if (videoRef.current) {
@@ -191,10 +190,8 @@ export default function Home() {
         </section>
 
         <ContactUs />
-        {isClient && <PixelFooter />}
+        <PixelFooter />
       </main>
     </div>
   );
 }
-
-    

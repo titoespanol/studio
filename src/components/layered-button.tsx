@@ -64,6 +64,10 @@ export function LayeredButton({ isActive, onClick, colorClasses, isFlashing, for
 
   const [layer1Color, layer2Color] = layerColors;
 
+  if (!layer1Color || !layer2Color) {
+    return null; // Don't render the layered button until colors are ready
+  }
+
   return (
     <button
       onClick={onClick}

@@ -45,27 +45,9 @@ const getRandomColorClasses = () => {
   };
 };
 
-const initialColorClasses = {
-  text: colorPalette[0].text,
-  bg: colorPalette[0].bg,
-  border: colorPalette[0].border,
-  logo1: colorPalette[0].text,
-  logo2: colorPalette[1].text,
-  logo3: colorPalette[2].text,
-  jupiter: colorPalette[3].text,
-  pieceOfCake: colorPalette[4].text,
-  we1: colorPalette[0].text,
-  we2: colorPalette[1].text,
-  we3: colorPalette[2].text,
-  we4: colorPalette[3].text,
-  systems: colorPalette[0].text,
-  buildSolutions: colorPalette[1].text,
-  lens: colorPalette[2].text,
-};
-
 export default function Home() {
   const [isChildLensActive, setIsChildLensActive] = useState(false);
-  const [activeColorClasses, setActiveColorClasses] = useState(initialColorClasses);
+  const [activeColorClasses, setActiveColorClasses] = useState<ReturnType<typeof getRandomColorClasses> | null>(null);
   const [isFlashing, setIsFlashing] = useState(true);
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -73,10 +55,7 @@ export default function Home() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Component has mounted, so we are on the client.
     setIsClient(true);
-
-    // Moved random color generation to client-side only to avoid hydration errors
     setActiveColorClasses(getRandomColorClasses());
     
     if (videoRef.current) {
@@ -133,6 +112,10 @@ export default function Home() {
       return nextState;
     });
   };
+
+  if (!activeColorClasses) {
+    return null; // Render nothing until client-side hydration is complete and colors are set
+  }
 
   return (
     <div className={cn("bg-background text-foreground", isChildLensActive && "bg-transparent")}>
@@ -213,3 +196,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

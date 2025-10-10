@@ -14,7 +14,12 @@ import {
 } from "@/components/ui/dialog"
 import { PixelCanvas } from './pixel-canvas';
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
+const TeamMemberImage = dynamic(() => import('./team-member-image').then(mod => mod.TeamMemberImage), {
+  ssr: false,
+  loading: () => <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-muted"></div>
+});
 
 const teamMembers = [
   {
@@ -80,7 +85,6 @@ const ElegantLinkedinIcon = () => (
 );
 
 export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
-  const borderColorClass = isChildLensActive ? colorClasses.jupiter : "text-primary";
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -107,22 +111,13 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                 <Dialog key={member.name}>
                   <DialogTrigger asChild>
                     <div className="flex flex-col items-center cursor-pointer group">
-                      <div className="relative w-40 h-40 md:w-48 md:h-48">
-                          <div className="absolute -inset-2 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-105">
-                              {isClient && <PixelCanvas />}
-                          </div>
-                          <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80 transition-transform duration-300 ease-in-out group-hover:scale-110", borderColorClass)}>
-                              <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
-                                <Image
-                                    src={imageUrl}
-                                    alt={`Portrait of ${member.name}`}
-                                    fill
-                                    className="object-cover"
-                                    data-ai-hint={member.dataAiHint}
-                                />
-                              </div>
-                          </div>
-                      </div>
+                      <TeamMemberImage 
+                        imageUrl={imageUrl} 
+                        isChildLensActive={isChildLensActive}
+                        borderColorClass={colorClasses.jupiter}
+                        dataAiHint={member.dataAiHint}
+                        name={member.name}
+                      />
                       <div className="flex items-center gap-2 mt-4">
                         <h3 className="text-xl font-bold font-body">{member.name}</h3>
                         <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-black hover:text-primary transition-colors" onClick={(e) => e.stopPropagation()}>
@@ -167,22 +162,13 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
 
             return (
               <div key={member.name} className="flex flex-col items-center group">
-                 <div className="relative w-40 h-40 md:w-48 md:h-48">
-                    <div className="absolute -inset-2 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-105">
-                        {isClient && <PixelCanvas />}
-                    </div>
-                    <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80 transition-transform duration-300 ease-in-out group-hover:scale-110", borderColorClass)}>
-                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
-                        <Image
-                          src={imageUrl}
-                          alt={`Portrait of ${member.name}`}
-                          fill
-                          className="object-cover"
-                          data-ai-hint={member.dataAiHint}
-                        />
-                      </div>
-                    </div>
-                 </div>
+                 <TeamMemberImage 
+                    imageUrl={imageUrl} 
+                    isChildLensActive={isChildLensActive}
+                    borderColorClass={colorClasses.jupiter}
+                    dataAiHint={member.dataAiHint}
+                    name={member.name}
+                  />
                 <div className="flex items-center gap-2 mt-4">
                   <h3 className="text-xl font-bold font-body">{member.name}</h3>
                   <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-black hover:text-primary transition-colors">
@@ -198,3 +184,5 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
     </section>
   );
 }
+
+    

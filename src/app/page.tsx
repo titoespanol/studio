@@ -70,8 +70,12 @@ export default function Home() {
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Component has mounted, so we are on the client.
+    setIsClient(true);
+
     // Moved random color generation to client-side only to avoid hydration errors
     setActiveColorClasses(getRandomColorClasses());
     
@@ -204,7 +208,7 @@ export default function Home() {
         </section>
 
         <ContactUs />
-        <PixelFooter />
+        {isClient && <PixelFooter />}
       </main>
     </div>
   );

@@ -6,19 +6,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "appHosting": {
-      "backends": [
-        {
-          "id": "studio",
-          "region": "us-central1"
-        }
-      ]
-    },
     "rewrites": [
       {
         "source": "**",
-        "appHosting": {
-          "backendId": "studio"
+        "run": {
+          "serviceId": "studio",
+          "region": "us-central1"
         }
       }
     ]

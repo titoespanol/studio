@@ -12,14 +12,7 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog"
-import { PixelCanvas } from './pixel-canvas';
-import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-
-const TeamMemberImage = dynamic(() => import('./team-member-image').then(mod => mod.TeamMemberImage), {
-  ssr: false,
-  loading: () => <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-muted"></div>
-});
+import { TeamMemberImage } from './team-member-image';
 
 const teamMembers = [
   {
@@ -85,12 +78,6 @@ const ElegantLinkedinIcon = () => (
 );
 
 export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   return (
     <section id="who-we-are" className="bg-background text-foreground py-20 md:py-32">
       <div className="container mx-auto px-4 text-center">

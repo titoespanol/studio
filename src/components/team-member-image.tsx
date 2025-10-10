@@ -21,7 +21,7 @@ export function TeamMemberImage({ imageUrl, name, dataAiHint, isChildLensActive,
         setIsClient(true);
     }, []);
 
-    const finalBorderColorClass = isChildLensActive ? borderColorClass : "text-primary";
+    const finalBorderColorClass = isChildLensActive ? borderColorClass : "border-primary";
 
     return (
         <div className="relative w-40 h-40 md:w-48 md:h-48">

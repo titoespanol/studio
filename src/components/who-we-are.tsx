@@ -9,49 +9,12 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog"
 import { TeamMemberImage } from './team-member-image';
+import imageData from '@/app/lib/placeholder-images.json';
 
-const teamMembers = [
-  {
-    name: 'Pilar Puig',
-    role: 'Founder',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/PilarAdult.jpg?alt=media&token=27246f22-facd-4a6f-b23f-d8ccf9171703',
-    childImageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Pilar%20Child.jpg?alt=media&token=dda46087-5129-4b71-95aa-79ff0a27bc5f',
-    dataAiHint: 'portrait woman',
-    linkedinUrl: 'https://www.linkedin.com/in/pilar-puig-s%C3%A0rries-phd/',
-    bio: {
-      title: 'Pilar Puig',
-      content: [
-        { text: 'Founder at The Child Lens.', bold: true },
-        { text: 'Worked with leading children’s hospitals, top-tier universities, and early-stage healthtech teams across Europe and the UK.' },
-        { text: 'Company builder:', bold: true, details: ' licensing, business plan, governance, fundraising.' },
-        { text: 'Network orchestrator:', bold: true, details: ' VCs, corporates, family offices, clinicians.' },
-        { text: 'Fundraiser:', bold: true, details: ' narrative, materials, investor process.' },
-        { text: 'Selected collaborations include:', bold: true, details: ' Sant Joan de Déu Hospital, University of Oxford, DIVE Medical, Gate2Brain, WHI Institute, Ship2B Foundation.' },
-        { text: 'Venture Partner', bold: true, details: ' at Montana Impact Fund.' },
-      ]
-    }
-  },
-  {
-    name: 'Marc Ramis',
-    role: 'Advisor',
-    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Marc%20Adult.jpg?alt=media&token=3339e3af-4813-4560-97ce-f1f0069c866d',
-    childImageUrl: 'https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/marc%20child.jpg?alt=media&token=55ff189e-36f9-4dfe-ba53-4f287100bb3e',
-    dataAiHint: 'portrait man',
-    linkedinUrl: 'https://www.linkedin.com/in/markramis/',
-    bio: {
-      title: 'Marc Ramis',
-      content: [
-        { text: 'He is currently dedicated to building companies focused on pediatric innovation. Marc is the Founder and Partner at Montana.' },
-        { text: 'Marc co-founded and is a Partner at Chasing Science and Manor House Partners, both early-stage venture builders between London and Barcelona. From England, he also dedicates his time to advising organisations such as Deep Science Ventures and Inside Out. Additionally, he is a Venture Partner at Ship2B Ventures and Korion Life Sciences.' },
-        { text: 'Most recently, Marc served as Co-founder & CEO of Rejuveron Senescence Therapeutics AG, Ninevah Therapeutics Ltd, and Senolytic Therapeutics Inc. He served also as a Board Member or Strategic Advisor for Aptadel Therapeutics, Retinset Therapeutics, Gate2Brain, Dive Medical, Oniria Therapeutics, Nanobots Therapeutics, Cebiotex, Cyclomed, and GeneTether.' }
-      ]
-    }
-  },
-];
+const teamMembers = imageData.team;
 
 type WhoWeAreProps = {
   isChildLensActive?: boolean;
@@ -132,7 +95,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                       <DialogClose asChild>
                         <button className="absolute -top-1 -right-1 h-16 w-16 focus:outline-none focus-visible:outline-none ring-offset-0 focus:ring-0 focus-visible:ring-0">
                           <Image
-                            src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/close%20button.png?alt=media&token=884b567c-c7b8-4b77-ad2e-764e0cbf98e5"
+                            src={imageData.closeButton}
                             alt="Close"
                             width={64}
                             height={64}
@@ -171,5 +134,3 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
     </section>
   );
 }
-
-    

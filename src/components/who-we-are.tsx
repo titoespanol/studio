@@ -14,7 +14,7 @@ import {
 import { TeamMemberImage } from './team-member-image';
 import imageData from '@/app/lib/placeholder-images.json';
 
-const teamMembers = imageData.team;
+const { team: teamMembers, closeButton } = imageData;
 
 type WhoWeAreProps = {
   isChildLensActive?: boolean;
@@ -95,7 +95,7 @@ export function WhoWeAre({ isChildLensActive, colorClasses }: WhoWeAreProps) {
                       <DialogClose asChild>
                         <button className="absolute -top-1 -right-1 h-16 w-16 focus:outline-none focus-visible:outline-none ring-offset-0 focus:ring-0 focus-visible:ring-0">
                           <Image
-                            src={imageData.closeButton}
+                            src={closeButton}
                             alt="Close"
                             width={64}
                             height={64}

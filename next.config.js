@@ -24,7 +24,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
         port: '',
-        pathname: '/v0/b/child-lens-landing.firebasestorage.app/o/**',
+        pathname: '/**',
       },
       {
         protocol: 'https',

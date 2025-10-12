@@ -5,15 +5,15 @@ import { PixelCanvas } from "./pixel-canvas";
 import { useEffect, useState } from "react";
 
 export function PixelFooter() {
-  const [isClient, setIsClient] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setHasMounted(true);
   }, []);
 
   return (
     <footer className="w-full h-40">
-      {isClient && <PixelCanvas />}
+      {hasMounted && <PixelCanvas />}
     </footer>
   );
 }

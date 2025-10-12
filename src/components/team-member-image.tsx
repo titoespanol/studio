@@ -15,10 +15,10 @@ type TeamMemberImageProps = {
 }
 
 export function TeamMemberImage({ imageUrl, name, dataAiHint, isChildLensActive, borderColorClass }: TeamMemberImageProps) {
-    const [isClient, setIsClient] = useState(false);
+    const [hasMounted, setHasMounted] = useState(false);
 
     useEffect(() => {
-        setIsClient(true);
+        setHasMounted(true);
     }, []);
 
     const finalBorderColorClass = isChildLensActive ? borderColorClass : "border-primary";
@@ -26,7 +26,7 @@ export function TeamMemberImage({ imageUrl, name, dataAiHint, isChildLensActive,
     return (
         <div className="relative w-40 h-40 md:w-48 md:h-48">
             <div className="absolute -inset-2 rounded-full overflow-hidden transition-transform duration-300 ease-in-out group-hover:scale-105">
-                {isClient && <PixelCanvas />}
+                {hasMounted && <PixelCanvas />}
             </div>
             <div className={cn("relative w-full h-full rounded-full p-1 border-2 border-dotted z-10 bg-background/80 transition-transform duration-300 ease-in-out group-hover:scale-110", finalBorderColorClass)}>
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg">
@@ -42,5 +42,3 @@ export function TeamMemberImage({ imageUrl, name, dataAiHint, isChildLensActive,
         </div>
     )
 }
-
-    

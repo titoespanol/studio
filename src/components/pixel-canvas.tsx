@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const rand = (min: number, max: number) => {
   return Math.random() * (max - min) + min;
@@ -121,8 +121,15 @@ class Pixel {
 export function PixelCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) return;
+
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -238,7 +245,11 @@ export function PixelCanvas() {
         resizeObserver.disconnect();
         container.removeEventListener('click', clickHandler);
     };
-  }, []);
+  }, [hasMounted]);
+
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <div ref={containerRef} className="w-full h-full">

@@ -1,0 +1,15 @@
+{
+  "bohoPattern": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Boho%20Pattern%207.jpg?alt=media&token=319b2028-afc4-4dd2-8282-5dfcabdafdb4",
+  "mandelaVideo": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/envato_video_gen_Sep_28_2025_12_10_09.mp4?alt=media&token=85df7269-3573-41a5-b437-2dd24fd5d91e",
+  "logo": "/logotcl.png",
+  "closeButton": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/close%20button.png?alt=media&token=884b567c-c7b8-4b77-ad2e-764e0cbf98e5",
+  "childFace": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/ulls%20nena%20tallada%20tiny.jpg?alt=media&token=3dc30680-3b54-4148-b3e6-8c46ace3d478",
+  "pilarPuig": {
+    "adult": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/PilarAdult.jpg?alt=media&token=27246f22-facd-4a6f-b23f-d8ccf9171703",
+    "child": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Pilar%20Child.jpg?alt=media&token=dda46087-5129-4b71-95aa-79ff0a27bc5f"
+  },
+  "marcRamis": {
+    "adult": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Marc%20Adult.jpg?alt=media&token=3339e3af-4813-4560-97ce-f1f0069c866d",
+    "child": "https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/marc%20child.jpg?alt=media&token=55ff189e-36f9-4dfe-ba53-4f287100bb3e"
+  }
+}

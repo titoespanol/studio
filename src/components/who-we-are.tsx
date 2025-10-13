@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogClose,
+  DialogTrigger,
 } from "@/components/ui/dialog"
 import { TeamMemberImage } from './team-member-image';
 import imageData from '@/app/lib/placeholder-images.json';

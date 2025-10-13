@@ -14,6 +14,7 @@ import { ContactUs } from '@/components/contact-us';
 import { ScrollIndicator } from '@/components/scroll-indicator';
 import { PixelFooter } from '@/components/PixelFooter';
 import { ScrollingWords } from '@/components/scrolling-words';
+import imageData from '@/app/lib/placeholder-images.json';
 
 const colorPalette = [
   { text: "text-[#d45324]", bg: "bg-[#d45324]", border: "border-[#d45324]" },
@@ -120,7 +121,7 @@ export default function Home() {
     <div className={cn("bg-background text-foreground", isChildLensActive && "bg-transparent")}>
       <div className={cn("fixed inset-0 z-[-1] transition-opacity duration-200", isChildLensActive ? "opacity-100" : "opacity-0")}>
         <Image
-          src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/Boho%20Pattern%207.jpg?alt=media&token=319b2028-afc4-4dd2-8282-5dfcabdafdb4"
+          src={imageData.bohoPattern}
           alt="Boho pattern background"
           fill
           className="object-cover"
@@ -172,7 +173,7 @@ export default function Home() {
             <div className="absolute inset-0 z-0">
                 <video
                     ref={videoRef}
-                    src="https://firebasestorage.googleapis.com/v0/b/child-lens-landing.firebasestorage.app/o/envato_video_gen_Sep_28_2025_12_10_09.mp4?alt=media&token=85df7269-3573-41a5-b437-2dd24fd5d91e"
+                    src={imageData.mandelaVideo}
                     autoPlay
                     loop
                     muted

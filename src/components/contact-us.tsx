@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -14,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Pin } from "lucide-react";
+import { Mail, Pin, Link } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -112,6 +113,10 @@ export function ContactUs() {
                  <div className="flex items-start">
                     <Pin className="w-5 h-5 mr-3 mt-1 shrink-0"/>
                     <p>Tech Barcelona - Pier07<br/>Via Laietana, 26, Ciutat Vella, 08003 Barcelona</p>
+                </div>
+                <div className="flex items-start">
+                    <Link className="w-5 h-5 mr-3 mt-1 shrink-0"/>
+                    <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">Firebase Console</a>
                 </div>
             </div>
             <div className="h-[300px] md:h-[400px] w-full rounded-lg overflow-hidden shadow-lg">

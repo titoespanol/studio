@@ -64,7 +64,7 @@ export default function Home() {
   }, []);
   
   useEffect(() => {
-    if (!heroAnimationFinished) return;
+    if (!heroAnimationFinished || !activeColorClasses) return;
 
     setIsFlashing(true);
     const timeouts: NodeJS.Timeout[] = [];
@@ -100,7 +100,7 @@ export default function Home() {
     return () => {
       timeouts.forEach(clearTimeout);
     };
-  }, [heroAnimationFinished]);
+  }, [heroAnimationFinished, activeColorClasses]);
   
   const handleToggleLens = () => {
     if (isFlashing) return;

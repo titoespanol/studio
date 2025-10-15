@@ -9,7 +9,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'picsum.photos',
-      }
+      },
     ],
   },
   typescript: {
@@ -17,6 +17,11 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  experimental: {
+    allowedDevOrigins: [
+      'https://*.cloudworkstations.dev',
+    ],
   },
 };
 

@@ -86,13 +86,29 @@ Firebase is included but not actively used in the current implementation. To ena
 - Preserved all custom components and animations
 
 ## Deployment
-The app can be deployed to:
-- Replit Deployments (recommended)
-- Vercel
-- Netlify
-- Any static hosting service
+
+### Replit Deployments (Recommended)
+The app is configured to run on Replit:
+1. The workflow "Start application" runs `npm run dev -p 5000`
+2. Server binds to port 5000 as required by Replit
+3. For production deployment, use Replit's Deploy button
+4. The static export feature (`output: 'export'`) makes it compatible with static hosting
+
+### Alternative Deployments
+- **Vercel**: Connect GitHub repo for automatic deployments
+- **Netlify**: Deploy with static export
+- **Any static hosting**: Run `npm run build` to generate static files
+
+## Current Status
+✅ **Migration Complete**
+- Successfully imported from GitHub repository
+- All dependencies installed and configured
+- Next.js 15 running on port 5000
+- All components rendering correctly
+- Animations and interactions working
 
 ## Notes
 - Images are set to unoptimized for static export compatibility
 - TypeScript and ESLint errors are ignored during build for flexibility
 - All animations use CSS and scroll-timeline API for performance
+- Assets (images/videos) are hosted on Firebase Storage and load correctly

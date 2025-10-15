@@ -9,4 +9,4 @@ build:
   buildCommand: npm run build
 run:
   # The command to start the production server.
-  startCommand: npm run start
+  startCommand: npm start

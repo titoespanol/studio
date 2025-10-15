@@ -20,7 +20,7 @@ export function AnimatedWords({ phrases, onComplete }: AnimatedWordsProps) {
   }, []);
 
   useEffect(() => {
-    if (!hasMounted) return;
+    if (!hasMounted || !isAnimating) return;
 
     if (currentPhraseIndex < phrases.length) {
       const currentPhrase = phrases[currentPhraseIndex].text;
@@ -28,7 +28,7 @@ export function AnimatedWords({ phrases, onComplete }: AnimatedWordsProps) {
       const intervalId = setInterval(() => {
         setDisplayedText(currentPhrase.substring(0, i + 1));
         i++;
-        if (i >= currentPhrase.length) {
+        if (i > currentPhrase.length) { // Use > to ensure it runs one last time
           clearInterval(intervalId);
           setTimeout(() => {
             setCurrentPhraseIndex(prevIndex => prevIndex + 1);
@@ -38,19 +38,21 @@ export function AnimatedWords({ phrases, onComplete }: AnimatedWordsProps) {
 
       return () => clearInterval(intervalId);
     } else {
-        if(isAnimating) {
-            setIsAnimating(false);
-            onComplete();
-        }
+        setIsAnimating(false);
+        onComplete();
     }
   }, [currentPhraseIndex, phrases, onComplete, isAnimating, hasMounted]);
+
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col items-start font-headline tracking-tight">
       {phrases.map((phrase, index) => (
         <div key={index} className={cn("h-[40px] md:h-[50px]", phrase.className)}>
             <span className={cn(phrase.weight, phrase.colorClass)}>
-            {hasMounted && (currentPhraseIndex > index ? phrase.text : (currentPhraseIndex === index ? displayedText : ""))}
+            {currentPhraseIndex > index ? phrase.text : (currentPhraseIndex === index ? displayedText : "")}
             </span>
         </div>
       ))}

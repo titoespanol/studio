@@ -117,7 +117,9 @@ export default function Home() {
   };
 
   if (!hasMounted || !activeColorClasses) {
-    return null; // Render nothing until client-side hydration is complete and colors are set
+    // Return a loader or null until the client has mounted
+    // This is crucial to prevent hydration errors with random colors
+    return null;
   }
 
   return (

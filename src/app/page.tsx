@@ -53,9 +53,11 @@ export default function Home() {
   const [heroAnimationFinished, setHeroAnimationFinished] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     // This effect runs only on the client, after hydration.
+    setHasMounted(true);
     setActiveColorClasses(getRandomColorClasses());
     
     if (videoRef.current) {
@@ -64,7 +66,7 @@ export default function Home() {
   }, []);
   
   useEffect(() => {
-    if (!heroAnimationFinished || !activeColorClasses) return;
+    if (!heroAnimationFinished) return;
 
     setIsFlashing(true);
     const timeouts: NodeJS.Timeout[] = [];
@@ -84,6 +86,7 @@ export default function Home() {
       const timeout = setTimeout(() => {
         setIsChildLensActive(active);
         if (active) {
+          // We get new colors when activating, but don't depend on them.
           setActiveColorClasses(getRandomColorClasses());
         }
       }, cumulativeDelay);
@@ -100,7 +103,7 @@ export default function Home() {
     return () => {
       timeouts.forEach(clearTimeout);
     };
-  }, [heroAnimationFinished, activeColorClasses]);
+  }, [heroAnimationFinished]);
   
   const handleToggleLens = () => {
     if (isFlashing) return;
@@ -113,7 +116,7 @@ export default function Home() {
     });
   };
 
-  if (!activeColorClasses) {
+  if (!hasMounted || !activeColorClasses) {
     return null; // Render nothing until client-side hydration is complete and colors are set
   }
 

@@ -1,0 +1,12 @@
+# Specifies the version of the App Hosting schema.
+schemaVersion: 2024-05-15
+
+# Defines the commands for building and running the application.
+build:
+  # The command to install dependencies. This is the "fetch" step.
+  installCommand: npm install
+  # The command to build the production application.
+  buildCommand: npm run build
+run:
+  # The command to start the production server.
+  startCommand: npm run start

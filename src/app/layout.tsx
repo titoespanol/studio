@@ -1,7 +1,15 @@
 import type { Metadata } from 'next';
+import { Sniglet } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ScrollProgressBar } from '@/components/scroll-progress-bar';
+import { cn } from '@/lib/utils';
+
+const sniglet = Sniglet({
+  subsets: ['latin'],
+  weight: ['400', '800'],
+  variable: '--font-sniglet',
+});
 
 export const metadata: Metadata = {
   title: 'Child Lens Landing',
@@ -34,12 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
+      <body className={cn("font-body antialiased", sniglet.variable)}>
         <ScrollProgressBar colors={colorPalette} sections={sections} />
         {children}
         <Toaster />
